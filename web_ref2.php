@@ -536,6 +536,11 @@ switch ($action) {
 			$db->where('(p.sn_remote LIKE "%'.$q.'%" OR p.sn_sup LIKE "%'.$q.'%"'.
 			  ' OR p.sn_pipe LIKE "%'.$q.'%" OR p.sn_test LIKE "%'.$q.'%"'.
 				' OR p.sn_prop LIKE "%'.$q.'%" OR p.sn_set LIKE "%'.$q.'%"'.
+				' OR p.sn_evaporator LIKE "%'.$q.'%" OR p.sn_motor_indoor LIKE "%'.$q.'%"' .
+				' OR p.sn_pcb_indoor LIKE "%'.$q.'%" OR p.sn_display_assembly LIKE "%'.$q.'%"' .
+				' OR p.sn_compressor LIKE "%'.$q.'%" OR p.sn_capacitor_compressor LIKE "%'.$q.'%"' .
+				' OR p.sn_magnetic LIKE "%'.$q.'%" OR p.sn_condenser LIKE "%'.$q.'%"' .
+				' OR p.sn_pcb_outdoor LIKE "%'.$q.'%" OR p.sn_motor_outdoor LIKE "%'.$q.'%"' .
 			  ' OR p.remark LIKE "%'.$q.'%"'.
 			')');
 		}
@@ -645,6 +650,19 @@ switch ($action) {
 			if(isset($v['test']) && $v['test'] != '') $data['sn_test'] = $v['test'];
 			if(isset($v['prop']) && $v['prop'] != '') $data['sn_prop'] = $v['prop'];
 			if(isset($v['set']) && $v['set'] != '') $data['sn_set'] = $v['set'];
+			// indoor add new
+			if(isset($v['sn_evaporator']) && $v['sn_evaporator'] != '') $data['sn_evaporator'] = $v['sn_evaporator'];
+			if(isset($v['sn_motor_indoor']) && $v['sn_motor_indoor'] != '') $data['sn_motor_indoor'] = $v['sn_motor_indoor'];
+			if(isset($v['sn_pcb_indoor']) && $v['sn_pcb_indoor'] != '') $data['sn_pcb_indoor'] = $v['sn_pcb_indoor'];
+			if(isset($v['sn_display_assembly']) && $v['sn_display_assembly'] != '') $data['sn_display_assembly'] = $v['sn_display_assembly'];
+			// outdoor add new
+			if(isset($v['sn_compressor']) && $v['sn_compressor'] != '') $data['sn_compressor'] = $v['sn_compressor'];
+			if(isset($v['sn_capacitor_compressor']) && $v['sn_capacitor_compressor'] != '') $data['sn_capacitor_compressor'] = $v['sn_capacitor_compressor'];
+			if(isset($v['sn_magnetic']) && $v['sn_magnetic'] != '') $data['sn_magnetic'] = $v['sn_magnetic'];
+			if(isset($v['sn_condenser']) && $v['sn_condenser'] != '') $data['sn_condenser'] = $v['sn_condenser'];
+			if(isset($v['sn_pcb_outdoor']) && $v['sn_pcb_outdoor'] != '') $data['sn_pcb_outdoor'] = $v['sn_pcb_outdoor'];
+			if(isset($v['sn_motor_outdoor']) && $v['sn_motor_outdoor'] != '') $data['sn_motor_outdoor'] = $v['sn_motor_outdoor'];
+
 			
 			// print_r($data);exit;
 
