@@ -686,9 +686,11 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <label>INDOOR  </label>
-                    </div>
+                  <hr>
+                  <div class="form-group text-center">
+                    <label class="text-uppercase" style="font-size: 16px;">INDOOR</label>
+                  </div>
+                  <hr>
 
                   <div class="form-group">
                     <label>รีโมท S/N  </label>
@@ -725,9 +727,11 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <label>OUTDOOR  </label>
-                    </div>
+                  <hr>
+                  <div class="form-group text-center">
+                    <label class="text-uppercase" style="font-size: 16px;">OUTDOOR</label>
+                  </div>
+                  <hr>
 
 
 
@@ -1049,7 +1053,7 @@ function getList(do_search){
       ldat.count = data.count;
 			for(var i=0; i<Object.keys(d).length; i++){
 
-				tpl +='<tr>'+( canAction ? '<td>'+eb.snull(d[i].serial_id)+'</td>' : '')+
+        tpl +='<tr>'+( canAction ? '<td>'+eb.snull(d[i].serial_id)+'</td>' : '')+
         ( canAction ? '<td class="text-center"><div class="btn-group"><a href="#form_main" onclick="setEdit('+i+');" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a> <a href="javascript:;" onclick="delAct(this, '+d[i].serial_id+');" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a></div></td>' : '')+
         '<td nowrap><div id="qrI'+i+'"></div><a href="https://cs.mavellair.com/?sn='+d[i].serial_no+'" target="_blank" class="btn btn-xs mb-1 text-center">QR Code Link</a></td>'+
         '<td nowrap><strong>'+eb.snull(d[i].serial_no)+'</strong></td>'+
@@ -1060,6 +1064,10 @@ function getList(do_search){
         '<td><small>'+eb.snull(d[i].lot_no)+'</small></td>'+
         '<td><small>'+eb.snull(d[i].sn_sup)+'</small></td>'+
         '<td><small>'+eb.snull(d[i].sn_remote)+'</small></td>'+
+        '<td><small>'+eb.snull(d[i].sn_evaporator)+'</small></td>' +
+        '<td><small>'+eb.snull(d[i].sn_motor_indoor)+'</small></td>' +
+        '<td><small>'+eb.snull(d[i].sn_pcb_indoor)+'</small></td>' +
+        '<td><small>'+eb.snull(d[i].sn_display_assembly)+'</small></td>' +
         '<td><small>'+eb.snull(d[i].sn_pipe)+'</small></td>'+
         '<td><small>'+eb.snull(d[i].sn_test)+'</small></td>'+
         '<td><small>'+eb.snull(d[i].sn_prop)+'</small></td>'+
@@ -1073,6 +1081,7 @@ function getList(do_search){
         '<td><small>'+eb.nl2br(d[i].remark)+'</small></td>'+
         '<td><small>'+eb.snull(d[i].customer)+'</small></td>'+
         '<td><small>'+eb.snull(d[i].created_at)+' /<br/>'+eb.snull(d[i].updated_at)+'</small></td></tr>';
+        
 //
         // pre-load for edit
         if(ldat.query.serial_id && ldat.query.serial_id ==  d[i].serial_id) {
