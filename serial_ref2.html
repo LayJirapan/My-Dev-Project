@@ -759,6 +759,49 @@
                     </div>
                   </div>
 
+                  <div class="form-group">
+                    <label>Compressor S/N </label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="sn_compressor" name="sn_compressor"/>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Capacitor Compressor S/N </label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="sn_capacitor_compressor" name="sn_capacitor_compressor"/>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Magnetic S/N </label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="sn_magnetic" name="sn_magnetic"/>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Condenser S/N </label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="sn_condenser" name="sn_condenser"/>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>PCB Outdoor S/N </label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="sn_pcb_outdoor" name="sn_pcb_outdoor"/>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Motor Outdoor S/N </label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="sn_motor_outdoor" name="sn_motor_outdoor"/>
+                    </div>
+                  </div>
+
+
                   <!-- <div class="form-group">
                     <label>Registered to Customer *</label>
                     <div class="input-group">
@@ -977,10 +1020,20 @@ function getList(do_search){
             <th style="width: 100px">Lot No.</th>
             <th style="width: 100px">SUP S/N</th>
             <th style="width: 100px">รีโมท S/N</th>
+            <th style="width: 100px">Evaporator S/N</th>
+            <th style="width: 100px">Indoor Motor S/N</th>
+            <th style="width: 100px">PCB Board S/N</th>
+            <th style="width: 100px">Display assembly S/N</th>
             <th style="width: 100px">ท่อ S/N</th>
             <th style="width: 100px">เทส S/N</th>
             <th style="width: 100px">ใบพัด S/N</th>
             <th style="width: 100px">ชุดติดตั้ง S/N</th>
+            <th style="width: 100px">Compressor S/N</th>
+            <th style="width: 100px">Capacitor Compressor S/N</th>
+            <th style="width: 100px">Magnetic S/N</th>
+            <th style="width: 100px">Condenser S/N</th>
+            <th style="width: 100px">PCB Outdoor S/N</th>
+            <th style="width: 100px">Motor Outdoor S/N</th>
             <th style="width: 100px">หมายเหตุ</th>
             <th style="width: 150px"><i class="fas fa-user"></i> ลูกค้า</th>
             <th style="width: 200px"> Created / Updated</th>
@@ -1011,6 +1064,12 @@ function getList(do_search){
         '<td><small>'+eb.snull(d[i].sn_test)+'</small></td>'+
         '<td><small>'+eb.snull(d[i].sn_prop)+'</small></td>'+
         '<td><small>'+eb.snull(d[i].sn_set)+'</small></td>'+
+        '<td><small>'+eb.snull(d[i].sn_compressor)+'</small></td>'+
+        '<td><small>'+eb.snull(d[i].sn_capacitor_compressor)+'</small></td>'+
+        '<td><small>'+eb.snull(d[i].sn_magnetic)+'</small></td>'+
+        '<td><small>'+eb.snull(d[i].sn_condenser)+'</small></td>'+
+        '<td><small>'+eb.snull(d[i].sn_pcb_outdoor)+'</small></td>'+
+        '<td><small>'+eb.snull(d[i].sn_motor_outdoor)+'</small></td>'+
         '<td><small>'+eb.nl2br(d[i].remark)+'</small></td>'+
         '<td><small>'+eb.snull(d[i].customer)+'</small></td>'+
         '<td><small>'+eb.snull(d[i].created_at)+' /<br/>'+eb.snull(d[i].updated_at)+'</small></td></tr>';
