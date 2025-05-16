@@ -1080,7 +1080,7 @@ function setTD(){
         <th class="text-center" style="width: 10px">ลำดับ</th>
         <th class="text-center">Product S/N</th>
         ${ldat.active != 'OUTDOOR' ? '<th class="text-center" style="width: 20%">Remote S/N</th><th class="text-center" style="width: 20%">SUP S/N</th><th class="text-center" style="width: 20%">Evaporator S/N</th><th class="text-center" style="width: 20%">Indoor Motor S/N</th><th class="text-center" style="width: 20%">PCB Board S/N</th><th class="text-center" style="width: 20%">Display assembly S/N</th><th class="text-center" style="width: 10px">ยกเลิก</th>'
-          : '<th class="text-center" style="width: 20%">ท่อ S/N</th><th class="text-center" style="width: 10%">เทส S/N</th><th class="text-center" style="width: 10%">ใบพัด S/N</th><th class="text-center" style="width: 10%">ชุดติดตั้ง S/N</th><th class="text-center" style="width: 10%">SUP S/N</th><th class="text-center" style="width: 10%">Compressor S/N</th><th class="text-center" style="width: 10%">Capacitor Compressor S/N</th><th class="text-center" style="width: 10%">Magnetic S/N</th><th class="text-center" style="width: 10%">Condenser S/N</th><th class="text-center" style="width: 10%">PCB Board S/N</th><th class="text-center" style="width: 10%">Outdoor Motor S/N</th><th class="text-center" style="width: 10px">ยกเลิก</th>'}
+          : '<th class="text-center">ท่อ S/N</th><th class="text-center">เทส S/N</th><th class="text-center">ใบพัด S/N</th><th class="text-center">ชุดติดตั้ง S/N</th><th class="text-center">SUP S/N</th><th class="text-center">Compressor S/N</th><th class="text-center">Capacitor Compressor S/N</th><th class="text-center">Magnetic S/N</th><th class="text-center">Condenser S/N</th><th class="text-center">PCB Board S/N</th><th class="text-center">Outdoor Motor S/N</th><th class="text-center">ยกเลิก</th>'}
       </tr>
     </thead>
     <tbody>
@@ -1114,23 +1114,52 @@ function setTD(){
     if(ldat.active != 'OUTDOOR' ) to_save = {model: m, remote: r, sup: p, sn_evaporator: ev, sn_motor_indoor: mo, sn_pcb_indoor: pcb_in, sn_display_assembly: disp,  delete: 0};
     else to_save = {model: m, pipe: pi, sup: p, test: t, prop: pr, set: s, sn_compressor: c, sn_capacitor_compressor: cc, sn_magnetic: mg, sn_condenser: cd, sn_pcb_outdoor: pcb_out, sn_motor_outdoor: mo2,  delete: 0};
     ldat.set.push(to_save);
-    i = ldat.set.length;
-    $("#divTable1 table tbody").prepend(`<tr class="bg-warning" data-id="0" data-inx="${i}">
+i = ldat.set.length;
+
+let row_html = '';
+
+if (ldat.active != 'OUTDOOR') {
+  row_html = `
+    <tr class="bg-warning" data-id="0" data-inx="${i}">
       <td class="text-center">${i}.</td>
       <td class="text-center">${eb.snull(m)}</td>
+      <td class="text-center">${eb.snull(r)}</td>
+      <td class="text-center">${eb.snull(p)}</td>
       <td class="text-center">${eb.snull(ev)}</td>
       <td class="text-center">${eb.snull(mo)}</td>
       <td class="text-center">${eb.snull(pcb_in)}</td>
       <td class="text-center">${eb.snull(disp)}</td>
-      <td class="text-center">${eb.snull(ldat.active != 'OUTDOOR' ? r : pi)}</td>
-      <td class="text-center">${eb.snull(ldat.active != 'OUTDOOR' ? p : t)}</td>
-      ${ldat.active == "OUTDOOR" ? '<td class="text-center">'+eb.snull(pr)+'</td><td class="text-center">'+eb.snull(s)+'</td><td class="text-center">'+eb.snull(p)+'</td>' : ''}
       <td class="text-center">
         <button onclick="markDel(this,${i})" type="button" class="btn btn-xs btn-danger">
           <i class="fa fa-trash"></i>
         </button>
       </td>
-    </tr>`);
+    </tr>`;
+} else {
+  row_html = `
+    <tr class="bg-warning" data-id="0" data-inx="${i}">
+      <td class="text-center">${i}.</td>
+      <td class="text-center">${eb.snull(m)}</td>
+      <td class="text-center">${eb.snull(pi)}</td>
+      <td class="text-center">${eb.snull(t)}</td>
+      <td class="text-center">${eb.snull(pr)}</td>
+      <td class="text-center">${eb.snull(s)}</td>
+      <td class="text-center">${eb.snull(p)}</td>
+      <td class="text-center">${eb.snull(c)}</td>
+      <td class="text-center">${eb.snull(cc)}</td>
+      <td class="text-center">${eb.snull(mg)}</td>
+      <td class="text-center">${eb.snull(cd)}</td>
+      <td class="text-center">${eb.snull(pcb_out)}</td>
+      <td class="text-center">${eb.snull(mo2)}</td>
+      <td class="text-center">
+        <button onclick="markDel(this,${i})" type="button" class="btn btn-xs btn-danger">
+          <i class="fa fa-trash"></i>
+        </button>
+      </td>
+    </tr>`;
+}
+
+$("#divTable1 table tbody").prepend(row_html);
   }
   $("#model_sn,#model_sn2,#remote_sn,#sup_sn,#pipe_sn,#prop_sn,#test_sn,#set_sn,#sn_evaporator,#sn_motor_indoor,#sn_pcb_indoor,#sn_display_assembly,#sn_compressor,#sn_capacitor_compressor,#sn_magnetic,#sn_condenser,#sn_pcb_outdoor,#sn_motor_outdoor").val("");
 
