@@ -698,6 +698,66 @@
                 </div>
               </div>
 
+              <div class="form_outdoor col-md-4 col-sm-12 col-6" style="display:none;">
+                <div class="form-group">
+                  <label data-i18n="">Compressor S/N :</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend"><div class="input-group-text"><i class="fa fa-barcode"></i></div></div>
+                    <input type="text" class="form-control field-sn" placeholder="คีย์​ S/N และ enter..." id="sn_compressor" disabled="true">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form_outdoor col-md-4 col-sm-12 col-6" style="display:none;">
+                <div class="form-group">
+                  <label data-i18n="">Capacitor Compressor S/N :</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend"><div class="input-group-text"><i class="fa fa-barcode"></i></div></div>
+                    <input type="text" class="form-control field-sn" placeholder="คีย์​ S/N และ enter..." id="sn_capacitor_compressor" disabled="true">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form_outdoor col-md-4 col-sm-12 col-6" style="display:none;">
+                <div class="form-group">
+                  <label data-i18n="">Magnetic S/N :</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend"><div class="input-group-text"><i class="fa fa-barcode"></i></div></div>
+                    <input type="text" class="form-control field-sn" placeholder="คีย์​ S/N และ enter..." id="sn_magnetic" disabled="true">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form_outdoor col-md-4 col-sm-12 col-6" style="display:none;">
+                <div class="form-group">
+                  <label data-i18n="">Condenser S/N :</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend"><div class="input-group-text"><i class="fa fa-barcode"></i></div></div>
+                    <input type="text" class="form-control field-sn" placeholder="คีย์​ S/N และ enter..." id="sn_condenser" disabled="true">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form_outdoor col-md-4 col-sm-12 col-6" style="display:none;">
+                <div class="form-group">
+                  <label data-i18n="">PCB Board S/N :</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend"><div class="input-group-text"><i class="fa fa-barcode"></i></div></div>
+                    <input type="text" class="form-control field-sn" placeholder="คีย์​ S/N และ enter..." id="sn_pcb_outdoor" disabled="true">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form_outdoor col-md-4 col-sm-12 col-6" style="display:none;">
+                <div class="form-group">
+                  <label data-i18n="">Outdoor Motor S/N :</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend"><div class="input-group-text"><i class="fa fa-barcode"></i></div></div>
+                    <input type="text" class="form-control field-sn" placeholder="คีย์​ S/N และ enter..." id="sn_motor_outdoor" disabled="true">
+                  </div>
+                </div>
+              </div>
+
               <div class="col-12 mt-4">
                 <div class="table-responsive" id="divTable1"></div>
 
@@ -916,6 +976,48 @@ $("#sn_display_assembly").on('keypress', function(e) {
   // 2.6. Model S/N Outdoor (กล่อง)
   $("#model_sn2").on('keypress',function(e){
     if(e.which == 13 && this.value != "") {
+     $("#sn_compressor").focus();
+    }
+  });
+
+  // 2.7. Compressor S/N
+  $("#sn_compressor").on('keypress',function(e){
+    if(e.which == 13 && this.value != "") {
+     $("#sn_capacitor_compressor").focus();
+    }
+  });
+
+  // 2.8. Capacitor Compressor S/N
+  $("#sn_capacitor_compressor").on('keypress',function(e){
+    if(e.which == 13 && this.value != "") {
+     $("#sn_magnetic").focus();
+    }
+  });
+
+  // 2.9. Magnetic S/N
+  $("#sn_magnetic").on('keypress',function(e){
+    if(e.which == 13 && this.value != "") {
+     $("#sn_condenser").focus();
+    }
+  });
+
+  // 2.10. Condenser S/N
+  $("#sn_condenser").on('keypress',function(e){
+    if(e.which == 13 && this.value != "") {
+     $("#sn_pcb_outdoor").focus();
+    }
+  });
+
+  // 2.11. PCB Board S/N
+  $("#sn_pcb_outdoor").on('keypress',function(e){
+    if(e.which == 13 && this.value != "") {
+     $("#sup_sn").focus();
+    }
+  });
+
+  // 2.12. Outdoor Motor S/N
+  $("#sn_motor_outdoor").on('keypress',function(e){
+    if(e.which == 13 && this.value != "") {
       setTD();
     }
   });
@@ -978,7 +1080,7 @@ function setTD(){
         <th class="text-center" style="width: 10px">ลำดับ</th>
         <th class="text-center">Product S/N</th>
         ${ldat.active != 'OUTDOOR' ? '<th class="text-center" style="width: 20%">Remote S/N</th><th class="text-center" style="width: 20%">SUP S/N</th><th class="text-center" style="width: 20%">Evaporator S/N</th><th class="text-center" style="width: 20%">Indoor Motor S/N</th><th class="text-center" style="width: 20%">PCB Board S/N</th><th class="text-center" style="width: 20%">Display assembly S/N</th><th class="text-center" style="width: 10px">ยกเลิก</th>'
-          : '<th class="text-center" style="width: 20%">ท่อ S/N</th><th class="text-center" style="width: 10%">เทส S/N</th><th class="text-center" style="width: 10%">ใบพัด S/N</th><th class="text-center" style="width: 10%">ชุดติดตั้ง S/N</th><th class="text-center" style="width: 10%">SUP S/N</th><th class="text-center" style="width: 10px">ยกเลิก</th>'}
+          : '<th class="text-center" style="width: 20%">ท่อ S/N</th><th class="text-center" style="width: 10%">เทส S/N</th><th class="text-center" style="width: 10%">ใบพัด S/N</th><th class="text-center" style="width: 10%">ชุดติดตั้ง S/N</th><th class="text-center" style="width: 10%">SUP S/N</th><th class="text-center" style="width: 10%">Compressor S/N</th><th class="text-center" style="width: 10%">Capacitor Compressor S/N</th><th class="text-center" style="width: 10%">Magnetic S/N</th><th class="text-center" style="width: 10%">Condenser S/N</th><th class="text-center" style="width: 10%">PCB Board S/N</th><th class="text-center" style="width: 10%">Outdoor Motor S/N</th><th class="text-center" style="width: 10px">ยกเลิก</th>'}
       </tr>
     </thead>
     <tbody>
@@ -997,13 +1099,20 @@ function setTD(){
   var t = $("#test_sn").val();
   var pr = $("#prop_sn").val();
   var s = $("#set_sn").val();
+  var c = $("#sn_compressor").val();     // Compressor
+  var cc = $("#sn_capacitor_compressor").val(); // Capacitor Compressor
+  var mg = $("#sn_magnetic").val();      // Magnetic
+  var cd = $("#sn_condenser").val();     // Condenser
+  var pcb_out = $("#sn_pcb_outdoor").val(); // PCB Outdoor
+  var mo2 = $("#sn_motor_outdoor").val(); // Motor Outdoor
+
   var to_save = {};
   var i = -1;
 
 
   if(m.length > 3 && p != ""){
     if(ldat.active != 'OUTDOOR' ) to_save = {model: m, remote: r, sup: p, sn_evaporator: ev, sn_motor_indoor: mo, sn_pcb_indoor: pcb_in, sn_display_assembly: disp,  delete: 0};
-    else to_save = {model: m, pipe: pi, sup: p, test: t, prop: pr, set: s, delete: 0};
+    else to_save = {model: m, pipe: pi, sup: p, test: t, prop: pr, set: s, sn_compressor: c, sn_capacitor_compressor: cc, sn_magnetic: mg, sn_condenser: cd, sn_pcb_outdoor: pcb_out, sn_motor_outdoor: mo2,  delete: 0};
     ldat.set.push(to_save);
     i = ldat.set.length;
     $("#divTable1 table tbody").prepend(`<tr class="bg-warning" data-id="0" data-inx="${i}">
@@ -1023,7 +1132,7 @@ function setTD(){
       </td>
     </tr>`);
   }
-  $("#model_sn,#model_sn2,#remote_sn,#sup_sn,#pipe_sn,#prop_sn,#test_sn,#set_sn,#sn_evaporator,#sn_motor_indoor,#sn_pcb_indoor,#sn_display_assembly").val("");
+  $("#model_sn,#model_sn2,#remote_sn,#sup_sn,#pipe_sn,#prop_sn,#test_sn,#set_sn,#sn_evaporator,#sn_motor_indoor,#sn_pcb_indoor,#sn_display_assembly,#sn_compressor,#sn_capacitor_compressor,#sn_magnetic,#sn_condenser,#sn_pcb_outdoor,#sn_motor_outdoor").val("");
 
   if(ldat.active != 'OUTDOOR') $("#remote_sn").focus();
   else $("#pipe_sn").focus();
@@ -1040,6 +1149,12 @@ function setTD(){
     sn_motor_indoor: mo,
     sn_pcb_indoor: pcb_in,
     sn_display_assembly: disp,
+    sn_compressor: c,
+    sn_capacitor_compressor: cc,
+    sn_magnetic: mg,
+    sn_condenser: cd,
+    sn_pcb_outdoor: pcb_out,
+    sn_motor_outdoor: mo2,
     product_id : $("#product_id").val(),
     model_code_opt : $("#model_code_opt").val(),
     lot_no : $("#lot_no").val(),
