@@ -1464,7 +1464,11 @@
                   <td class="text-center"><input type="number" min="0" class="form-control text-right" name="other_cost" id="otherCost"/></td>
                 </tr>
                 <tr>
-                  <td class="text-right">รวมเป็นเงินทั้งสิ้น <button type="button" class="btn btn-xs btn-info" click="$('#repairCost').trigger("change");"><i class="fas fa-sync mr-1"></i> คำนวณใหม่</button></td>
+                  <td class="text-right">รวมเป็นเงินทั้งสิ้น <button type="button" class="btn btn-xs btn-info" id="btnRecalculate">
+                    <i class="fas fa-sync mr-1"></i> คำนวณใหม่
+                </button>
+                </td>
+                
                   <td id="totalRepairCost" class="text-right">0.00</td>
                 </tr>
               </tbody>
@@ -2304,8 +2308,17 @@ $($ => {
   $("#costTotalTable input[type='number']").on('keyup change', function(){
     let sum = 0;
     $("#costTotalTable input[type='number']").each((k,v) => {
+  if ($(v).attr("name") !== "transport_cost_txt") {
+    sum += Number($(v).val());
+  }
+});
+
+
+    /*
+    $("#costTotalTable input[type='number']").each((k,v) => {
       sum += Number($(v).val());
-    });
+    }); 
+    */
     // console.log(sum);
     updateFormFixedTotal(0,sum);
   });
@@ -2354,18 +2367,45 @@ $($ => {
 				$('#progress .progress-bar').css('width', progress + '%').html(progress + '%');
 			}
 	});
+$("#btnRecalculate").on("click", function () {
+  // ล้างค่าทุกช่องตัวเลข
+  $("#costTotalTable input[type='number']").each(function () {
+    $(this).val(""); // ล้าง
+  });
+
+  // ล้างช่องข้อความประกอบ (คำอธิบาย)
+  $("#costTotalTable input[type='text']").each(function () {
+    $(this).val("");
+  });
+
+  // คำนวณใหม่แบบ manual โดยยกเว้น transport_cost และ transport_cost_txt
+  let sum = 0;
+  $("#costTotalTable input[type='number']").each(function () {
+    const name = $(this).attr("name");
+    if (name !== "transport_cost" && name !== "transport_cost_txt") {
+      sum += Number($(this).val()) || 0;
+    }
+  });
+
+  // อัปเดตยอด
+  updateFormFixedTotal(0, sum);
+});
+
+
 
 }); // end pageInit
 
 });
 
-const updateFormFixedTotal = (cost,sum) => {
-  if(cost) ldat.fixed.total_propose = cost;
-  if(sum) ldat.fixed.total_cost = sum;
+const updateFormFixedTotal = (cost, sum) => {
+  if (typeof cost !== 'undefined') ldat.fixed.total_propose = cost;
+  if (typeof sum !== 'undefined') ldat.fixed.total_cost = sum;
+
   $("#totalPropose").html(ldat.fixed.total_propose.formatMoney() + ' บาท');
-  $("#totalRepairCost").html((ldat.fixed.total_propose+ldat.fixed.total_cost).formatMoney() + ' บาท');
+  $("#totalRepairCost").html((ldat.fixed.total_propose + ldat.fixed.total_cost).formatMoney() + ' บาท');
   console.log(ldat.fixed);
 };
+
 
 
 const loadDetail = (q) => {
