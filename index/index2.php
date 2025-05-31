@@ -797,7 +797,7 @@
                                 <option value="E3">ขึ้น Error Code E3</option>
                                 <option value="E4">ขึ้น Error Code E4</option>
                                 <option value="E5">ขึ้น Error Code E5 หรือ 5E</option>
-								<option value="E6">ขึ้น Error Code E6</option>
+								                <option value="E6">ขึ้น Error Code E6</option>
                                 <option value="F0">ขึ้น Error Code F0</option>
                                 <option value="F1">ขึ้น Error Code F1</option>
                                 <option value="F3">ขึ้น Error Code F3</option>
@@ -816,8 +816,8 @@
                                 <option value="smell">แอร์มีกลิ่นเหม็น</option>
                                 <option value="no_nitrogen">ไม่มีไนโตรเจนในแผงคอยล์เย็น</option>
                                 <option value="no_refrigerant">น้ำยาในคอยล์ร้อนมีน้อยหรือไม่มีเลย</option>
-								<option value="coil_leak">แผงคอยล์เย็นรั่ว</option>
-								<option value="com_leak">คอมเพรสเซอร์รั่ว</option>
+								                <option value="coil_leak">แผงคอยล์เย็นรั่ว</option>
+								                <option value="com_leak">คอมเพรสเซอร์รั่ว</option>
                               </select>
                             </div>
 
@@ -826,10 +826,10 @@
                               <textarea class="form-control" name="description2" rows="3" placeholder="Enter your description..." id="description"></textarea>
                             </div>
                             <div class="form-group">
-                              <label for="attach_photo">ไฟล์หรือภาพประกอบ (ถ้ามี)</label>
+                              <label for="attach_photo">ไฟล์หรือภาพประกอบ (อย่างน้อย1ไฟล์)<span class="text-danger ml-1">*</span></label>
                               <div class="input-group">
                                 <div class="custom-file">
-                                  <input type="file" class="custom-file-input" accept="image/*,video/*" multiple="false" name="attach_photo" id="attachPhoto">
+                                  <input type="file" class="custom-file-input" accept="image/*,video/*" multiple required name="attach_photo" id="attachPhoto">
                                   <label class="custom-file-label" for="attach_photo">เลือกไฟล์</label>
                                   <div class="progress hide" id="progress">
                                      <div class="progress-bar" role="progressbar" style="width:100%">0%</div>
