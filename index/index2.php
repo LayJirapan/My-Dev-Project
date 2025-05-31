@@ -1189,6 +1189,27 @@
 <script src="./view/js/index.js?v=22"></script>
 
 <script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const qsn = urlParams.get('sn');
+
+  if (qsn) {
+    // กรอกหน้า 'แจ้งขอรับบริการ / ซ่อม'
+    const snQueryField = document.getElementById('snQuery');
+    if (snQueryField) {
+      snQueryField.value = qsn;
+    }
+
+    // กรอกหน้า 'ลงทะเบียนผลิตภัณฑ์'
+    const indoorField = document.querySelector('input[name="indoor_sn"]');
+    if (indoorField) {
+      indoorField.value = qsn;
+    } 
+
+  }
+</script>
+
+
+<script>
 $($ => {
 
 });
