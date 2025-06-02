@@ -699,13 +699,18 @@
 
           </div>
           <div class="tab-pane fade" id="menu-req" role="tabpanel" aria-labelledby="menu-req-tab">
-                            
+            <!-- เลือกประเภทผู้ใช้งาน -->                
           <div class="mb-3 d-flex justify-content-center">
         <div class="text-center">
             <div><strong>กรุณาเลือกประเภทผู้ใช้งาน</strong></div>
             <div class="mt-2">
             <label><input type="radio" name="userType" value="customer" onclick="toggleServiceForm()"> ลูกค้าทั่วไป</label>
             <label class="ml-3"><input type="radio" name="userType" value="technician" onclick="toggleServiceForm()"> ช่าง/ASC</label>
+            </div>
+            <!-- หัวข้อย่อยของช่าง -->
+            <div id="technicianSubMenu" style="display:none;" class="mt-3">
+            <label><input type="radio" name="technicianFormType" value="service" checked onclick="toggleTechnicianForm()"> แจ้งขอรับบริการ</label>
+            <label class="ml-3"><input type="radio" name="technicianFormType" value="inspection" onclick="toggleTechnicianForm()"> การตรวจสอบ</label>
             </div>
         </div>
         </div>
@@ -993,6 +998,304 @@
             <!-- End of Service Request -->
             </form>
             </div>
+             <!-- ฟอร์มช่าง: แจ้งขอรับบริการ -->
+            <div id="serviceFormTechnicianService" style="display:none;">
+            <form id="form_service_request">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title"><i class="fas fa-tools"></i> แจ้งขอรับบริการ / แจ้งซ่อม / สอบถาม</h3>
+              </div>
+                <div class="card-body">
+                  <div class="mb-3">
+                    <h5 class="text-danger">Service request form</h5>
+                    <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="pill" href="#menu-reg" role="tab" aria-controls="menu-reg" aria-selected="true">
+                      <i class="fas fa-shield-alt mr-1"></i>กดที่นี่ หากคุณต้องการลงทะเบียนผลิตภัณฑ์
+                    </button>
+                    <button type="button" data-toggle="modal" data-target="#wcdModal" class="btn btn-outline-primary btn-sm">
+                      <i class="fas fa-h and-point-right mr-1"></i>กดที่นี่ เพื่ออ่านเงื่อนไขการรับประกันเครื่องปรับอากาศมาเวล
+                    </button>
+                  </div>
+                  <div class="small"> การขอรับบริการโปรดกรอกแบบฟอร์มด้านล่างเพื่อดำเนินการตามคำขอของคุณอย่างรวดเร็วโปรดส่งข้อมูลต่อไปนี้ในไฟล์แนบ และทีมงานของเรายินดีให้ความช่วยเหลือภายใน 24 ชั่วโมง</div>
+                  <br/>
+                  <div class="row">
+                    <div class="col-md-6 col-12">
+                      <div class="card card-danger">
+                        <div class="card-header">
+                          <h3 class="card-title"><i class="fas fa-cube"></i> ผลิตภัณฑ์ที่ขอรับบริการ</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                              <label for="serviceType">แจ้งเรื่อง <span class="text-danger ml-1">*</span></label>
+                              <select class="form-control select2" name="service_type2" id="serviceType">
+                                <option disabled>- โปรดระบุเรื่องที่แจ้งขอบริการ -</option>
+                                <option value="repair" selected>แจ้งขอรับบริการซ่อม</option>
+                                <option value="inquiry_part">สอบถามและสั่งซื้ออะไหล่</option>
+                                <option value="inquiry_technical">สอบถามปัญหาทางเทคนิค</option>
+                              </select>
+                            </div>
+                            <!-- <div class="form-group">
+                              <label for="productType">ประเภทสินค้า <span class="text-danger ml-1">*</span></label>
+                              <select class="form-control select2" name="product_type2" id="productType2">
+                                <option disabled selected>- โปรดระบุประเภทแอร์มาเวล  -</option>
+                                <option value="1">เครื่องปรับอากาศ แบบ ติดผนัง-ฟิกซ์สปีด / Wall Type / Fixed Speed (Standard)</option>
+                                <option value="2">เครื่องปรับอากาศ แบบ ติดผนัง-ฟิกซ์สปีด-เต็มบีทียู / Wall Type / Fixed Speed (Full BTU)</option>
+                                <option value="3">เครื่องปรับอากาศ แบบ ติดผนัง-อินเวอร์เตอร์-สมาร์ทพลัส-1ดาว / Wall Type / Inverter / Smart Plus (1 Star)</option>
+                                <option value="4">เครื่องปรับอากาศ แบบ ติดผนัง-อินเวอร์เตอร์-สมาร์ทคูล-0ดาว / Wall Type / Inverter / Smart Cool (0 Star)</option>
+                                <option value="5">เครื่องปรับอากาศ แบบ ติดผนัง-อินเวอร์เตอร์-สมาร์ททรี-3ดาว / Wall Type / Inverter / Smart III (3 Star)</option>
+                                <option value="6">เครื่องปรับอากาศ แบบ ติดผนัง-อินเวอร์เตอร์ ไวไฟ / Wall Type / Inverter WIFI</option>
+                                <option value="7">เครื่องปรับอากาศ แบบ แขวน-ฟิกซ์สปีด-R32 / Ceiling Type / Fixed Speed / R32 </option>
+                                <option value="8">เครื่องปรับอากาศ แบบ แขวน-ฟิกซ์สปีด-R410A / Ceiling Type / Fixed Speed / R410A </option>
+                                <option value="9">เครื่องปรับอากาศ แบบ 4 ทิศทาง-ฟิกซ์สปีด-R32 / Cassette Type / Fixed Speed / R32 </option>
+                                <option value="10">เครื่องปรับอากาศ แบบ 4 ทิศทาง-ฟิกซ์สปีด-R410A / Cassette Type / Fixed Speed / R410A </option>
+                                <option value="-1">เครื่องปรับอากาศ ประเภทอื่น (โปรดระบุ) </option>
+                              </select>
+                            </div> -->
+                            <div class="form-group">
+                              <label for="indoor_sn">หมายเลขเครื่องภายใน หรือ ภายนอก ที่ลงทะเบียนไว้<span class="text-danger ml-1">*</span></label>
+                              <div class="input-group">
+                                  <input type="search" class="form-control" id="snQuery"></select>
+                                  <div class="input-group-append" data-toggle="modal" data-target="#qrReaderMod">
+                                      <div class="input-group-text bg-warning"><i class="fa fa-qrcode mr-1"></i> QR Code</div>
+                                  </div>
+                              </div>
+                              <button type="button" class="btn btn-block btn-sm btn-secondary mt-1" id="btnFindSN2"><i class="fas fa-search"></i> ค้นหารหัสผลิตภัณฑ์</button>
+                              <!-- <select class="form-control" id="snQuery"></select> -->
+                              <input type="hidden" name="indoor_sn2">
+                              <input type="hidden" name="outdoor_sn2">
+                              <input type="hidden" name="product_id2">
+                              <input type="hidden" name="serial_id2">
+                              <input type="hidden" name="product_type2">
+                              <!-- <input type="hidden" name="product_model2"> -->
+
+                              <div class=""><strong>ข้อมูลการลงทะเบียน</strong> : <span id="resultSN2">-</span></div>
+                              <div class="mt-1"><strong>สถานะรหัสสินค้า</strong> : <span id="resultSN3">-</span></div>
+
+                            </div>
+                            <div class="form-group">
+                              <label for="productModel2">รุ่นสินค้า <span class="text-danger ml-1">*</span></label>
+                              <select class="form-control select2" id="productModel2" name="product_model2">
+                                <option disabled selected>- โปรดระบุรุ่น -</option>
+                              </select>
+                              <div class=""><strong>ประเภทสินค้า</strong> : <span id="productTypeTxt2" class="text-wrap">(ยังไม่ได้ค้นหารหัสผลิตภัณฑ์)</span></div>
+                            </div>
+
+                            <!-- <div class="form-group" id="otherTypeSec2" style="display:none;">
+                              <label for="other_type">เครื่องปรับอากาศ ประเภทอื่น (โปรดระบุ) <span class="text-danger ml-1">*</span></label>
+                              <input type="text" class="form-control" id="other_type2" placeholder="Other product type">
+                            </div>
+                            <div class="form-group" id="otherModelSec2" style="display:none;">
+                              <label for="other_model">เครื่องปรับอากาศ รุ่นอื่น (โปรดระบุ) <span class="text-danger ml-1">*</span></label>
+                              <input type="text" class="form-control" id="other_model2" placeholder="Other prduct model">
+                            </div> -->
+                            <div class="form-group" id="errorCodeSec">
+                              <label for="errorCode">อาการเสีย <span class="text-danger ml-1">*</span></label>
+                              <select class="form-control select2" name="error_code2" id="errorCode">
+                                <option disabled selected value="0">- โปรดระบุอาการ -</option>
+                                <option value="E0">ขึ้น Error Code E0</option>
+                                <option value="E1">ขึ้น Error Code E1</option>
+                                <option value="E2">ขึ้น Error Code E2</option>
+                                <option value="E3">ขึ้น Error Code E3</option>
+                                <option value="E4">ขึ้น Error Code E4</option>
+                                <option value="E5">ขึ้น Error Code E5 หรือ 5E</option>
+								                <option value="E6">ขึ้น Error Code E6</option>
+                                <option value="F0">ขึ้น Error Code F0</option>
+                                <option value="F1">ขึ้น Error Code F1</option>
+                                <option value="F3">ขึ้น Error Code F3</option>
+                                <option value="F4">ขึ้น Error Code F4</option>
+                                <option value="F6">ขึ้น Error Code F6</option>
+                                <option value="P3">ขึ้น Error Code P3</option>
+                                <option value="indoor_noise">Indoor มีเสียงดัง</option>
+                                <option value="outdoor_noise">Outdoor มีเสียงดัง</option>
+                                <option value="not_start">แอร์เปิดไม่ติด</option>
+                                <option value="remote_failed">รีโมทกดไม่ติด</option>
+                                <option value="water_drop">แอร์น้ำหยด</option>
+                                <option value="frozen_coil">แผงคอยล์เย็นเป็นน้ำแข็ง</option>
+                                <option value="not_cold">แอร์ไม่เย็น</option>
+                                <option value="slow_continue">แอร์ต่อช้า</option>
+                                <option value="not_back_off">แอร์ไม่ตัด</option>
+                                <option value="smell">แอร์มีกลิ่นเหม็น</option>
+                                <option value="no_nitrogen">ไม่มีไนโตรเจนในแผงคอยล์เย็น</option>
+                                <option value="no_refrigerant">น้ำยาในคอยล์ร้อนมีน้อยหรือไม่มีเลย</option>
+								<option value="coil_leak">แผงคอยล์เย็นรั่ว</option>
+								<option value="com_leak">คอมเพรสเซอร์รั่ว</option>
+                                <option value="com_lock">คอมเพรสเซอร์ล็อค</option>
+                                <option value="com_notsuck">คอมเพรสเซอร์ไม่ดูด/ไม่อัด</option>
+                              </select>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="description2">รายละเอียด</label>
+                              <textarea class="form-control" name="description2" rows="3" placeholder="Enter your description..." id="description"></textarea>
+                            </div>
+                            <div class="form-group">
+                              <label for="attach_photo">ไฟล์หรือภาพประกอบ (อย่างน้อย1ไฟล์)<span class="text-danger ml-1">*</span></label>
+                              <div class="input-group">
+                                <div class="custom-file">
+                                  <input type="file" class="custom-file-input" accept="image/*,video/*" multiple required name="attach_photo" id="attachPhoto">
+                                  <label class="custom-file-label" for="attach_photo">เลือกไฟล์</label>
+                                  <div class="progress hide" id="progress">
+                                     <div class="progress-bar" role="progressbar" style="width:100%">0%</div>
+                                  </div>
+                                </div>
+                              </div>
+                              <ul>
+                                <li>ขนาดไฟล์ที่สามารนำเข้า ได้ไม่ควรเกิน 5 MB และเป็น .jpg, png, bmp, gif, mp4, avi, mov เท่านั้น</li>
+                                <li>จำกัดจำนวนไฟล์ 5 ไฟล์</li>
+                              </ul>
+                              <div class="m-2">
+                                  <div id="previewFile" class="row"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                      <div class="card card-danger">
+                        <div class="card-header">
+                          <h3 class="card-title"><i class="fas fa-file-alt"></i> ข้อมูลผู้ขอ และสถานที่ขอรับบริการ</h3>
+                        </div>
+                        <div class="card-body">
+                          <h5 class="title"><i class="fas fa-user"></i> ผู้รับบริการ <span class="text-danger ml-1">*</span></h5>
+                          <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">ชื่อ/นามสกุล</span>
+                              <select name="requester_title2" id="requesterTitle" class="form-control">
+                                <option value="">(คำนำหน้า)</option>
+                                <option value="นาย">นาย</option>
+                                <option value="นาง">นาง</option>
+                                <option value="นางสาว">นางสาว</option>
+                                <option value="อื่นๆ">อื่นๆ</option>
+                              </select>
+                            </div>
+                            <input type="text" class="form-control hide" name="requester_title_other2" placeholder="อื่นๆ โปรดระบุ">
+                            <input type="text" class="form-control" name="requester_name2" placeholder="First and last name">
+                          </div>
+                          <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">ชื่อหน่วยงาน (ถ้ามี)</span>
+                            </div>
+                            <input type="text" class="form-control" name="requester_org_name2" placeholder="Organization Name">
+                          </div>
+
+                          <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">โทรศัพท์ติดต่อ</span>
+                            </div>
+                            <input type="text" class="form-control" name="requester_phone2" placeholder="Phone No.">
+                          </div>
+                          <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">อีเมล์ (ถ้ามี)</span>
+                            </div>
+                            <input type="text" class="form-control" name="requester_email2" placeholder="Contact email">
+                          </div>
+                          <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">LINE ID (ถ้ามี)</span>
+                            </div>
+                            <input type="text" class="form-control" name="requester_lineid2" placeholder="LINE ID">
+                          </div>
+
+                          <h5 class="title mt-3"><i class="fas fa-map"></i> สถานที่ขอรับบริการ</h5>
+                          <small>กรุณาเลือกวิธีการให้ข้อมูลสถานที่</small>
+                          <ul class="nav nav-tabs" id="placeTab" role="tablist">
+                            <li class="nav-item">
+                              <a class="nav-link" id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home" aria-selected="true">1. ลากวางบนแผนที่</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link active" id="placeManual2-tab" data-toggle="tab" href="#placeManual2" role="tab" aria-controls="placeManual" aria-selected="false">2.กรอกที่อยู่เอง</a>
+                            </li>
+                          </ul>
+                          <div class="tab-content mt-2" id="placeTabContent2">
+                            <div class="tab-pane fade" id="home2" role="tabpanel" aria-labelledby="home2-tab">
+                              <div>กรุณาลากจุดสีแดงให้ไปสถานที่ติดตั้งตามต้องการ :</div>
+                              <div id="mapCanvas2"></div>
+                              <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">GPS Loc</span>
+                                </div>
+                                <input type="text" class="form-control" name="request_latlng2" placeholder="" readonly>
+                              </div>
+                            </div>
+                            <div class="tab-pane fade show active" id="placeManual2" role="tabpanel" aria-labelledby="placeManual2-tab">
+                              <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">เลขที่</span>
+                                </div>
+                                <input type="text" class="form-control" name="address_no2" placeholder="House No.">
+                              </div>
+
+                              <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">หมู่ที่</span>
+                                </div>
+                                <input type="text" class="form-control" name="address_moo2" placeholder="Village No">
+                              </div>
+                              <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">อาคาร/ตึก</span>
+                                </div>
+                                <input type="text" class="form-control" name="address_building2" placeholder="Building / Tower name">
+                              </div>
+                              <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">ซอย/ถนน</span>
+                                </div>
+                                <input type="text" class="form-control" name="address_road2" placeholder="Road">
+                              </div>
+                              <div class="input-group mb-2">
+                                <input type="text" class="form-control" name="address_subdistrict2" placeholder="แขวง/ตำบล">
+                              </div>
+                              <div class="input-group mb-2">
+                                <input type="text" class="form-control" name="address_district2" placeholder="เขต/อำเภอ">
+                              </div>
+                              <div class="input-group mb-2">
+                                <input type="text" class="form-control" name="address_province2" placeholder="จังหวัด">
+                              </div>
+                              <div class="input-group mb-2">
+                                <input type="text" class="form-control" name="address_postcode2" placeholder="รหัสไปรษณีย์">
+                              </div>
+                            </div>
+                          </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  </div>
+                </div>
+              <div class="card-footer">
+                <label class="small" for="userAccept2">ท่านตกลงยินยอมให้บริษัทเก็บรวบรวมข้อมูลส่วนบุคคลของท่านที่ได้ให้ไว้แก่บริษัท และ/หรืออยู่ในความครอบครองของบริษัท โดยมีวัตถุประสงค์เพื่อนำเสนอบริการที่มีคุณภาพยิ่งขึ้นให้แก่ผู้ใช้ โดยให้ใช้อย่างถูกต้องและเป็นไปตามกฏหมาย ทั้งนี้เจ้าของข้อมูลมีสิทธิ์ขอแก้ไข ระงับการใช้ หรือทำลาย โดยแจ้งบริษัทเป็นลายลักษณ์อักษร</label>
+                <br/>
+                <div class="form-check mb-3 mt-2">
+                  <input type="checkbox" class="form-check-input" name="user_accept_2" value="1" id="userAccept2">
+                  <label class="form-check-label" for="userAccept2">ยินยอม / Accept</label>
+                </div>
+                <button type="button" class="btn btn-lg btn-default" id="btnSubmitServReqReset">เริ่มใหม่</button>
+                <button type="button" id="btnSubmitServReq" class="btn btn-lg btn-primary">  <i class="fas fa-paper-plane mr-1"></i> แจ้งขอรับบริการ</button>
+                <a class="btn btn-lg btn-default hide"> <i class="fas fa-file-alt mr-1"></i> สถานะการขอรับบริการ : <span id="statusServRerv">ไม่พบข้อมูล</span></a>
+              </div>
+            </div>
+                </form>
+            </div>
+
+            <!-- ฟอร์มช่าง: การตรวจสอบ -->
+            <div id="serviceFormTechnicianInspection" style="display:none;">
+                <form id="form_technician_inspection">
+                <h5>ฟอร์มการตรวจสอบ (Inspection)</h5>
+                <div class="form-group">
+                <label>หมายเลขงาน</label>
+                <input type="text" class="form-control" name="inspect_job_id">
+                </div>
+                <div class="form-group">
+                <label>ผลการตรวจสอบ</label>
+                <textarea class="form-control" name="inspect_result"></textarea>
+                </div>
+                <!-- เพิ่มฟิลด์อื่นตามต้องการ -->
+                </form>
+            </div>
+
           </div>
           <div class="tab-pane fade" id="menu-dealer" role="tabpanel" aria-labelledby="menu-dealer-tab">
             <div class="card card-primary mb-5">
@@ -1205,12 +1508,31 @@
 <script src="./view/js/index.js?v=22"></script>
 
 <script>
-  function toggleServiceForm() {
-    const selected = document.querySelector('input[name="userType"]:checked').value;
-    document.getElementById('serviceFormCustomer').style.display = selected === 'customer' ? 'block' : 'none';
-    document.getElementById('serviceFormTechnician').style.display = selected === 'technician' ? 'block' : 'none';
+function toggleServiceForm() {
+  const selected = document.querySelector('input[name="userType"]:checked').value;
+
+  // ซ่อนทุกฟอร์มก่อน
+  document.getElementById('serviceFormCustomer').style.display = 'none';
+  document.getElementById('serviceFormTechnicianService').style.display = 'none';
+  document.getElementById('serviceFormTechnicianInspection').style.display = 'none';
+
+  // ซ่อน/แสดงหัวข้อย่อย
+  if (selected === 'technician') {
+    document.getElementById('technicianSubMenu').style.display = 'block';
+    document.getElementById('serviceFormTechnicianService').style.display = 'block'; // default
+  } else {
+    document.getElementById('technicianSubMenu').style.display = 'none';
+    document.getElementById('serviceFormCustomer').style.display = 'block';
   }
+}
+
+function toggleTechnicianForm() {
+  const selected = document.querySelector('input[name="technicianFormType"]:checked').value;
+  document.getElementById('serviceFormTechnicianService').style.display = selected === 'service' ? 'block' : 'none';
+  document.getElementById('serviceFormTechnicianInspection').style.display = selected === 'inspection' ? 'block' : 'none';
+}
 </script>
+
 
 
 <script>
