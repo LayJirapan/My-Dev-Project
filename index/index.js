@@ -628,16 +628,18 @@ function clickServReqSubmit(){
   var tmp = {};
   // remove LAST character, `2`
   $.each(q, function(k,v){
-    if(k.length > 0) tmp[k.slice(0,-1)] = v;
-  });
+  if(k.endsWith("2")) tmp[k.slice(0,-1)] = v;
+  else tmp[k] = v;
+});
+
   q = tmp
   q.id = ldat.id;
   q.channel = "WEB-CS";
-  var ecSl2 = $("#errorCode").select2('data');
+  
   var pModel= $("#productModel2").select2('data'); // if disable
   q.product_model = pModel[0] ? pModel[0].text : null;
-  q.error_code = ecSl2[0] ? ecSl2[0].id : null;
-  q.error_code_txt = ecSl2[0] ? ecSl2[0].text : null;
+  q.error_code = $("#errorCode").val();
+  q.error_code_txt = $("#errorCode option:selected").text();
   if(ldat.cur_product_type) q.product_type = ldat.cur_product_type;
   if(q.product_type) q.product_type_txt = ldat.product_type[q.product_type];
   // q.error_cause = $("#error_cause2 option:selected").text();
