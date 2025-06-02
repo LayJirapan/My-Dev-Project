@@ -829,8 +829,10 @@
                                 <option value="smell">แอร์มีกลิ่นเหม็น</option>
                                 <option value="no_nitrogen">ไม่มีไนโตรเจนในแผงคอยล์เย็น</option>
                                 <option value="no_refrigerant">น้ำยาในคอยล์ร้อนมีน้อยหรือไม่มีเลย</option>
-								                <option value="coil_leak">แผงคอยล์เย็นรั่ว</option>
-								                <option value="com_leak">คอมเพรสเซอร์รั่ว</option>
+								<option value="coil_leak">แผงคอยล์เย็นรั่ว</option>
+								<option value="com_leak">คอมเพรสเซอร์รั่ว</option>
+                                <option value="com_lock">คอมเพรสเซอร์ล็อค</option>
+                                <option value="com_notsuck">คอมเพรสเซอร์ไม่ดูด/ไม่อัด</option>
                               </select>
                             </div>
 
