@@ -700,12 +700,16 @@
           </div>
           <div class="tab-pane fade" id="menu-req" role="tabpanel" aria-labelledby="menu-req-tab">
                             
-          <!-- ปุ่มเลือกประเภทผู้ใช้งาน -->
-          <div class="mb-3">
-            <label><strong>เลือกประเภทผู้ใช้งาน</strong></label><br>
-            <label><input type="radio" name="userType" value="customer" onclick="toggleServiceForm()"> ลูกค้า</label>
-            <label class="ml-3"><input type="radio" name="userType" value="technician" onclick="toggleServiceForm()"> ช่าง</label>
+          <div class="mb-3 d-flex justify-content-center">
+        <div class="text-center">
+            <div><strong>กรุณาเลือกประเภทผู้ใช้งาน</strong></div>
+            <div class="mt-2">
+            <label><input type="radio" name="userType" value="customer" onclick="toggleServiceForm()"> ลูกค้าทั่วไป</label>
+            <label class="ml-3"><input type="radio" name="userType" value="technician" onclick="toggleServiceForm()"> ช่าง/ASC</label>
             </div>
+        </div>
+        </div>
+
         <!-- ฟอร์มลูกค้า -->
             <div id="serviceFormCustomer" style="display:none;">
             <!-- Service Request -->
