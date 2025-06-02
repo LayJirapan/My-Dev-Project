@@ -699,6 +699,15 @@
 
           </div>
           <div class="tab-pane fade" id="menu-req" role="tabpanel" aria-labelledby="menu-req-tab">
+                            
+          <!-- ปุ่มเลือกประเภทผู้ใช้งาน -->
+          <div class="mb-3">
+            <label><strong>เลือกประเภทผู้ใช้งาน</strong></label><br>
+            <label><input type="radio" name="userType" value="customer" onclick="toggleServiceForm()"> ลูกค้า</label>
+            <label class="ml-3"><input type="radio" name="userType" value="technician" onclick="toggleServiceForm()"> ช่าง</label>
+            </div>
+        <!-- ฟอร์มลูกค้า -->
+            <div id="serviceFormCustomer" style="display:none;">
             <!-- Service Request -->
             <form id="form_service_request">
             <div class="card card-primary">
@@ -977,6 +986,7 @@
             </div>
             <!-- End of Service Request -->
             </form>
+            </div>
           </div>
           <div class="tab-pane fade" id="menu-dealer" role="tabpanel" aria-labelledby="menu-dealer-tab">
             <div class="card card-primary mb-5">
@@ -1189,17 +1199,24 @@
 <script src="./view/js/index.js?v=22"></script>
 
 <script>
+  function toggleServiceForm() {
+    const selected = document.querySelector('input[name="userType"]:checked').value;
+    document.getElementById('serviceFormCustomer').style.display = selected === 'customer' ? 'block' : 'none';
+    document.getElementById('serviceFormTechnician').style.display = selected === 'technician' ? 'block' : 'none';
+  }
+</script>
+
+
+<script>
   const urlParams = new URLSearchParams(window.location.search);
   const qsn = urlParams.get('sn');
 
   if (qsn) {
-    // กรอกหน้า 'แจ้งขอรับบริการ / ซ่อม'
     const snQueryField = document.getElementById('snQuery');
     if (snQueryField) {
       snQueryField.value = qsn;
     }
 
-    // กรอกหน้า 'ลงทะเบียนผลิตภัณฑ์'
     const indoorField = document.querySelector('input[name="indoor_sn"]');
     if (indoorField) {
       indoorField.value = qsn;
