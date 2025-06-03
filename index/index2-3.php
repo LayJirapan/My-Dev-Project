@@ -717,6 +717,7 @@
             <form id="form_service_request">
             <div class="card card-primary">
               <div class="card-header">
+ 
                 <h3 class="card-title"><i class="fas fa-tools"></i> แจ้งขอรับบริการ / แจ้งซ่อม / สอบถาม</h3>
               </div>
                 <div class="card-body">
@@ -731,9 +732,35 @@
                   </div>
                   <div class="small"> การขอรับบริการโปรดกรอกแบบฟอร์มด้านล่างเพื่อดำเนินการตามคำขอของคุณอย่างรวดเร็วโปรดส่งข้อมูลต่อไปนี้ในไฟล์แนบ และทีมงานของเรายินดีให้ความช่วยเหลือภายใน 24 ชั่วโมง</div>
                   <br/>
+                  
+
                   <div class="row">
                     <div class="col-md-6 col-12">
                       <div class="card card-danger">
+                            <!-- กล่องช่างผู้แจ้ง -->
+<div id="technicianInfoSection" class="mb-3" style="display: none;">
+  <!-- <div class="card border border-danger"> -->
+    <div class="card-header bg-danger text-white font-weight-bold py-2">
+      <i class="fas fa-user"></i>ช่างผู้แจ้งขอรับบริการ
+    </div>
+    <div class="card-body">
+      <div class="form-group row align-items-center mb-2">
+        <label for="technician_name" class="col-md-4 col-form-label">ชื่อ-นามสกุล<span class="text-danger ml-1">*</span></label>
+        <div class="col-md-8">
+          <input type="text" class="form-control" name="technician_name" id="technician_name" placeholder="กรอกชื่อ-นามสกุล">
+        </div>
+      </div>
+      <div class="form-group row align-items-center mb-0">
+        <label for="technician_phone" class="col-md-4 col-form-label">เบอร์มือถือ<span class="text-danger ml-1">*</span></label>
+        <div class="col-md-8">
+          <input type="tel" class="form-control" name="technician_phone" id="technician_phone" placeholder="กรอกเบอร์มือถือ">
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
                         <div class="card-header">
                           <h3 class="card-title"><i class="fas fa-cube"></i> ผลิตภัณฑ์ที่ขอรับบริการ</h3>
                         </div>
@@ -873,19 +900,6 @@
 
                         <div class="card-body">
                             
-                              <!-- กล่องช่างผู้แจ้ง -->
-<h5 class="title"><i class="fas fa-user"></i> ช่างผู้แจ้งขอรับบริการ <span class="text-danger ml-1">*</span></h5>
-  <div class="card-body">
-    <div class="form-group">
-      <label for="technician_name">ชื่อ-นามสกุล</label>
-      <input type="text" class="form-control" id="technician_name" name="technician_name" placeholder="กรอกชื่อช่างผู้แจ้ง">
-    </div>
-    <div class="form-group">
-      <label for="technician_phone">เบอร์มือถือ</label>
-      <input type="tel" class="form-control" id="technician_phone" name="technician_phone" placeholder="กรอกเบอร์ช่างผู้แจ้ง">
-    </div>
-  </div>
-</div>
                           <h5 class="title"><i class="fas fa-user"></i> ผู้รับบริการ <span class="text-danger ml-1">*</span></h5>
                           <div class="input-group mb-2">
                             <div class="input-group-prepend">
@@ -1009,28 +1023,28 @@
   <div class="col-md-6">
     <!-- ข้อ 1 -->
     <div class="form-group row">
-      <label class="col-6 col-form-label">1. แรงดันไฟฟ้า (V)</label>
+      <label class="col-6 col-form-label">1. แรงดันไฟฟ้า (V)<span class="text-danger ml-1">*</span></label>
       <div class="col-6">
         <input type="number" name="voltage" class="form-control w-75 w-md-50" placeholder="">
       </div>
     </div>
 
     <div class="form-group row">
-      <label class="col-6 col-form-label">2. กระแสไฟฟ้า (A)</label>
+      <label class="col-6 col-form-label">2. กระแสไฟฟ้า (A)<span class="text-danger ml-1">*</span></label>
       <div class="col-6">
         <input type="number" name="current" class="form-control w-75 w-md-50" placeholder="">
       </div>
     </div>
 
     <div class="form-group row">
-      <label class="col-6 col-form-label">3. อุณหภูมิตั้งรีโมท (Mode Cool °C)</label>
+      <label class="col-6 col-form-label">3. อุณหภูมิตั้งรีโมท (Mode Cool °C)<span class="text-danger ml-1">*</span></label>
       <div class="col-6">
         <input type="number" name="remote_temp" class="form-control w-75 w-md-50" placeholder="">
       </div>
     </div>
 
     <div class="form-group row">
-      <label class="col-6 col-form-label">4. แรงดันน้ำยาด้านดูด (ด้านต่ำ) (PSI)</label>
+      <label class="col-6 col-form-label">4. แรงดันน้ำยาด้านดูด (ด้านต่ำ) (PSI)<span class="text-danger ml-1">*</span></label>
       <div class="col-6">
         <input type="number" name="low_pressure" class="form-control w-75 w-md-50" placeholder="">
       </div>
@@ -1044,7 +1058,7 @@
     </div>
 
     <div class="form-group row">
-      <label class="col-6 col-form-label">6. FCU อุณหภูมิลมจ่าย (หน้าคอยล์เย็น) (°C)</label>
+      <label class="col-6 col-form-label">6. FCU อุณหภูมิลมจ่าย (หน้าคอยล์เย็น) (°C)<span class="text-danger ml-1">*</span></label>
       <div class="col-6">
         <input type="number" name="fcu_out_temp" class="form-control w-75 w-md-50" placeholder="">
       </div>
@@ -1054,21 +1068,21 @@
   <!-- ฝั่งขวา: ข้อ 7 - 12 -->
   <div class="col-md-6">
     <div class="form-group row">
-      <label class="col-6 col-form-label">7. FCU อุณหภูมิลมกลับ (หลังคอยล์เย็น) (°C)</label>
+      <label class="col-6 col-form-label">7. FCU อุณหภูมิลมกลับ (หลังคอยล์เย็น) (°C)<span class="text-danger ml-1">*</span></label>
       <div class="col-6">
         <input type="number" name="fcu_return_temp" class="form-control w-75 w-md-50" placeholder="">
       </div>
     </div>
 
     <div class="form-group row">
-      <label class="col-6 col-form-label">8. CDU อุณหภูมิลมจ่าย (หน้าคอยล์ร้อน) (°C)</label>
+      <label class="col-6 col-form-label">8. CDU อุณหภูมิลมจ่าย (หน้าคอยล์ร้อน) (°C)<span class="text-danger ml-1">*</span></label>
       <div class="col-6">
         <input type="number" name="cdu_out_temp" class="form-control w-75 w-md-50" placeholder="">
       </div>
     </div>
 
     <div class="form-group row">
-      <label class="col-6 col-form-label">9. CDU อุณหภูมิลมกลับ (หลังคอยล์ร้อน) (°C)</label>
+      <label class="col-6 col-form-label">9. CDU อุณหภูมิลมกลับ (หลังคอยล์ร้อน) (°C)<span class="text-danger ml-1">*</span></label>
       <div class="col-6">
         <input type="number" name="cdu_return_temp" class="form-control w-75 w-md-50" placeholder="">
       </div>
@@ -1082,14 +1096,14 @@
     </div>
 
     <div class="form-group row">
-      <label class="col-6 col-form-label">11. เดินท่อกี่เมตร</label>
+      <label class="col-6 col-form-label">11. ระยะเดินท่อ (เมตร)<span class="text-danger ml-1">*</span></label>
       <div class="col-6">
         <input type="number" name="pipe_length" class="form-control w-75 w-md-50" placeholder="">
       </div>
     </div>
 
     <div class="form-group row">
-      <label class="col-6 col-form-label">12. เชื่อมท่อไหม</label>
+      <label class="col-6 col-form-label">12. ท่อมีการเชื่อมหรือไหม<span class="text-danger ml-1">*</span></label>
       <div class="col-6">
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="pipe_welding" id="welding_yes" value="yes">
