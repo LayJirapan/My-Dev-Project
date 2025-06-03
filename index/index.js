@@ -621,6 +621,22 @@ $($ => {
 				$('#progress .progress-bar').css('width', progress + '%').html(progress + '%');
 			}
 	});
+//ชื่อและเบอร์ช่าง
+  function toggleTechnicianFields() {
+  const userType = $('input[name="user_type"]:checked').val();
+  if (userType === 'technician') {
+    $('#technicianInfoSection').show();
+  } else {
+    $('#technicianInfoSection').hide();
+    $('#technician_name').val('');
+    $('#technician_phone').val('');
+  }
+}
+
+// เรียกเมื่อโหลด และเมื่อมีการเปลี่ยนค่าผู้ใช้งาน
+$('input[name="user_type"]').on('change', toggleTechnicianFields);
+$(document).ready(toggleTechnicianFields);
+
   //.fileupload('disable');
   function toggleTechSection() {
   const userType = $('input[name="user_type"]:checked').val();
@@ -641,11 +657,24 @@ $(document).ready(() => {
 
 
 function clickServReqSubmit(){
+  // ✅ อ่านค่าโดยตรงจาก DOM
+  const userType = $('input[name="user_type"]:checked').val();
+  console.log("User type:", userType);  // 🐞 ตรงนี้คือ log test
+  const technicianName = ($('#technician_name').val() || '').trim();
+  const technicianPhone = ($('#technician_phone').val() || '').trim();
+
+
+  if (userType === 'technician') {
+    if (!technicianName || !technicianPhone) {
+      Swal.fire('กรุณากรอกชื่อและเบอร์โทรศัพท์ของช่างผู้แจ้ง', '', 'error');
+      return;
+    }
+  }
   var q = $('#form_service_request').serializeObject();
   var tmp = {};
   // remove LAST character, `2`
   $.each(q, function(k,v){
-    if(k.length > 0) tmp[k.slice(0,-1)] = v;
+    tmp[k.endsWith('2') ? k.slice(0, -1) : k] = v;
   });
   q = tmp
   q.id = ldat.id;
