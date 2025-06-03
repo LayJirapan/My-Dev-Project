@@ -622,24 +622,39 @@ $($ => {
 			}
 	});
   //.fileupload('disable');
+  function toggleTechSection() {
+  const userType = $('input[name="user_type"]:checked').val();
+  const errorCode = $('#errorCode').val();
+  const showExtra = (userType === 'technician' && (errorCode === 'com_lock' || errorCode === 'com_notsuck' || errorCode === 'outdoor_noise'));
+
+  $('#technicianMeasurementSection').toggle(showExtra);
+}
+
+// เรียกใช้เมื่อมีการเปลี่ยนค่าผู้ใช้งาน หรืออาการเสีย
+$('input[name="user_type"]').on('change', toggleTechSection);
+$('#errorCode').on('change', toggleTechSection);
+
+// ซ่อนไว้ก่อนโหลดหน้า
+$(document).ready(() => {
+  $('#technicianMeasurementSection').hide();
+});
+
 
 function clickServReqSubmit(){
   var q = $('#form_service_request').serializeObject();
   var tmp = {};
   // remove LAST character, `2`
   $.each(q, function(k,v){
-  if(k.endsWith("2")) tmp[k.slice(0,-1)] = v;
-  else tmp[k] = v;
-});
-
+    if(k.length > 0) tmp[k.slice(0,-1)] = v;
+  });
   q = tmp
   q.id = ldat.id;
   q.channel = "WEB-CS";
-  
+  var ecSl2 = $("#errorCode").select2('data');
   var pModel= $("#productModel2").select2('data'); // if disable
   q.product_model = pModel[0] ? pModel[0].text : null;
-  q.error_code = $("#errorCode").val();
-  q.error_code_txt = $("#errorCode option:selected").text();
+  q.error_code = ecSl2[0] ? ecSl2[0].id : null;
+  q.error_code_txt = ecSl2[0] ? ecSl2[0].text : null;
   if(ldat.cur_product_type) q.product_type = ldat.cur_product_type;
   if(q.product_type) q.product_type_txt = ldat.product_type[q.product_type];
   // q.error_cause = $("#error_cause2 option:selected").text();
