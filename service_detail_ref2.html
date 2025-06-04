@@ -1766,6 +1766,35 @@
                   <td><input type="text" class="form-control text-right" name="tbl_cdu_in_pre" placeholder="0"></td>
                   <td><input type="text" class="form-control text-right" name="tbl_cdu_in_post" placeholder="0"></td>
                 </tr>
+                <tr>
+                  <td>10. ขนาดห้อง (ตร.ม.)</td>
+                  <td><input type="text" class="form-control text-right" name="room_size" placeholder="0"></td>
+                
+                </tr>
+                <tr>
+                  <td>11. ระยะเดินท่อ (เมตร)</td>
+                  <td><input type="text" class="form-control text-right" name="pipe_length" placeholder="0"></td>
+                  
+               <tr>
+  <td>12. ท่อมีการเชื่อมหรือไม่</td>
+  <td>
+    <!-- ก่อนซ่อม: ใช่ -->
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="pipe_welding" id="welding_yes" value="yes">
+      <label class="form-check-label" for="welding_yes">ใช่</label>
+    </div>
+  </td>
+  <td>
+    <!-- หลังซ่อม: ไม่ใช่ -->
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="pipe_welding" id="welding_no" value="no">
+      <label class="form-check-label" for="welding_no">ไม่ใช่</label>
+    </div>
+  </td>
+</tr>
+
+
+
 
               </tbody>
             </table>
@@ -3038,6 +3067,21 @@ const getTimeline = (  ) => {
                         <td>${eb.snull(dd.tbl_cdu_in_pre)}</td>
                         <td>${eb.snull(dd.tbl_cdu_in_post)}</td>
                       </tr>
+                      <tr>
+                      <td>10. ขนาดห้อง (ตร.ม.)</td>
+                      <td colspan="2">${eb.snull(dd.room_size)}</td>
+                    </tr>
+                    <tr>
+                      <td>11. ระยะเดินท่อ (เมตร)</td>
+                      <td colspan="2">${eb.snull(dd.pipe_length)}</td>
+                    </tr>
+                    <tr>
+                      <td>12. ท่อมีการเชื่อมหรือไม่</td>
+                      <td colspan="2">
+                        ${dd.pipe_welding === 'yes' ? 'ใช่' : dd.pipe_welding === 'no' ? 'ไม่ใช่' : '-'}
+                      </td>
+                    </tr>
+
 
                       </tbody>
                     </table>
