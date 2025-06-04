@@ -640,7 +640,11 @@ $(document).ready(toggleTechnicianFields);
   //.fileupload('disable');
   function toggleTechSection() {
   const userType = $('input[name="user_type"]:checked').val();
-  const errorCode = $('#errorCode').val();
+  const ecData = $('#errorCode').select2('data');
+  const errorCode = (ecData[0] && ecData[0].id) || $('#errorCode').val();
+   console.log('DEBUG >> userType:', userType);
+  console.log('DEBUG >> errorCode:', errorCode);
+
   const showExtra = (userType === 'technician' && (errorCode === 'com_lock' || errorCode === 'com_notsuck' || errorCode === 'outdoor_noise'));
 
   $('#technicianMeasurementSection').toggle(showExtra);
@@ -657,9 +661,9 @@ $(document).ready(() => {
 
 
 function clickServReqSubmit(){
-  // ✅ อ่านค่าโดยตรงจาก DOM
+
+  //  อ่านค่าโดยตรงจาก DOM
   const userType = $('input[name="user_type"]:checked').val();
-  console.log("User type:", userType);  // 🐞 ตรงนี้คือ log test
   const technicianName = ($('#technician_name').val() || '').trim();
   const technicianPhone = ($('#technician_phone').val() || '').trim();
 
@@ -676,6 +680,9 @@ function clickServReqSubmit(){
   $.each(q, function(k,v){
     tmp[k.endsWith('2') ? k.slice(0, -1) : k] = v;
   });
+  q.high_pressure = q.high_pressure || null;
+  q.room_size = q.room_size || null;
+
   q = tmp
   q.id = ldat.id;
   q.channel = "WEB-CS";
@@ -705,6 +712,35 @@ if(invalidFiles.length > 0){
   Swal.fire('พบไฟล์ที่ไม่ได้รับอนุญาต: ' + invalidFiles.join(', '), '', 'error');
   return;
 }
+  // ตรวจสอบ 10 ช่องที่ช่างต้องกรอกก่อนกดส่ง
+// ตรวจสอบเฉพาะถ้า userType เป็น technician และ errorCode ต้องเป็น 3 ค่าเฉพาะ
+if (userType === 'technician' && ['com_lock', 'com_notsuck', 'outdoor_noise'].includes(q.error_code)) {
+
+  const requiredTechFields = [
+    'voltage', 'current', 'remote_temp',
+    'low_pressure',
+    'fcu_temp_out', 'fcu_return_temp',
+    'cdu_out_temp', 'cdu_return_temp',
+    'pipe_length', 'pipe_welding'
+  ];
+
+  for (let field of requiredTechFields) {
+    const el = $(`#form_service_request [name=${field}]`);
+    const val = el.val();
+    const label = el.closest('.form-group').find('label').text() || field;
+
+     console.log(`[CHECK] ${field} =>`, val, "| typeof:", typeof val, "| trim:", val?.trim?.()); //test
+
+    if (typeof val !== 'string' || val.trim() === '') {
+      console.log(`[MISSING] ${field} --> แสดง Swal`); //test
+
+      Swal.fire(`กรุณากรอกข้อมูลช่อง: ${label}`, '', 'warning');
+      el.focus();
+      return;
+    }
+  }
+}
+
   if(
     eb.isnt('ประเภทสินค้า / Product Type', q.product_type)
     && eb.isnt("รุ่นสินค้า / Model ID", q.product_model)
