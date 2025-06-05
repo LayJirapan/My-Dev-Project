@@ -1015,42 +1015,42 @@
                     <div class="form-group row">
                       <label class="col-6 col-form-label">1. แรงดันไฟฟ้า (V)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
-                        <input type="number" name="voltage" class="form-control w-75 w-md-50" placeholder="">
+                        <input type="number" name="tbl_volt_pre" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <label class="col-6 col-form-label">2. กระแสไฟฟ้า (A)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
-                        <input type="number" name="current" class="form-control w-75 w-md-50" placeholder="">
+                        <input type="number" name="tbl_amp_pre" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <label class="col-6 col-form-label">3. อุณหภูมิตั้งรีโมท (Mode Cool °C)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
-                        <input type="number" name="remote_temp" class="form-control w-75 w-md-50" placeholder="">
+                        <input type="number" name="tbl_term_remote_pre" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <label class="col-6 col-form-label">4. แรงดันน้ำยาด้านดูด (ด้านต่ำ) (PSI)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
-                        <input type="number" name="low_pressure" class="form-control w-75 w-md-50" placeholder="">
+                        <input type="number" name="tbl_psil_pre" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <label class="col-6 col-form-label">5. แรงดันน้ำยาด้านส่ง (ด้านสูง) (PSI)</label>
                       <div class="col-6">
-                        <input type="number" name="high_pressure" class="form-control w-75 w-md-50" placeholder="">
+                        <input type="number" name="tbl_psih_pre" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <label class="col-6 col-form-label">6. FCU อุณหภูมิลมจ่าย (หน้าคอยล์เย็น) (°C)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
-                        <input type="number" name="fcu_temp_out" class="form-control w-75 w-md-50" placeholder="">
+                        <input type="number" name="tbl_fcu_out_pre" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
                   </div>
@@ -1060,21 +1060,21 @@
                     <div class="form-group row">
                       <label class="col-6 col-form-label">7. FCU อุณหภูมิลมกลับ (หลังคอยล์เย็น) (°C)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
-                        <input type="number" name="fcu_return_temp" class="form-control w-75 w-md-50" placeholder="">
+                        <input type="number" name="tbl_fcu_in_pre" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <label class="col-6 col-form-label">8. CDU อุณหภูมิลมจ่าย (หน้าคอยล์ร้อน) (°C)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
-                        <input type="number" name="cdu_out_temp" class="form-control w-75 w-md-50" placeholder="">
+                        <input type="number" name="tbl_cdu_out_pre" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <label class="col-6 col-form-label">9. CDU อุณหภูมิลมกลับ (หลังคอยล์ร้อน) (°C)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
-                        <input type="number" name="cdu_return_temp" class="form-control w-75 w-md-50" placeholder="">
+                        <input type="number" name="tbl_cdu_in_pre" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
