@@ -699,6 +699,19 @@
 
           </div>
           <div class="tab-pane fade" id="menu-req" role="tabpanel" aria-labelledby="menu-req-tab">
+            
+          <!-- เลือกประเภทผู้ใช้งาน -->
+        <div class="text-center">
+            <div class="form-group"> 
+            <label><strong>กรุณาเลือกประเภทผู้ใช้งาน</strong></label><br>
+            <label class="mr-3">
+                <input type="radio" name="user_type" value="customer" checked> ลูกค้าทั่วไป
+            </label>
+            <label>
+                <input type="radio" name="user_type" value="technician"> ช่าง/ASC
+            </label>
+            </div>
+                        </div>
             <!-- Service Request -->
             <form id="form_service_request">
             <div class="card card-primary">
@@ -720,6 +733,28 @@
                   <div class="row">
                     <div class="col-md-6 col-12">
                       <div class="card card-danger">
+                                   <!-- กล่องช่างผู้แจ้ง -->
+                  <div id="technician-section" class="mb-3" style="display: none;">
+                    <!-- <div class="card border border-danger"> -->
+                      <div class="card-header bg-danger text-white font-weight-bold py-2">
+                        <i class="fas fa-user"></i>ช่างผู้แจ้งขอรับบริการ
+                      </div>
+                      <div class="card-body">
+                        <div class="form-group row align-items-center mb-2">
+                          <label for="techn_name" class="col-md-4 col-form-label">ชื่อ-นามสกุล<span class="text-danger ml-1">*</span></label>
+                          <div class="col-md-8">
+                            <input type="text" class="form-control" name="techn_name" id="techn_name" placeholder="กรอกชื่อ-นามสกุล">
+                          </div>
+                        </div>
+                        <div class="form-group row align-items-center mb-0">
+                          <label for="techn_phone" class="col-md-4 col-form-label">เบอร์มือถือ<span class="text-danger ml-1">*</span></label>
+                          <div class="col-md-8">
+                            <input type="tel" class="form-control" name="techn_phone" id="techn_phone" placeholder="กรอกเบอร์มือถือ">
+                          <!-- </div> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                         <div class="card-header">
                           <h3 class="card-title"><i class="fas fa-cube"></i> ผลิตภัณฑ์ที่ขอรับบริการ</h3>
                         </div>
