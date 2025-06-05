@@ -553,6 +553,15 @@ $($ => {
 		} // end if meter
 	});
 
+$('input[name="user_type"]').on('change', function () {
+  const selected = $(this).val();
+  if (selected === 'technician') {
+    $('#technician-section').slideDown(); // หรือใช้ removeClass('d-none')
+  } else {
+    $('#technician-section').slideUp(); // หรือใช้ addClass('d-none')
+  }
+});
+
   // 2. Save Service Request
   $('#btnSubmitServReq').on('click', function(){
     // pre check to confirm for s/n empty
