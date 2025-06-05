@@ -1170,6 +1170,9 @@ switch ($action) {
 		$data['updated_at'] = date('Y-m-d H:i:s');
 		if($_POST['id'] == 'new'){
 			$data['created_at'] = date('Y-m-d H:i:s');
+			//error_log("=== DEBUG INSERT SERVICE ===");
+			//error_log(print_r($data, true));
+
 			$id = $db->insert('service_request', $data);
 		}else{
 			$db->where('r.service_id', $_POST['id']);

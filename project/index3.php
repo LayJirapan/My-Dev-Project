@@ -741,15 +741,15 @@
                       </div>
                       <div class="card-body">
                         <div class="form-group row align-items-center mb-2">
-                          <label for="techn_name" class="col-md-4 col-form-label">ชื่อ-นามสกุล<span class="text-danger ml-1">*</span></label>
+                          <label for="technician_name2" class="col-md-4 col-form-label">ชื่อ-นามสกุล<span class="text-danger ml-1">*</span></label>
                           <div class="col-md-8">
-                            <input type="text" class="form-control" name="techn_name" id="techn_name" placeholder="กรอกชื่อ-นามสกุล">
+                            <input type="text" class="form-control" name="technician_name2" id="technician_name2" placeholder="กรอกชื่อ-นามสกุล">
                           </div>
                         </div>
                         <div class="form-group row align-items-center mb-0">
-                          <label for="techn_phone" class="col-md-4 col-form-label">เบอร์มือถือ<span class="text-danger ml-1">*</span></label>
+                          <label for="technician_phone2" class="col-md-4 col-form-label">เบอร์มือถือ<span class="text-danger ml-1">*</span></label>
                           <div class="col-md-8">
-                            <input type="tel" class="form-control" name="techn_phone" id="techn_phone" placeholder="กรอกเบอร์มือถือ">
+                            <input type="tel" class="form-control" name="technician_phone2" id="technician_phone2" placeholder="กรอกเบอร์มือถือ">
                           <!-- </div> -->
                         </div>
                       </div>
