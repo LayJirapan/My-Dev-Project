@@ -832,7 +832,7 @@
                                 <option value="E3">ขึ้น Error Code E3</option>
                                 <option value="E4">ขึ้น Error Code E4</option>
                                 <option value="E5">ขึ้น Error Code E5 หรือ 5E</option>
-								<option value="E6">ขึ้น Error Code E6</option>
+								                <option value="E6">ขึ้น Error Code E6</option>
                                 <option value="F0">ขึ้น Error Code F0</option>
                                 <option value="F1">ขึ้น Error Code F1</option>
                                 <option value="F3">ขึ้น Error Code F3</option>
@@ -851,9 +851,9 @@
                                 <option value="smell">แอร์มีกลิ่นเหม็น</option>
                                 <option value="no_nitrogen">ไม่มีไนโตรเจนในแผงคอยล์เย็น</option>
                                 <option value="no_refrigerant">น้ำยาในคอยล์ร้อนมีน้อยหรือไม่มีเลย</option>
-								<option value="coil_leak">แผงคอยล์เย็นรั่ว</option>
-								<option value="com_leak">คอมเพรสเซอร์รั่ว</option>
-								<option value="com_lock">คอมเพรสเซอร์ล็อค</option>
+                                <option value="coil_leak">แผงคอยล์เย็นรั่ว</option>
+                                <option value="com_leak">คอมเพรสเซอร์รั่ว</option>
+                                <option value="com_lock">คอมเพรสเซอร์ล็อค</option>
                                 <option value="com_notsuck">คอมเพรสเซอร์ไม่ดูด/ไม่อัด</option>
                               </select>
                             </div>
@@ -997,6 +997,119 @@
                       </div>
                     </div>
                   </div>
+
+                  <!--ข้อมูลการทำงานระบบ (สำหรับช่าง) -->
+                 
+                  <div id="technicianMeasurementSection" style="display:none; margin-top: 20px;">
+                  <div class="card card-danger w-100">
+                    <div class="card-header">
+                      <h3 class="card-title">
+                        <i class="fas fa-tools"></i> รายการตรวจสอบก่อนซ่อม (สำหรับช่าง)
+                      </h3>
+                    </div>
+                    <div class="card-body">
+
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-6 col-form-label">1. แรงดันไฟฟ้า (V)<span class="text-danger ml-1">*</span></label>
+                      <div class="col-6">
+                        <input type="number" name="voltage" class="form-control w-75 w-md-50" placeholder="">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-6 col-form-label">2. กระแสไฟฟ้า (A)<span class="text-danger ml-1">*</span></label>
+                      <div class="col-6">
+                        <input type="number" name="current" class="form-control w-75 w-md-50" placeholder="">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-6 col-form-label">3. อุณหภูมิตั้งรีโมท (Mode Cool °C)<span class="text-danger ml-1">*</span></label>
+                      <div class="col-6">
+                        <input type="number" name="remote_temp" class="form-control w-75 w-md-50" placeholder="">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-6 col-form-label">4. แรงดันน้ำยาด้านดูด (ด้านต่ำ) (PSI)<span class="text-danger ml-1">*</span></label>
+                      <div class="col-6">
+                        <input type="number" name="low_pressure" class="form-control w-75 w-md-50" placeholder="">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-6 col-form-label">5. แรงดันน้ำยาด้านส่ง (ด้านสูง) (PSI)</label>
+                      <div class="col-6">
+                        <input type="number" name="high_pressure" class="form-control w-75 w-md-50" placeholder="">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-6 col-form-label">6. FCU อุณหภูมิลมจ่าย (หน้าคอยล์เย็น) (°C)<span class="text-danger ml-1">*</span></label>
+                      <div class="col-6">
+                        <input type="number" name="fcu_temp_out" class="form-control w-75 w-md-50" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- ฝั่งขวา: ข้อ 7 - 12 -->
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-6 col-form-label">7. FCU อุณหภูมิลมกลับ (หลังคอยล์เย็น) (°C)<span class="text-danger ml-1">*</span></label>
+                      <div class="col-6">
+                        <input type="number" name="fcu_return_temp" class="form-control w-75 w-md-50" placeholder="">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-6 col-form-label">8. CDU อุณหภูมิลมจ่าย (หน้าคอยล์ร้อน) (°C)<span class="text-danger ml-1">*</span></label>
+                      <div class="col-6">
+                        <input type="number" name="cdu_out_temp" class="form-control w-75 w-md-50" placeholder="">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-6 col-form-label">9. CDU อุณหภูมิลมกลับ (หลังคอยล์ร้อน) (°C)<span class="text-danger ml-1">*</span></label>
+                      <div class="col-6">
+                        <input type="number" name="cdu_return_temp" class="form-control w-75 w-md-50" placeholder="">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-6 col-form-label">10. ขนาดห้อง (ตร.ม.)</label>
+                      <div class="col-6">
+                        <input type="number" name="room_size" class="form-control w-75 w-md-50" placeholder="">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-6 col-form-label">11. ระยะเดินท่อ (เมตร)<span class="text-danger ml-1">*</span></label>
+                      <div class="col-6">
+                        <input type="number" name="pipe_length" class="form-control w-75 w-md-50" placeholder="">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-6 col-form-label">12. ท่อมีการเชื่อมหรือไหม<span class="text-danger ml-1">*</span></label>
+                      <div class="col-6">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="pipe_welding" id="welding_yes" value="yes">
+                          <label class="form-check-label" for="welding_yes">ใช่</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="pipe_welding" id="welding_no" value="no" checked>
+                          <label class="form-check-label" for="welding_no">ไม่ใช่</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+                </div>
+                </div>
 
                   </div>
                 </div>
@@ -1224,6 +1337,52 @@
 <script src="./plugins/jquery-Thailand/jquery.Thailand.min.js"></script>
 <script src="./plugins/qr-scanner.umd.min.js"></script>
 <script src="./view/js/index.js?v=22"></script>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const qsn = urlParams.get('sn');
+
+  if (qsn) {
+    // s/n ไปกรอกหน้า 'แจ้งขอรับบริการ / ซ่อม'
+    const snQueryField = document.getElementById('snQuery');
+    if (snQueryField) {
+      snQueryField.value = qsn;
+    }
+
+    // s/n ไปกรอกหน้า 'ลงทะเบียนผลิตภัณฑ์'
+    const indoorField = document.querySelector('input[name="indoor_sn"]');
+    if (indoorField) {
+      indoorField.value = qsn;
+    } 
+
+  }
+</script>
+
+<script> //แสดง  รายการตรวจสอบก่อนซ่อม (สำหรับช่าง) เมื่อ เลือก ช่าง และ เลือก error code ที่เข้าเงื่อนไข
+$(document).ready(function () {
+  // ฟังก์ชันหลัก
+  function toggleTechSection() {
+    const userType = $('input[name="user_type"]:checked').val();
+    const ecData = $('#errorCode').select2('data');
+    const errorCode = (ecData[0] && ecData[0].id) || $('#errorCode').val();
+
+    const showExtra = userType === 'technician' && ['com_lock', 'com_notsuck', 'outdoor_noise'].includes(errorCode);
+    if (showExtra) {
+      $('#technicianMeasurementSection').slideDown(250);
+    } else {
+      $('#technicianMeasurementSection').slideUp(250);
+    }
+  }
+
+  // เรียกฟังก์ชันเมื่อมีการเปลี่ยนค่า
+  $('input[name="user_type"]').on('change', toggleTechSection);
+  $('#errorCode').on('change', toggleTechSection);
+
+  // เรียกตอนโหลดหน้า
+  toggleTechSection();
+});
+</script>
+
 
 <script>
 $($ => {
