@@ -691,6 +691,23 @@ function clickServReqSubmit(){
 function servReqSubmit(){
   eb.post("public", "s_service_request", ldat.serv_req_query, function(rt){
     if(rt.id && rt.id > 0) {
+              // ✅ 1. เตรียม JSON จากฟอร์ม
+      let detail = {};
+      $.each($('#form_service_request').serializeObject(), function(k, v) {
+        if (k.endsWith('2')) {
+          detail[k.slice(0, -1)] = v;
+        }
+      });
+
+      // ✅ 2. ส่ง JSON ไปเก็บ
+      $.post("api/public.php?a=save_service_detail", {
+        id: rt.id,
+        detail: JSON.stringify(detail)
+      }, function(res2) {
+        if (res2.status !== 'ok') {
+          console.warn('บันทึกรายละเอียดไม่สำเร็จ');
+        }
+      });
       // $('#btnSubmitServReqReset').click();
       localStorage.setItem("_mv_sr_ids", JSON.stringify(rt));
       ldat.sr_ids = rt;

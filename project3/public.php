@@ -216,6 +216,19 @@ switch ($action) {
 		// if(!isset($_POST['requester_email']) || $_POST['requester_email'] == '') echoJson(8, 'Requester\'s email required');
 		if(!isset($_POST['user_accept_']) || $_POST['user_accept_'] == '') echoJson(9, 'User accpetance required');
 		dbCon();
+        unset($_POST['tbl_volt_pre']);
+        unset($_POST['tbl_amp_pre']);
+        unset($_POST['tbl_term_remote_pre']);
+        unset($_POST['tbl_psil_pre']);
+        unset($_POST['tbl_psih_pre']);
+        unset($_POST['tbl_fcu_out_pre']);
+        unset($_POST['tbl_fcu_in_pre']);
+        unset($_POST['tbl_cdu_out_pre']);
+        unset($_POST['tbl_cdu_in_pre']);
+        unset($_POST['room_size']);
+        unset($_POST['pipe_length']);
+        unset($_POST['pipe_welding']);
+
 		$data = $_POST;
 		$data['indoor_sn'] = clean($data['indoor_sn']);
 		$data['outdoor_sn'] = clean($data['outdoor_sn']);
@@ -255,6 +268,43 @@ switch ($action) {
 
 		echoJson(0, ['id' => $id, 'pk' => $pk, 'sn' => $sn]);
 		break;
+
+case 'save_service_detail':
+    dbCon();
+
+    $service_id = $_POST['id'];
+
+    // เก็บเฉพาะ field ที่เกี่ยวข้อง
+    $detail = [
+        'tbl_volt_pre' => $_POST['tbl_volt_pre'] ?? null,
+        'tbl_amp_pre' => $_POST['tbl_amp_pre'] ?? null,
+        'tbl_term_remote_pre' => $_POST['tbl_term_remote_pre'] ?? null,
+        'tbl_psil_pre' => $_POST['tbl_psil_pre'] ?? null,
+        'tbl_psih_pre' => $_POST['tbl_psih_pre'] ?? null,
+        'tbl_fcu_out_pre' => $_POST['tbl_fcu_out_pre'] ?? null,
+        'tbl_fcu_in_pre' => $_POST['tbl_fcu_in_pre'] ?? null,
+        'tbl_cdu_out_pre' => $_POST['tbl_cdu_out_pre'] ?? null,
+        'tbl_cdu_in_pre' => $_POST['tbl_cdu_in_pre'] ?? null,
+        'room_size' => $_POST['room_size'] ?? null,
+        'pipe_length' => $_POST['pipe_length'] ?? null,
+        'pipe_welding' => $_POST['pipe_welding'] ?? null
+    ];
+
+    $detail_json = json_encode($detail, JSON_UNESCAPED_UNICODE);
+
+    $stmt = $pdo->prepare("
+        INSERT INTO service_request_detail (service_id, detail)
+        VALUES (:id, :detail)
+        ON DUPLICATE KEY UPDATE detail = :detail
+    ");
+    $stmt->execute([
+        ':id' => $service_id,
+        ':detail' => $detail_json
+    ]);
+
+    echo json_encode(['status' => 'ok']);
+    exit;
+    break;
 
 	/**
 	 *	Check S/N

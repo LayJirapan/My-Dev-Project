@@ -206,7 +206,81 @@ switch ($action) {
 	 *	Service Request
 	 *	Init 05/04/2021
 	 */
-	case 's_service_request':
+	
+case 's_service_request':
+    dbCon();
+    if (!isset($_POST['id']) || $_POST['id'] == '') echoJson(2, 'Service ID Required');
+    chkProfilePermit('service_request.html', 'Y');
+
+    $input = $_POST;
+
+    // สร้าง array เฉพาะ field ที่อนุญาต
+    $data = [];
+    $whitelist = [
+        'technician_name','technician_phone','service_type',
+        'indoor_sn','outdoor_sn','product_id','serial_id','product_type',
+        'error_code','description','requester_title','requester_name',
+        'requester_org_name','requester_phone','requester_email',
+        'requester_lineid','request_latlng','address_no','address_moo',
+        'address_building','address_road','address_subdistrict','address_district',
+        'address_province','address_postcode','channel','product_model',
+        'error_code_txt','datetime_service1','datetime_service2',
+        'datetime_service3','datetime_service4','datetime_service5'
+    ];
+    foreach ($whitelist as $field) {
+        if (isset($input[$field])) $data[$field] = $input[$field];
+    }
+
+    foreach (['datetime_service1','datetime_service2','datetime_service3','datetime_service4','datetime_service5'] as $k) {
+        if (isset($data[$k]) && $data[$k] == '') unset($data[$k]);
+    }
+
+    if (isset($input['status']) && in_array($input['status'], [4,6])) {
+        $data['date_completed'] = date('Y-m-d H:i:s');
+    }
+
+    $data['updated_at'] = date('Y-m-d H:i:s');
+
+    if ($input['id'] === 'new') {
+        $data['created_at'] = date('Y-m-d H:i:s');
+        $id = $db->insert('service_request', $data);
+    } else {
+        $db->where('r.service_id', $input['id']);
+        $updated = $db->update('service_request r', $data);
+        $id = $updated ? $input['id'] : 0;
+    }
+
+    if ($id > 0) {
+        $detailData = json_encode([
+            'tbl_volt_pre' => $input['tbl_volt_pre'] ?? null,
+            'tbl_amp_pre' => $input['tbl_amp_pre'] ?? null,
+            'tbl_term_remote_pre' => $input['tbl_term_remote_pre'] ?? null,
+            'tbl_psil_pre' => $input['tbl_psil_pre'] ?? null,
+            'tbl_psih_pre' => $input['tbl_psih_pre'] ?? null,
+            'tbl_fcu_out_pre' => $input['tbl_fcu_out_pre'] ?? null,
+            'tbl_fcu_in_pre' => $input['tbl_fcu_in_pre'] ?? null,
+            'tbl_cdu_out_pre' => $input['tbl_cdu_out_pre'] ?? null,
+            'tbl_cdu_in_pre' => $input['tbl_cdu_in_pre'] ?? null,
+            'room_size' => $input['room_size'] ?? null,
+            'pipe_length' => $input['pipe_length'] ?? null,
+            'pipe_welding' => $input['pipe_welding'] ?? null
+        ]);
+
+        if ($input['id'] !== 'new') {
+            $db->where('service_id', $id)->delete('service_request_detail');
+        }
+
+        $db->insert('service_request_detail', [
+            'service_id' => $id,
+            'detail' => $detailData,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+    }
+
+    echoJson(0, $id);
+    break;
+
 		// if(!recatchaVerify()) echoJson(3, 'Recatcha ตรวจสอบว่าคุณเป็น Robot?');
 		if(!isset($_POST['product_type']) || $_POST['product_type'] == '') echoJson(2, 'Product type required');
 		if(!isset($_POST['product_model']) || $_POST['product_model'] == '') echoJson(3, 'Product model required');

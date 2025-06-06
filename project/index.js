@@ -81,7 +81,7 @@ $($ => {
 
   // Create the script tag, set the appropriate attributes
   var script = document.createElement('script');
-  script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAFsTx4iS0Bx0aWdxXR1ZZfkWJQeYUpfos&callback=initmap1';
+  script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB2B1lK3UAPBHg3BqNj9Mm5NTlqtpNmERQ&loading=async&callback=initmap1';
   script.async = true;
   document.head.appendChild(script);
 
@@ -640,7 +640,7 @@ function clickServReqSubmit(){
     if(k.length > 0) tmp[k.slice(0,-1)] = v;
   });
   q = tmp
-  q.id = ldat.id;
+  q.id = ldat.id || 'new';
   q.channel = "WEB-CS";
   var ecSl2 = $("#errorCode").select2('data');
   var pModel= $("#productModel2").select2('data'); // if disable
