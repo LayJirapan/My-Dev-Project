@@ -1,0 +1,3101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Job Detail</title>
+  <link rel="icon" type="image/png" href="https://cs.mavellair.com/view/img/mavell_flogo.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../view/css/adminlte.min.css">
+  <link rel="stylesheet" href="../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../view/css/backend.css">
+  <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="../plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <link rel="stylesheet" type="text/css" href="../plugins/jQuery-File-Upload/css/jquery.fileupload.css" />
+  <link rel="stylesheet" type="text/css" href="../plugins/jQuery-File-Upload/css/jquery.fileupload-ui.css" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5E4BDH64TF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5E4BDH64TF');
+  </script>
+</head>
+<body class="hold-transition sidebar-mini">
+  <div class="hide do-print">
+    <div class="box box-solid">
+      <div class="box-body text-center">
+        <h3 class="box-title" data-i18n="issue">Service Detail Note</h3>
+        -------------<span id="print_title"></span>----------------
+        <div id="inv_result"></div>
+      </div>
+    </div><!-- /.box -->
+  </div>
+  <div class="wrapper non-print">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="../index.html" class="nav-link">Home</a>
+      </li>
+    </ul>
+
+
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="welcome.html" class="brand-link">
+      <img src="../view/img/mavell_slogo.png" alt="Mavell Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Hi Mavell</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="../view/img/mavell_flogo.png" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="profile.html" class="d-block">Administrator</a>
+        </div>
+      </div>
+
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+         <li class="nav-item">
+           <a href="../pages/welcome.html" class="nav-link">
+             <i class="nav-icon far fa-newspaper"></i>
+             <p>ข่าว & หน้าแรก</p>
+           </a>
+         </li>
+         <li class="nav-item">
+           <a href="#" class="nav-link">
+             <i class="nav-icon fas fa-medal"></i>
+             <p>
+               Reward สะสมคะแนน
+               <i class="right fas fa-angle-left"></i>
+             </p>
+           </a>
+           <ul class="nav nav-treeview">
+             <li class="nav-item">
+               <a href="../pages/reward.html" class="nav-link">
+                 <i class="fas fa-list nav-icon"></i>
+                 <p>คำร้องสะสม & ตรวจสอบ</p>
+               </a>
+             </li>
+             <li class="nav-item">
+               <a href="../pages/reward_item.html" class="nav-link">
+                 <i class="fas fa-gifts nav-icon"></i>
+                 <p>สินค้าสำหรับแลก</p>
+               </a>
+             </li>
+             <li class="nav-item">
+               <a href="../pages/service_tracking.html" class="nav-link">
+                 <i class="fas fa-list nav-icon"></i>
+                 <p>แลกของรางวัล</p>
+               </a>
+             </li>
+             <li class="nav-item">
+               <a href="../pages/reward_history.html" class="nav-link">
+                 <i class="fas fa-list-alt nav-icon"></i>
+                 <p>ประวัติสะสมคะแนน</p>
+               </a>
+             </li>
+           </ul>
+         </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-mobile"></i>
+              <p>
+                Hi Mavell App
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../pages/dashboard.html" class="nav-link">
+                  <i class="fas fa-meteor nav-icon"></i>
+                  <p>Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/service_tracking.html" class="nav-link">
+                  <i class="fas fa-map-marked-alt nav-icon"></i>
+                  <p>แผนที่ติดตามสถานะงาน</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="../pages/warranty_check.html" class="nav-link">
+              <i class="fas fa-pen-square nav-icon"></i>
+              <p>ข้อมูลลงทะเบียน</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="../pages/serial.html" class="nav-link">
+              <i class="fas fa-list-ol nav-icon"></i>
+              <p>ค้นหาหมายเลขผลิตภัณฑ์</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tasks"></i>
+              <p>
+                ขอรับบริการ
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../pages/service_dashboard.html" class="nav-link">
+                  <i class="fas fa-tachometer-alt nav-icon"></i>
+                  <p>Service Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/service_request.html" class="nav-link">
+                  <i class="fas fa-search-plus nav-icon"></i>
+                  <p>ค้นหารายการคำขอรับ</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/service_fix.html" class="nav-link">
+                  <i class="fas fa-clipboard-list nav-icon"></i>
+                  <p>รายการแจ้งซ่อม</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/service_history.html" class="nav-link">
+                  <i class="fas fa-list nav-icon"></i>
+                  <p>ประวัติงานเก่า</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="../pages/service_pettycash.html" class="nav-link">
+              <i class="fas fa-money-bill-alt nav-icon"></i>
+              <p>ค่าใช้จ่ายงานบริการ</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../pages/claim.html" class="nav-link">
+              <i class="fas fa-shield-alt nav-icon"></i>
+              <p>รายการใบเคลม</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../pages/part.html" class="nav-link">
+              <i class="nav-icon fas fa-puzzle-piece"></i>
+              <p>
+                รายการข้อมูลอะไหล่
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-warehouse"></i>
+              <p>
+                คลังสินค้า
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../pages/stock_picking.html" class="nav-link">
+                  <i class="fas fa-people-carry nav-icon"></i>
+                  <p>เบิกของจากคลัง</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/stock_receive.html" class="nav-link">
+                  <i class="fas fa-truck-loading nav-icon"></i>
+                  <p>รับ/คืนของเข้าคลัง</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/return.html" class="nav-link">
+                  <i class="nav-icon fas fa-exchange-alt"></i>
+                  <p>
+                    รายการใบคืนสินค้า
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/stock_aging.html" class="nav-link">
+                  <i class="fas fa-scroll nav-icon"></i>
+                  <p>รายงานอายุสินค้าคงคลัง</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/stock_card.html" class="nav-link">
+                  <i class="fas fa-file-alt nav-icon"></i>
+                  <p>รายงานสต็อคการ์ด</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/report_stock_card.html" class="nav-link">
+                  <i class="fas fa-boxes nav-icon"></i>
+                  <p>รายงานความเคลื่อนไหวสต็อค</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/stock_part.html" class="nav-link">
+                  <i class="fas fa-box-open nav-icon"></i>
+                  <p>รายการอะไหล่คงเหลือ</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/import.html?type=stock_card" class="nav-link">
+                  <i class="fas fa-upload nav-icon"></i>
+                  <p>อัพโหลดสต๊อค</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/stock_remain.html" class="nav-link">
+                  <i class="fas fa-chart-bar nav-icon"></i>
+                  <p>ดูรายการสต๊อคคงเหลือ</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                รายงาน
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../pages/report_kpi.html" class="nav-link">
+                  <i class="fas fa-scroll nav-icon"></i>
+                  <p>KPI</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/report_repair.html" class="nav-link">
+                  <i class="fas fa-file-alt nav-icon"></i>
+                  <p>Repair Pending</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/report_schedule.html" class="nav-link">
+                  <i class="fas fa-file-alt nav-icon"></i>
+                  <p>Schedule</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/report_service_job.html" class="nav-link">
+                  <i class="fas fa-file-alt nav-icon"></i>
+                  <p>Service Job</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="../pages/sc_list.html" class="nav-link">
+              <i class="nav-icon fas fa-building"></i>
+              <p>
+                ข้อมูลศูนย์บริการ
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../pages/stores.html" class="nav-link">
+              <i class="nav-icon fas fa-building"></i>
+              <p>ข้อมูลร้านค้าที่ลงทะเบียน</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="../pages/customer.html" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                ลูกค้า
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="../pages/technician.html" class="nav-link">
+              <i class="nav-icon fas fa-user-cog"></i>
+              <p>
+                ช่างซ่อม
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-user-friends"></i>
+              <p>
+                ผู้ใช้งาน
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../pages/user.html?r=1" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ผู้ใช้งานกลุ่มช่าง</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/user.html?r=0" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ผู้ใช้งานกลุ่มลูกค้า</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/user.html?r=2" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ผู้ใช้งานกลุ่มฝ่ายผลิต</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/user.html?r=3" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ผู้ใช้งานกลุ่มฝ่ายคลัง</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/user.html?r=5" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ผู้ใช้งานกลุ่มผู้บริหาร</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/user.html?r=4" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ผู้ใช้งานกลุ่ม Admin</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/user_permission.html" class="nav-link">
+                  <i class="fas fa-cog nav-icon"></i>
+                  <p>ตั้งค่าสิทธิ์การเข้าถึงข้อมูล</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tools"></i>
+              <p>
+                ข้อมูลพื้นฐาน
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../pages/product.html" class="nav-link">
+                  <i class="fas fa-list-alt nav-icon"></i>
+                  <p>Product Models</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/product_type.html" class="nav-link">
+                  <i class="fas fa-list-alt nav-icon"></i>
+                  <p>Type Of Product</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/import.html" class="nav-link">
+                  <i class="fas fa-file-import nav-icon"></i>
+                  <p>นำเข้าระบบ</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/policy.html" class="nav-link">
+                  <i class="fas fa-gavel nav-icon"></i>
+                  <p>จัดการ Policy</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/news.html" class="nav-link">
+                  <i class="fas fa-edit nav-icon"></i>
+                  <p>ข่าวมาเวล</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-file-signature"></i>
+              <p>
+                Help Support
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../pages/rating.html" class="nav-link">
+                  <i class="fas fa-file nav-icon"></i>
+                  <p>Rating</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/chat.html" class="nav-link">
+                  <i class="fas fa-comment-alt nav-icon"></i>
+                  <p>Live Chat</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item mb-5">
+            <a href="javascript:;" class="nav-link signout">
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>
+                ออกจากระบบ
+              </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-4  mt-2">
+
+            <div class="card card-primary card-outline">
+              <div class="card-body box-profile">
+                <p class="text-muted text-center"><i class="fas fa-check mr-1"></i> สรุปใบงาน</p>
+
+                <ul class="list-group list-group-unbordered mb-3">
+                  <li class="list-group-item">
+                    <b>เลขที่ใบงาน</b> <strong><a class="float-right serviceId">N/A</a></strong>
+                  </li>
+                  <li class="list-group-item">
+                    <b>การนัดหมาย</b> <a class="float-right" id="serviceSchedule">N/A</a>
+                  </li>
+                  <li class="list-group-item"><b>ASC</b> <span class="float-right technician_sc_title">N/A</span></li>
+
+                  <li class="list-group-item">
+                    <b>สถานะใบงาน</b> <a class="float-right" id="serviceStatus">N/A</a>
+                  </li>
+                  <!-- <li class="list-group-item">
+                    <b>สถานะการซ่อม</b> <a class="float-right" id="fixStatus">-</a>
+                  </li> -->
+                  <li class="list-group-item">
+                    <b>สถานะลงทะเบียน</b>
+                    <a class="float-right" id="registered_status2">
+                    </a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>การรับประกัน</b>
+                    <a class="float-right" id="warranty_status2">
+                      <!-- <img src="../view/img/warranty_1year.png" width="60px"/>
+                      <img src="../view/img/warranty_5year.png" width="60px"/>
+                      <img src="../view/img/warranty_12year.png" width="60px"/> -->
+                    </a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>SLA</b> <a class="float-right" id="sla">-</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Updated ล่าสุด</b> <a class="float-right" id="serv_updated_at">-</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>หมายเหตุ</b> <a class="float-right " id="serv_staff_note">-</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>QR Code</b> <div class="float-right" id="qrCodeShow"></div>
+                  </li>
+                </ul>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <!-- Profile Image -->
+            <div class="card card-success card-outline">
+              <div class="card-body box-profile">
+                <p class="text-muted text-center"><i class="fas fa-user-circle mr-1"></i> ข้อมูลลูกค้าจากทะเบียน</p>
+                <div class="text-center">
+                  <!-- src="../view/img/user4-128x128.jpg" -->
+                  <img class="profile-user-img img-fluid img-circle"
+                    src="../view/img/mavell_xlogo.jpg"
+                    alt="User profile picture" id="cusAvatar">
+                </div>
+
+                <h3 class="profile-username text-center" id="cus_username">-</h3>
+
+                <ul class="list-group list-group-unbordered mb-3">
+                  <li class="list-group-item">
+                    <b>รหัสลูกค้า</b> <span class="float-right" id="cus_customer_code">N/A</span>
+                  </li>
+                  <li class="list-group-item">
+                    <b>ชื่อลูกค้า</b> <div class="float-right"><span id="cus_firstname">N/A</span> <span id="cus_lastname"></span></div>
+                  </li>
+                  <li class="list-group-item">
+                    <b>โทรศัพท์ลูกค้า</b> <span class="float-right" id="cus_phone">N/A</span>
+                  </li>
+                  <li class="list-group-item">
+                    <b>วันเดือนปีเกิด</b> <span class="float-right" id="cus_birthdate">N/A</span>
+                  </li>
+                  <li class="list-group-item">
+                    <b>อีเมลลูกค้า</b> <span class="float-right" id="cus_email">N/A</span>
+                  </li>
+                  <li class="list-group-item">
+                    <b>หมายเหตุ</b> <span class="float-right" id="cus_remark">N/A</span>
+                  </li>
+                  <!-- <li class="list-group-item">
+                    <b>Payment Term</b> <a class="float-right" id="payment_term">-</a>
+                  </li> -->
+                  <!-- <li class="list-group-item">
+                    <b>สถานที่วางบิล</b> <a class="float-right" id="invoice_place">-</a>
+                  </li> -->
+                </ul>
+
+                <strong><i class="fas fa-map-marker-alt mr-1"></i> ที่อยู่ลูกค้า</strong>
+                <p class="text-muted" id="contact_address">
+                  -
+                </p>
+
+                <hr>
+
+                <a href="#" class="btn btn-outline-primary btn-block disabled" id="custProfileLink"><b>แสดงโปรไฟล์</b></a>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h3 class="card-title"><i class="fas fa-user"></i> ข้อมูลช่างผู้ให้บริการ</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <ul class="list-group list-group-unbordered mb-3">
+                  <li class="list-group-item">
+                    <b>ชื่อ/นามสกุล</b> <a class="float-right"><div id="technician_firstname">N/A</div> <div id="technician_lastname"></div></a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Username</b> <a class="float-right" id="technician_username">N/A</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>รหัสช่าง</b> <a class="float-right" id="technician_technician_code">N/A</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>โทร.</b> <a class="float-right" id="technician_phone">N/A</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>อีเมล์</b> <a class="float-right" id="technician_email">-</a>
+                  </li>
+                </ul>
+                <a href="#" class="btn btn-outline-primary btn-block disabled" id="techProfileLink"><b>แสดงโปรไฟล์</b></a>
+              </div>
+            </div>
+              <a href="#" class="btn btn-outline-default" onclick="location.href = document.referrer; return false;"><i class="fas fa-arrow-left"></i> กลับ</a>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-8 mt-2" id="detailSec">
+            <h3><i class="fas fa-check-square mr-1"></i>รายละเอียดขอรับบริการ</h3>
+            <div class="card">
+              <div class="card-header p-2">
+                <ul class="nav nav-pills" id="detailTab">
+                  <li class="nav-item"><a class="nav-link active" href="#request" data-toggle="tab">ข้อมูลขอรับบริการ</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">ข้อมูลการเข้าบริการ</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#sparepart" data-toggle="tab">ข้อมูลอะไหล่</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#jobsheet" data-toggle="tab">ข้อมูลใบงาน</a></li>
+                </ul>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content">
+                  <div class="active tab-pane" id="request">
+                    <div class="card card-primary card-outline">
+                      <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-cogs"></i> ขอรับบริการจากช่องทาง Web / Line / App</h3>
+
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-12 col-sm-5">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">ชื่อผู้แจ้ง</span>
+                                <span class="info-box-number text-center mb-0"><div id="serv_requester_title"></div> <div id="serv_requester_name"></div></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-3">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">โทรศัพท์ผู้แจ้ง</span>
+                                <span class="info-box-number text-center mb-0" id="serv_requester_phone"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-4">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">อีเมล์ผู้แจ้ง</span>
+                                <span class="info-box-number text-center mb-0" id="serv_requester_email"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">ชื่อหน่วยงาน/องค์กร</span>
+                                <span class="info-box-number text-center mb-0" id="serv_requester_org_name">-</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-3">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">ประเภทบริการ </span>
+                                <span class="info-box-number text-center mb-0" id="serv_service_type"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-3">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">ช่องทาง</span>
+                                <span class="info-box-number text-center mb-0" id="serv_channel"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">วัน/เวลาที่รับแจ้ง</span>
+                                <span class="info-box-number text-center mb-0" id="serv_created_at"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">Error Code ที่แจ้ง</span>
+                                <span class="info-box-number text-center mb-0" id="serv_error_code_txt"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-12">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">รายละเอียดจากผู้แจ้ง</span>
+                                <span class="info-box-number text-center mb-0" id="serv_description"></span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12 col-sm-12">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left"><i class="fas fa-map-marker-alt mr-1"></i> สถานที่แจ้งขอรับบริการ</span>
+                                <span class="info-box-number text-left mb-0">
+                                  เลขที่ : <span id="serv_address_no" class="mr-3">-</span>
+                                  หมู่ที่ : <span id="serv_address_moo" class="mr-3">-</span>
+                                  อาคาร/ตึก/สำนักงาน : <span id="serv_address_building" class="mr-3">-</span>
+                                  ถนน : <span id="serv_address_road" class="mr-3">-</span>
+                                  แขวง/ตำบล : <span id="serv_address_subdistrict" class="mr-3">-</span>
+                                  เขต/อำเภอ : <span id="serv_address_district" class="mr-3">-</span>
+                                  จังหวัด : <span id="serv_address_province" class="mr-3">-</span>
+                                  <span id="serv_address_postcode" class="mr-3">-</span>
+                                  <br/><i class="fas fa-map-marker mr-1"></i>GPS : <span class="serv_request_latlng"></span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+
+                          <div class="col-12 col-sm-12">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">ภาพหรือคลิปประกอบจากผู้แจ้ง</span>
+                                <span class="info-box-number text-center mb-0" id="filename"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- /.card-body -->
+                      </div>
+                    </div>
+
+                    <div class="card card-primary card-outline">
+                      <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-cubes"></i> ข้อมูลผลิตภัณฑ์</h3>
+
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-12 col-sm-4">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">Model</span>
+                                <span class="info-box-number text-center mb-0" id="serv_product_model"></span>
+                                <span class="info-box-number text-center mb-0" id="serv_device_cateory"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-4">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">Indoor S/N</span>
+                                <span class="info-box-number text-center mb-0" id="serv_indoor_sn"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-4">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">Outdoor S/N</span>
+                                <span class="info-box-number text-center mb-0" id="serv_outdoor_sn"></span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12 mt-3 only_admin hide">
+                            <h5 class="text-muted"><i class="fas fa-sign-in-alt mr-1"></i>ข้อมูลการผลิตในระบบ Indoor ของ <u id="serv_indoor_sn"></u></h5>
+                          </div>
+                          <div class="col-12 col-sm-6 only_admin hide">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content text-center">
+                                <span class="info-box-number mb-0">รหัสสินค้า : <u id="serialin_model_code_opt">-</u> </span>
+                                <span class="info-box-number mb-0">Line : <u id="serialin_line">-</u></span>
+                                <span class="info-box-number mb-0">Lot No : <u id="serialin_lot_no">-</u></span>
+                                <span class="info-box-number mb-0">วันที่ผลิต : <u id="serialin_mfd">-</u></span>
+                              </div>
+                            </div>
+                            <span class="small text-center mb-0">Last Updated : <i id="serialin_updated_at">-</i></span>
+                          </div>
+                          <div class="col-12 col-sm-6 only_admin hide">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content text-center">
+                                <span class="info-box-text">INDOOR - S/N ของอะไหล่</span>
+                                <span class="info-box-number mb-0">Serial No. : <u id="serialin_serial_no">-</u> </span>
+                                <span class="info-box-number mb-0">รีโมท : <u id="serialin_sn_remote">-</u> </span>
+                                <span class="info-box-number mb-0">Serial No. (SUP) : <u id="serialin_sn_pcb">-</u> </span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12 mt-3 only_admin hide">
+                            <h5 class="text-muted"><i class="fas fa-sign-out-alt mr-1"></i>ข้อมูลการผลิตในระบบ Outdoor ของ <u id="serv_outdoor_sn"></u></h5>
+                          </div>
+                          <div class="col-12 col-sm-6 only_admin hide">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content text-center">
+                                <span class="info-box-number mb-0">รหัสสินค้า : <u id="serialout_model_code_opt">-</u> </span>
+                                <span class="info-box-number mb-0">Line : <u id="serialout_line">-</u></span>
+                                <span class="info-box-number mb-0">Lot No : <u id="serialout_lot_no">-</u></span>
+                                <span class="info-box-number mb-0">วันที่ผลิต : <u id="serialout_mfd">-</u></span>
+                              </div>
+                            </div>
+                            <span class="small text-center mb-0">Last Updated : <i id="serialout_updated_at">-</i></span>
+                          </div>
+                          <div class="col-12 col-sm-6 only_admin hide">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content text-center">
+                                <span class="info-box-text">OUTDOOR - S/N ของอะไหล่</span>
+                                <span class="info-box-number mb-0">Serial No. : <u id="serialout_serial_no">-</u> </span>
+                                <span class="info-box-number mb-0">ท่อ : <u id="serialout_sn_pipe">-</u> </span>
+                                <span class="info-box-number mb-0">Test : <u id="serialout_sn_test">-</u> </span>
+                                <span class="info-box-number mb-0">ใบพัด : <u id="serialout_sn_prop">-</u> </span>
+                                <span class="info-box-number mb-0">ชุดติดตั้ง : <u id="serialout_sn_set">-</u> </span>
+                                <span class="info-box-number mb-0">Serial No. (SUP):  <u id="serialout_sn_pcb">-</u> </span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12 mt-3 only_admin hide">
+                            <h5 class="text-muted"><i class="fas fa-people-carry nav-icon mr-1"></i> ข้อมูลจากระบบคลัง</h5>
+                          </div>
+                          <div class="col-12 col-sm-6 only_admin hide">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content text-center">
+                                <span class="info-box-text"><u>ตัวเครื่อง Indoor</u></span>
+                                <span class="info-box-number mb-0">เลขที่ใบเบิก : <u id="serialin_stock_out_id">-</u> </span>
+                                <span class="info-box-number mb-0">วันที่เบิกของออก : <u id="serialin_date_pickup">-</u> </span>
+                                <span class="info-box-number mb-0">ผู้จำหน่าย/ร้านค้า : <u id="serialin_seller">-</u></span>
+                                <span class="info-box-number mb-0">หมายเหตุ : <u id="serialin_rmso">-</u></span>
+                              </div>
+                            </div>
+                            <span class="small text-center mb-0">Last Updated : <i id="serialin_updatedso">-</i></span>
+                          </div>
+                          <div class="col-12 col-sm-6 only_admin hide">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content text-center">
+                                <span class="info-box-text"><u>ตัวเครื่อง Outdoor</u></span>
+                                <span class="info-box-number mb-0">เลขที่ใบเบิก : <u id="serialout_stock_out_id">-</u> </span>
+                                <span class="info-box-number mb-0">วันที่เบิกของออก : <u id="serialout_date_pickup">-</u> </span>
+                                <span class="info-box-number mb-0">ผู้จำหน่าย/ร้านค้า : <u id="serialout_seller">-</u></span>
+                                <span class="info-box-number mb-0">หมายเหตุ : <u id="serialout_rmso">-</u></span>
+                              </div>
+                            </div>
+                            <span class="small text-center mb-0">Last Updated : <i id="serialout_updatedso">-</i></span>
+                          </div>
+
+                          <div class="col-12 mt-3">
+                            <h5 class=" text-muted"><i class="fas fa-edit mr-1"></i>การลงทะเบียนขอรับประกันสินค้า</h5>
+                          </div>
+
+                          <div class="col-12 col-sm-4">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">วันที่ซื้อ</span>
+                                <span class="info-box-number text-center mb-0" id="reg_date_purchased">ไม่พบรายการ S/N</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-4">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">วันที่ติดตั้ง</span>
+                                <span class="info-box-number text-center mb-0" id="reg_date_installed">ไม่พบรายการลงทะเบียน</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-4">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">สถานะการลงทะเบียน</span>
+                                <span class="info-box-number text-center mb-0" id="registered_status"></span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12 col-sm-12">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left"><i class="fas fa-map-marker-alt mr-1"></i> สถานที่ติดตั้ง GPS Map</span>
+                                <span class="info-box-number text-center mb-0" id="reg_install_latlng"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-12">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left"><i class="fas fa-map-marker-alt mr-1"></i> สถานที่ติดตั้ง ที่อยู่</span>
+                                <span class="info-box-number text-left mb-0">
+                                  เลขที่ : <span id="reg_address_no" class="mr-3">-</span>
+                                  หมู่ที่ : <span id="reg_address_moo" class="mr-3">-</span>
+                                  อาคาร/ตึก/สำนักงาน : <span id="reg_address_building" class="mr-3">-</span>
+                                  ถนน : <span id="reg_address_road" class="mr-3">-</span>
+                                  แขวง/ตำบล : <span id="reg_address_subdistrict" class="mr-3">-</span>
+                                  เขต/อำเภอ : <span id="reg_address_district" class="mr-3">-</span>
+                                  จังหวัด : <span id="reg_address_province" class="mr-3">-</span>
+                                  <span id="reg_address_postcode" class="mr-3">-</span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12 col-sm-6">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">ผู้ขาย/ร้านที่ขาย</span>
+                                <span class="info-box-number text-center mb-0" id="reg_seller_name"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">เบอร์โทรติดต่อผู้ขาย/ร้านที่ขาย</span>
+                                <span class="info-box-number text-center mb-0" id="reg_seller_phone"></span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12 col-sm-6">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">ชื่อช่างผู้ติดตั้ง</span>
+                                <span class="info-box-number text-center mb-0"><div id="reg_technician_name"></div></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">เบอร์โทรติดต่อช่างผู้ติดตั้ง</span>
+                                <span class="info-box-number text-center mb-0"><div id="reg_technician_phone"></div><div id="technician_code"></div></span>
+                              </div>
+                            </div>
+                          </div>
+
+
+
+                          <div class="col-12 col-sm-6">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">วันหมดประกัน</span>
+                                <span class="info-box-number text-center mb-0" id="date_warranty_end"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                <span class="info-box-text text-left">การรับประกัน</span>
+                                <span class="info-box-number text-center mb-0" id="warranty_status"></span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12 col-sm-6">
+                            <span class="small text-center mb-0">Last Updated : <i id="warranty_updated_at">-</i></span>
+                          </div>
+
+                        </div>
+                        <!-- /.row -->
+                        <!-- /.card-body -->
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.tab-pane -->
+
+                  <div class="tab-pane" id="timeline">
+                    <div class="btn-group mb-3" role="group">
+                      <button type="button" data-toggle="modal" data-target="#editAppoint"  class="btn btn-outline-info"><i class="fas fa-calendar"></i> ทำนัดหมาย</button>
+                      <button type="button" data-toggle="modal" data-target="#addFixed"  class="btn btn-outline-primary"><i class="fas fa-wrench"></i> ฟอร์มบันทึกอะไหล่ซ่อม</button>
+                      <button type="button" data-toggle="modal" data-target="#addServed"  class="btn btn-outline-success"><i class="fas fa-clipboard-list"></i> ฟอร์มบันทึกหลังเข้าบริการ</button>
+                      <button type="button" data-toggle="modal" data-target="#addComment"  class="btn btn-outline-secondary"><i class="fas fa-comment"></i> ฟอร์มบันทึกความเห็นช่าง/ทีม</button>
+                    </div>
+
+                    <br/>
+                    <!-- The timeline -->
+                    <div class="timeline timeline-inverse" id="servReqTimeline">
+                      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ยังไม่มีการบันทึกรายการ</p>
+                    </div>
+                  </div>
+                  <!-- /.tab-pane -->
+
+                  <div class="tab-pane" id="sparepart">
+                    <div class="card card-primary">
+                      <div class="card-header">
+                        <h3 class="card-title">
+                          <i class="fas fa-wrench"></i>
+                          สรุปรายการอะไหล่ที่ใช้ - ใบเคลมทั้งหมดของงานบริการ
+                        </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <!-- <div class="card-body">
+                          <div class="row">
+                            <div class="col-12 col-md-6 text-left">
+                              <div class="form-group">
+                                <label>Model (อย่างน้อย 3 ตัว)</label>
+                                <input type="text" class="form-control" placeholder="Enter ...">
+                              </div>
+                            </div>
+                            <div class="col-12 col-md-6 text-left">
+                              <div class="form-group">
+                                <label>รหัส หรือ รุ่น (อย่างน้อย 2 ตัว)</label>
+                                <input type="text" class="form-control" placeholder="Enter ...">
+                              </div>
+                            </div>
+                          <button type="button" class="btn btn-primary">ค้นหาอะไหล่</button>
+                        </div>
+                      </div> -->
+                      <!-- /.card-body -->
+                      <div class="card-footer table-responsive">
+                        <form id="form_stock_out">
+
+                          <table class="table table-sm table-bordered" id="tblUnlistClaim">
+                            <thead>
+                              <tr class="small text-center">
+                                <th style="width: 30px"><input type="checkbox" id="ulPartCkAll"></th>
+                                <th style="width: 150px">เลขที่ใบเคลม</th>
+                                <th style="width: 150px">ซ่อมครั้งที่</th>
+                                <th style="width: 150px">ราคา/หน่วย</th>
+                                <th style="width: 150px">ต้องเบิก</th>
+                                <th style="width: 150px">เบิกได้</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td colspan="4" class="small">ยังไม่พบรายการอะไหล่</td>
+                              </tr>
+                            </tbody>
+                            <tfoot>
+                              <tr>
+                                <td colspan="6">
+                                  <div class="input-group">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text"><i class="fas fa-barcode mr-1"></i> S/N</span>
+                                    </div>
+                                    <!-- <select class="form-control select2" id="stockOutSel" name="stock_out_sel" style="width:50%;"></select> -->
+                                    <div class="input-group-append">
+                                      <button type="button" id="btnCreatePickup" class="btn btn-sm btn-outline-primary"><i class="fas fa-arrow-circle-down"></i> ลงรายการเบิกตามที่เลือก</button>
+                                    </div>
+                                    <!-- <button type="button" class="btn btn-warning"><i class="fas fa-cart-arrow-down"></i> สั่งซื้ออะไหล่</button> -->
+                                  </div>
+                                </td>
+                              </tr>
+                            </tfoot>
+                          </table>
+                        </form>
+
+                      </div>
+                    </div>
+
+                    <div class="card card-warning card-outline">
+                      <div class="card-header">
+                        <h3 class="card-title">
+                          <i class="fas fa-list"></i>
+                          รายการที่ทำเบิกแล้ว
+                        </h3>
+
+                      </div>
+                      <!-- /.card-header -->
+
+                      <div class="card-body table-responsive">
+                        <table class="table table-sm table-bordered" id="tblListOut">
+                          <thead>
+                            <tr>
+                              <th class="text-center" style="width: 50px"></th>
+                              <th class="text-center" style="width: 150px">ใบเบิก / เคลม</th>
+                              <th class="text-center" style="width: 200px">รหัสอะไหล่</th>
+                              <th class="text-center">ชื่ออะไหล่</th>
+                              <th class="text-center" style="width: 150px">ราคา/หน่วย</th>
+                              <th class="text-center" style="width: 150px">ต้องเบิก</th>
+                              <!-- <th style="width: 100px">S/N</th> -->
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td colspan="7">ยังไม่ได้บันทึกเบิก</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="text-center mt-3 mb-3">
+                          <!-- <button type="button" class="btn btn-warning btn-block"><i class="fas fa-save"></i> บันทึกเบิกอะไหล่</button> -->
+                        </div>
+                        <div class="text-center m-3">
+                          <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fas fa-list-ol mr-1"></i> ใบเบิก</span>
+                            </div>
+                            <select class="form-control" id="stockOutIDsel" name="stock_out_id" style="width:20%"></select>
+                            <div class="input-group-append">
+                              <!-- <button type="button" id="btnStockOutPrint" class="btn btn-info" disabled><i class="fas fa-print"></i> พิมพ์ใบเบิกอะไหล่</button> -->
+                            </div>
+                            <!-- <button type="button" class="btn btn-warning"><i class="fas fa-cart-arrow-down"></i> สั่งซื้ออะไหล่</button> -->
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.tab-pane -->
+
+                  <div class="tab-pane" id="jobsheet">
+                    <div class="row">
+                      <div class="col-12 col-sm-3">
+                        <div class="info-box bg-light">
+                          <div class="info-box-content">
+                            <span class="info-box-text text-left">เลขที่ใบงาน</span>
+                            <span class="info-box-number text-center mb-0 serviceId">N/A</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-sm-6">
+                        <div class="info-box bg-light">
+                          <div class="info-box-content">
+                            <span class="info-box-text text-left">การรับประกัน</span>
+                            <span class="info-box-number text-center mb-0" id="warranty_status3">N/A</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-sm-12">
+                        <div class="info-box bg-light">
+                          <div class="info-box-content">
+                            <span class="info-box-text text-left"><u>หมายเหตุของเจ้าหน้าที่</u> (แสดงเฉพาะเจ้าหน้าที่ภายในระบบ)</span>
+                            <span class="info-box-number text-left mb-0" id="remark3">
+                              <textarea rows="5" class="form-control serv_staff_note" id="staffNote"></textarea>
+                            </span>
+                          </div>
+                          <button type="button" id="btnSaveRemark" class="btn btn-info btn-flat"><i class="fas fa-save mr-1"></i> บันทึกหมายเหตุ</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-inline mb-2">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="fas fa-file-signature mr-1"></i> เปลี่ยนสถานะงาน :
+                          </span>
+                        </div>
+                        <select class="form-control" id="servReqStatus">
+                          <option value="0">รอนัดหมาย</option>
+                          <option value="1">รอเข้าให้บริการ</option>
+                          <option value="2">รอนัดหมายเพื่อเข้าให้บริการอีกครั้ง</option>
+                          <option value="3">กำลังให้บริการ</option>
+                          <option value="4">ซ่อมงานเสร็จ</option>
+                          <option value="5">ยกเลิกงานโดยศูนย์บริการ</option>
+                          <option value="6">ปิดงานโดยสมบูรณ์</option>
+                        </select>
+                        <div class="input-group-append">
+                          <button type="button" id="btnSaveSRStatus" class="btn btn-info btn-flat"><i class="fas fa-save mr-1"></i> บันทึกสถานะ</button>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="form-inline mb-2">
+                      <input type="hidden" value="6" id="completeStatus">
+                      <button type="button" id="btnSaveComplete" class="btn btn-success btn-flat"><i class="fas fa-archive mr-1"></i> จบงานนี้โดยสมบูรณ์</button>
+                      <div class="ml-3 badge badge-success">วันที่จบงาน : <span id="serv_date_completed">N/A</span></div>
+                    </div>
+
+
+                    <div class="form-inline mb-3">
+                      <div class="input-group">
+                        <!-- <button type="button" id="btnSaveDeferred" disabled class="btn btn-outline-warning btn-flat"><i class="fas fa-arrow-right mr-1"></i> เลื่อนงานนี้ออกไปก่อน</button> -->
+                      </div>
+                    </div>
+
+                    <div class="card card-primary card-outline">
+                      <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-cubes"></i> ข้อมูลการเข้าบริการผลิตภัณฑ์</h3>
+
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="col-12 col-md-12 order-1 order-md-2">
+                          <h5 class="mt-5">รายการไฟล์แนบหลังเข้าให้บริการ</h5>
+                          <ul class="list-unstyled" id="servedFilesLI">
+                          </ul>
+                        </div>
+
+                      </div>
+                      <div class="text-center mt-5 mb-3">
+                        <button type="button" class="btn btn-info" id="btnFormPrint"><i class="fas fa-print"></i> Download ใบแจ้งบริการ</button>
+                        <button type="button" class="btn btn-primary" disabled><i class="fas fa-save"></i> ดูประวัติการแก้ไขใบแจ้ง</button>
+                        <button type="button" class="btn btn-secondary" onclick="print();"><i class="fas fa-qrcode"></i> QR Log</button>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                  </div>
+                  <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+  <div class="modal fade" id="editAppoint" tabindex="-1" role="dialog" aria-labelledby="editAppointLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editAppointLabel">ฟอร์มทำนัดหมายการเข้าบริการ</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="form_schedule">
+            <div class="input-group mb-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user-cog mr-1"></i>กำหนดช่างผู้รับงาน</span>
+              </div>
+              <select class="form-control select2" id="technicianSel" name="technician_id" style="width:70%"></select>
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="far fa-calendar-alt mr-1"></i>นัดหมายครั้งที่ 1</span>
+              </div>
+              <input type="text" name="datetime_service1" data-at="1" class="form-control dt_schedule" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" inputmode="numeric" placeholder="dd/mm/yyyy">
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="far fa-calendar-alt mr-1"></i>นัดหมายครั้งที่ 2</span>
+              </div>
+              <input type="text" name="datetime_service2" data-at="2" class="form-control dt_schedule" disabled data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" inputmode="numeric" placeholder="dd/mm/yyyy">
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="far fa-calendar-alt mr-1"></i>นัดหมายครั้งที่ 3</span>
+              </div>
+              <input type="text" name="datetime_service3" data-at="3" class="form-control dt_schedule" disabled data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" inputmode="numeric" placeholder="dd/mm/yyyy">
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="far fa-calendar-alt mr-1"></i>นัดหมายครั้งที่ 4</span>
+              </div>
+              <input type="text" name="datetime_service4" data-at="4" class="form-control dt_schedule" disabled data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" inputmode="numeric" placeholder="dd/mm/yyyy">
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="far fa-calendar-alt mr-1"></i>นัดหมายครั้งที่ 5</span>
+              </div>
+              <input type="text" name="datetime_service5" data-at="5" class="form-control dt_schedule" disabled data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" inputmode="numeric" placeholder="dd/mm/yyyy">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-info" id="btnSaveSchedule"><i class="fa fa-save"></i> บันทึกการนัดหมาย</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="addComment" tabindex="-1" role="dialog" aria-labelledby="addCommentLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addCommentLabel">แสดงความเห็นเกี่ยวกับการให้บริการ</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">แสดงความเห็น:</label>
+              <textarea rows="10" class="form-control" id="comment_txt"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" id="btnSaveComment"><i class="fa fa-save"></i> บันทึกความเห็น</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="addFixed" tabindex="-1" role="dialog" aria-labelledby="addFixedLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addFixedLabel"><i class="fas fa-wrench mr-1"></i>บันทึกการอะไหล่ซ่อม</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="form_fixed">
+            <div class="form-group">
+              <label for="tbl_dtrangepicker"><i class="far fa-calendar mr-1"></i>ระบุวันที่นัดให้บริการ</label>
+              <select class="col-form-label" name="schedule_at" id="scheduleAtFixed"></select>
+            </div>
+            <h3 class="mt-2">รายการเคลมอะไหล่ (ในประกัน)</h3>
+            <table class="table table-sm mb-0" id="tblPartClaim">
+              <thead>
+                <tr>
+                  <th style="width: 120px">รหัสอะไหล่</th>
+                  <th>ชื่ออะไหล่</th>
+                  <th style="width: 100px">ประเภท</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-none="1">
+                  <td colspan="4" class="text-center">ยังไม่มีรายการ</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="input-group">
+              <label><i class="fa fa-plus-circle"></i> เพิ่มเคลมอะไหล่ :</label>
+              <div class="input-group">
+                <select class="form-control select2" id="partItemId" name="part_id" style="width:70%"></select>
+                <!-- <input type="number" class="form-control text-right" name="qty" placeholder="จำนวนชิ้น"> -->
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-info" id="btnAddPartClaim"><i class="fas fa-plus"></i> เพิ่ม</button>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="mt-3">รายการค่าใช้จ่ายอะไหล่</h3>
+            <table class="table table-sm mb-0" id="tblParCost">
+              <thead>
+                <tr>
+                  <th style="width: 120px">รหัสรายการ</th>
+                  <th>รายละเอียด (งานอะไหล่)</th>
+                  <th style="width: 100px">ประเภท</th>
+                  <th style="width: 100px">จำนวน</th>
+                  <th style="width: 100px">ราคาต่อหน่วย</th>
+                  <th style="width: 100px">รวม (บาท)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-none="1">
+                  <td colspan="6" class="text-center">ยังไม่มีรายการ</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="5" class="text-right">ยอดรวม</td>
+                  <td id="totalPropose" class="text-left">0.00</td>
+                </tr>
+              </tfoot>
+            </table>
+
+            <div class="input-group">
+              <label><i class="fa fa-plus-circle"></i> เพิ่มรายการอะไหล่ :</label>
+              <div class="input-group">
+                <select class="form-control select2" id="partItemClaim" name="part_id" style="width:50%"></select>
+                <input type="number" class="form-control text-right" name="cost" id="partCost" placeholder="ราคาต่อหน่วย">
+                <input type="number" class="form-control text-right" name="qty" id="partQty" placeholder="จำนวนหน่วย">
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-info" id="btnAddPart"><i class="fas fa-plus"></i> เพิ่ม</button>
+                </div>
+              </div>
+            </div>
+
+            <hr/>
+
+            <label class="col-form-label mt-3">สรุปรายการค่าซ่อม:</label>
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th>รายการ</th>
+                  <th class="text-center" style="width: 100px">ราคา</th>
+                </tr>
+              </thead>
+              <tbody id="costTotalTable">
+                <tr>
+                  <td>ค่าซ่อม <input type="text" class="ml-3" name="repair_txt" placeholder="คำอธิบายค่าซ่อม..."/></td>
+                  <td class="text-center"><input type="number" min="0" class="form-control text-right" name="repair_cost" id="repairCost"/></td>
+                </tr>
+                <tr>
+                  <td>ค่าบริการ <input type="text" class="ml-3" name="service_txt" placeholder="คำอธิบายค่าบริการ..."/></td>
+                  <td class="text-center"><input type="number" min="0" class="form-control text-right" name="service_cost" id="serviceCost"/></td>
+                </tr>
+                <tr>
+                  <td>ค่าอาจารย์/Extra/วิทยากร <input type="text" class="ml-3" name="serv_training_txt" placeholder="..."/></td>
+                  <td class="text-center"><input type="number" min="0" class="form-control text-right" name="serv_training_cost" id="serviceTrain"/></td>
+                </tr>
+                <tr>
+                  <td>ค่าใช้จ่ายงานบริการ ตจว. <input type="text" class="ml-3" name="serv_upcountry_txt" placeholder="..."/></td>
+                  <td class="text-center"><input type="number" min="0" class="form-control text-right" name="serv_upcountry_cost" id="serviceUpcountry"/></td>
+                </tr>
+                <tr>
+                  <td>ค่าอุปกรณ์งาน ASC <input type="text" class="ml-3" name="equip_asc_txt" placeholder="..."/></td>
+                  <td class="text-center"><input type="number" min="0" class="form-control text-right" name="equip_asc_cost" id="equipASC"/></td>
+                </tr>
+                <tr>
+                  <td>ค่าน้ำมัน</td>
+                  <td class="text-center"><input type="number" min="0" class="form-control text-right" name="petrol_cost" id="petrolCost"/></td>
+                </tr>
+                <tr>
+                  <td>ค่าทางด่วน / Easy Pass </td>
+                  <td class="text-center"><input type="number" min="0" class="form-control text-right" name="highway_cost" id="highwayCost"/></td>
+                </tr>
+                <tr>
+                  <td>ค่าขนส่ง </td>
+                  <td class="text-center"><input type="number" min="0" class="form-control text-right" name="shopping_cost" id="shoppingCost"/></td>
+                </tr>
+                <tr>
+                  <td>เงินสดย่อย (ค่าอุปกรณ์, ค่าส่งอะไหล่, อื่นๆ) </td>
+                  <td class="text-center"><input type="number" min="0" class="form-control text-right" name="prettycash" id="prettyCash"/></td>
+                </tr>
+                <tr>
+                  <td>ชดเชยค่าเดินทาง <input type="number" class="ml-3" name="transport_cost_txt" placeholder="ระยะทาง เช่น 14"/> กม.</td>
+                  <td class="text-center"><input type="number" min="0" class="form-control text-right" name="transport_cost" id="transportCost"/></td>
+                </tr>
+                <tr>
+                  <td>อื่นๆ <input type="text" class="ml-3" name="other_cost_txt" placeholder="โปรดระบุ"/></td>
+                  <td class="text-center"><input type="number" min="0" class="form-control text-right" name="other_cost" id="otherCost"/></td>
+                </tr>
+                <tr>
+                  <td class="text-right">รวมเป็นเงินทั้งสิ้น <button type="button" class="btn btn-xs btn-info" click="$('#repairCost').trigger("change");"><i class="fas fa-sync mr-1"></i> คำนวณใหม่</button></td>
+                  <td id="totalRepairCost" class="text-right">0.00</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="btnSaveFixed"><i class="fa fa-save"></i> บันทึการซ่อมนี้</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="addServed" tabindex="-1" role="dialog" aria-labelledby="addServedLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addServedLabel"><i class="fas fa-clipboard-list mr-1"></i>บันทึกหลังจากเข้าบริการ</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="form_served">
+            <div class="row">
+              <div class="col-6 col-6-xs">
+                <div class="form-group">
+                  <label for="scheduleAt"><i class="far fa-calendar mr-1"></i>ระบุวันที่นัดให้บริการ</label>
+                  <select class="col-form-label" name="schedule_at" id="scheduleAt"></select>
+                </div>
+                <div class="form-group">
+                  <label for="tbl_dtrangepicker"><i class="far fa-calendar-alt mr-1"></i>วันและเวลาเข้าบริการที่ทำงานจริง</label>
+                  <input type="text" class="form-control form-control-border dtrangepicker" id="tbl_dtrangepicker" name="tbl_period" placeholder="">
+                </div>
+                <div class="form-inline">
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" id="tbl_fcu" name="tbl_fcu" value="1">
+                    <label class="col-form-label" for="tbl_fcu">Fancoil</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" id="tbl_condensing" name="tbl_condensing" value="1">
+                    <label class="col-form-label" for="tbl_condensing">Condensing</label>
+                  </div>
+                </div>
+                <label class="col-form-label">เงื่อนไขการรับประกัน:</label>
+                <div class="form-inline mb-2">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="valid_warranty" value="yes" id="valid_warranty1">
+                    <label class="form-check-label" for="valid_warranty1">ในประกัน</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="text" class="form-control form-control-border" name="warranty_id" placeholder="บัตรรับประกันเลขที่">
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="valid_warranty" value="no" id="valid_warranty2">
+                    <label class="form-check-label" for="valid_warranty2">นอกประกัน</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="error_code" class="col-form-label">รายละเอียดอาการเสีย:</label>
+                  <textarea rows="2" class="form-control serv_description" name="served_detail" readonly></textarea>
+                </div>
+              </div>
+
+              <div class="col-6 col-6-xs">
+                <div class="card card-info border-dark card_preview" id="previewInfoSec1">
+                  <div class="card-header">
+                    <i class="fas fa-info-circle mr-1"></i> ข้อมูลงานจากการแจ้งขอรับบริการ
+                  </div>
+                  <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">หมายเลขแจ้งซ่อม : <span class="serviceId">N/A</span></li>
+                      <li class="list-group-item">รหัส ASC : <span class="technician_sc_title">N/A</span></li>
+                      <li class="list-group-item">ชื่อ/นามสกุล ช่าง : <span class="technician_firstname">N/A</span> <span class="technician_lastname"></span></li>
+                      <li class="list-group-item">ชื่อ/นามสกุล ผู้แจ้ง : <span class="serv_requester_name">N/A</span></li>
+                      <li class="list-group-item">ที่อยู่สถานที่เข้าบริการ ผู้แจ้ง :  <span id="serv_address_no" class="mr-3">-</span>
+                        หมู่ที่ <span class="serv_address_moo" class="mr-3">-</span>
+                        <span class="serv_address_building"></span>
+                        ถนน<span class="serv_address_road" class="mr-3">-</span>
+                        แขวง/ตำบล<span class="serv_address_subdistrict" class="mr-3">-</span>
+                        เขต/อำเภอ<span class="serv_address_district" class="mr-3">-</span>
+                        จังหวัด<span class="serv_address_province" class="mr-3">-</span>
+                        <span id="serv_address_postcode" class="mr-3">-</span></li>
+                      <li class="list-group-item">เบอร์โทรติดต่อ ผู้แจ้ง : <span class="serv_requester_phone">N/A</span></li>
+                      <li class="list-group-item">รุ่นสินค้า : <span class="serv_product_model">N/A</span></li>
+                      <li class="list-group-item">หมายเลขเครื่อง : <span class="serv_indoor_sn">N/A</span> / <span class="serv_outdoor_sn">N/A</span></li>
+                    </ul>
+                    <ul class="mt-1 list-group list-group-flush">
+                      <li class="list-group-item">อะไหล่ที่ต้องใช้ : <span class="part_list">N/A</span></li>
+                      <li class="list-group-item">บริษัทของนำเสนอค่าซ่อมเบื้องต้น : <span class="total_propose">N/A</span> บาท</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="form-group mt-4">
+                  <label for="error_code" class="col-form-label">Error Code:</label>
+                  <textarea rows="1" class="form-control serv_error_code_txt" name="served_error_code" readonly></textarea>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <div class="form-group" id="errorCauseSec">
+                <label for="errorCause">สาเหตุอาการเสีย <code>*</code> </label>
+                  <select class="form-control" name="error_cause" id="errorCause">
+                  <option disabled selected value="0">- โปรดระบุสาเหตุ -</option>
+                  <option value="" data-ec="E0">แรงดันไฟฟ้าต่ำกว่ามาตรฐาน</option>
+                  <option value="" data-ec="E0">คาปาซิเตอร์คอมเพรสเซอร์เสีย</option>
+                  <option value="" data-ec="E0">PCB Indoor เสีย</option>
+                  <option value="" data-ec="E1">Room Sensor  เสีย</option>
+                  <option value="" data-ec="E1">หนูกัดสาย Room Sensor ขาด</option>
+                  <option value="" data-ec="E2">Tube Sensor Outdoor  เสีย</option>
+                  <option value="" data-ec="E2">หนูกัดสาย Tube Sensor Outdoor ขาด</option>
+                  <option value="" data-ec="E3">Freeze Sensor เสีย</option>
+                  <option value="" data-ec="E3">หนูกัดสาย Freeze Sensor ขาด</option>
+                  <option value="" data-ec="E4">Motor Indoor เสีย</option>
+                  <option value="" data-ec="E4">PCB Indoor เสีย</option>
+                  <option value="" data-ec="E4">หนูกัดสาย Motor Indoor ขาด</option>
+                  <option value="" data-ec="E4">เสียบสาย Motor Indoor ไม่แน่น</option>
+                  <option value="" data-ec="E5">เชื่อมต่อสายสัญญาณระหว่าง Indoor กับ Outdoor ผิด</option>
+                  <option value="" data-ec="E5">สายสัญญาณ Indoor กับ Outdoor ขาดระหว่างทาง</option>
+                  <option value="" data-ec="E5">PCB Indoor เสีย</option>
+                  <option value="" data-ec="E5">PCB Inverter Outdoor เสีย</option>
+                  <option value="" data-ec="E5">PCB Indoor ซ๊อตจากแมลง , สัตว์ เข้า</option>
+                  <option value="" data-ec="E5">PCB Inverter Outdoor ซ๊อตจากแมลง , สัตว์ เข้า</option>
+                  <option value="" data-ec="E5">Reactor เสีย</option>
+                  <option value="" data-ec="E5">แอร์สลับรุ่น (Indoor INV แต่ Outdoor INV)</option>
+                  <option value="" data-ec="F0">Motor Outdoor Inverter เสีย</option>
+                  <option value="" data-ec="F0">PCB Inverter Outdoor เสีย</option>
+                  <option value="" data-ec="F0">หนูกัดสาย Motor Outdoor Inverter ขาด</option>
+                  <option value="" data-ec="F1">เสียบสาย Motor Outdoor Inverter ไม่แน่น</option>
+                  <option value="" data-ec="F1">แคปทิ้วบ์ตันจากการเชื่อมตอนติดตั้ง</option>
+                  <option value="" data-ec="F1">แคปทิ้วบ์ตันจากการเชื่อมในกระบวนการผลิต</option>
+                  <option value="" data-ec="F1">ไม่เปิดวาล์วของเหลว</option>
+                  <option value="" data-ec="F1">คอยล์ร้อนตันระบายลมไม่ดี</option>
+                  <option value="" data-ec="F3">คอมเพรสเซอร์เสีย</option>
+                  <option value="" data-ec="F3">ต่อสายหลักหัวคอมเพรสเซอร์ผิด</option>
+                  <option value="" data-ec="F3">หนูสายหลักหัวคอมเพรสเซอร์ขาด</option>
+                  <option value="" data-ec="F3">แจ็คต่อสายหลักหัวคอมเพรสเซอร์ไม่แน่น</option>
+                  <option value="" data-ec="F4">Discharge Sensor เสีย</option>
+                  <option value="" data-ec="F4">หนูกัดสาย Discharge Sensor ขาด</option>
+                  <option value="" data-ec="F6">Temperature Sensor เสีย</option>
+                  <option value="" data-ec="P3">หนูกัดสาย Temperature Sensor ขาด</option>
+                  <option value="" data-ec="P3">น้ำยารั่วที่บริเวณแฟร์นัท</option>
+                  <option value="" data-ec="P3">น้ำยารั่วที่บริเวณเชื่อมต่อท่อ</option>
+                  <option value="" data-ec="P3">น้ำยารั่วที่บริเวณคอมเพรสเซอร์</option>
+                  <option value="" data-ec="P3">น้ำยารั่วที่บริเวณเซอร์วิสวาล์ว</option>
+                  <option value="" data-ec="P3">แผงคอยล์เย็นรั่วจากการกัดกร่อน</option>
+                  <option value="" data-ec="P3">แผงคอยล์เย็นรั่วจากการเชื่อม</option>
+                  <option value="" data-ec="P3">แผงคอยล์ร้อนรั่วจากการกัดกร่อน</option>
+                  <option value="" data-ec="P3">แผงคอยล์ร้อนรั่วจากการเชื่อม</option>
+                  <option value="" data-ec="P3">คาปาซิเตอร์คอมเพรสเซอร์เสีย</option>
+                  <option value="" data-ec="P3">แม็กเนตริกเสีย</option>
+                  <option value="" data-ec="P3">PCB Indoor เสีย</option>
+                  <option value="" data-ec="P3">สายสัญญาณ Indoor กับ Outdoor ขาดระหว่างทาง</option>
+                  <option value="" data-ec="P3">คอมเพรสเซอร์เสีย</option>
+                  <option value="" data-ec="P3">Freeze Sensor ไม่อยู่ในตำแหน่งที่เหมาะสม</option>
+                  <option value="" data-ec="indoor_noise">พลาสติกลั่น</option>
+                  <option value="" data-ec="indoor_noise">ดังจากบานสวิง</option>
+                  <option value="" data-ec="indoor_noise">ดังจาก Stepping Motor</option>
+                  <option value="" data-ec="indoor_noise">ดังจาก Motor Indoor</option>
+                  <option value="" data-ec="indoor_noise">ดังจากเทปหรือพลาสติกติดเครื่อง</option>
+                  <option value="" data-ec="indoor_noise">ดังจาก Blower เสียดสีกับ Base</option>
+                  <option value="" data-ec="indoor_noise">ดังจากหม้อแปลงหอน</option>
+                  <option value="" data-ec="indoor_noise">ดังจากโครงแอร์สั่น</option>
+                  <option value="" data-ec="indoor_noise">คอยล์เย็นตันระบายลมไม่ดี</option>
+                  <option value="" data-ec="outdoor_noise">คอมเพรสเซอร์ดัง</option>
+                  <option value="" data-ec="outdoor_noise">คอมเพรสเซอร์สั่น</option>
+                  <option value="" data-ec="outdoor_noise">ดังจากโครงแอร์สั่น</option>
+                  <option value="" data-ec="outdoor_noise">ดังจากท่อทองแดงตีโครงแอร์</option>
+                  <option value="" data-ec="outdoor_noise">คอยล์ร้อนไม่ได้ระดับ</option>
+                  <option value="" data-ec="not_start">เบรคเกอร์เสีย</option>
+                  <option value="" data-ec="not_start">หม้อแปลงเสีย</option>
+                  <option value="" data-ec="not_start">PCB Indoor เสีย</option>
+                  <option value="" data-ec="not_start">สายไฟ Power Supply ขาดระหว่าทาง</option>
+                  <option value="" data-ec="remote_failed">รีโมทเสีย</option>
+                  <option value="" data-ec="remote_failed">ถ่านรีโมทอ่อนหรือหมด</option>
+                  <option value="" data-ec="remote_failed">จอรับสัญญาณและแสดงผลเสีย</option>
+                  <option value="" data-ec="remote_failed">คลื่นสัญญาณความถี่รบกวน</option>
+                  <option value="" data-ec="remote_failed">กดฟังก์ชั่นรีโมทผิด</option>
+                  <option value="" data-ec="water_drop">คอยล์เย็นตันระบายลมไม่ดี</option>
+                  <option value="" data-ec="water_drop">ท่อน้ำทิ้งตัน</option>
+                  <option value="" data-ec="water_drop">น้ำยารั่วที่บริเวณแฟร์นัท</option>
+                  <option value="" data-ec="water_drop">น้ำยารั่วที่บริเวณเชื่อมต่อท่อ</option>
+                  <option value="" data-ec="water_drop">น้ำยารั่วที่บริเวณคอมเพรสเซอร์</option>
+                  <option value="" data-ec="water_drop">น้ำยารั่วที่บริเวณเซอร์วิสวาล์ว</option>
+                  <option value="" data-ec="water_drop">แผงคอยล์เย็นรั่วจากการกัดกร่อน</option>
+                  <option value="" data-ec="water_drop">แผงคอยล์เย็นรั่วจากการเชื่อม</option>
+                  <option value="" data-ec="water_drop">แผงคอยล์ร้อนรั่วจากการกัดกร่อน</option>
+                  <option value="" data-ec="water_drop">แผงคอยล์ร้อนรั่วจากการเชื่อม</option>
+                  <option value="" data-ec="frozen_coil">คอยล์เย็นตันระบายลมไม่ดี</option>
+                  <option value="" data-ec="frozen_coil">น้ำยารั่วที่บริเวณเชื่อมต่อท่อ</option>
+                  <option value="" data-ec="frozen_coil">น้ำยารั่วที่บริเวณคอมเพรสเซอร์</option>
+                  <option value="" data-ec="frozen_coil">น้ำยารั่วที่บริเวณเซอร์วิสวาล์ว</option>
+                  <option value="" data-ec="frozen_coil">แผงคอยล์เย็นรั่วจากการกัดกร่อน</option>
+                  <option value="" data-ec="frozen_coil">แผงคอยล์เย็นรั่วจากการเชื่อม</option>
+                  <option value="" data-ec="frozen_coil">แผงคอยล์ร้อนรั่วจากการกัดกร่อน</option>
+                  <option value="" data-ec="frozen_coil">แผงคอยล์ร้อนรั่วจากการเชื่อม</option>
+                  <option value="" data-ec="not_cold">กดฟังก์ชั่นรีโมทผิด</option>
+                  <option value="" data-ec="not_cold">น้ำยารั่วที่บริเวณแฟร์นัท</option>
+                  <option value="" data-ec="not_cold">น้ำยารั่วที่บริเวณเชื่อมต่อท่อ</option>
+                  <option value="" data-ec="not_cold">น้ำยารั่วที่บริเวณคอมเพรสเซอร์</option>
+                  <option value="" data-ec="not_cold">น้ำยารั่วที่บริเวณเซอร์วิสวาล์ว</option>
+                  <option value="" data-ec="not_cold">แผงคอยล์เย็นรั่วจากการกัดกร่อน</option>
+                  <option value="" data-ec="not_cold">แผงคอยล์เย็นรั่วจากการเชื่อม</option>
+                  <option value="" data-ec="not_cold">แผงคอยล์ร้อนรั่วจากการกัดกร่อน</option>
+                  <option value="" data-ec="not_cold">แผงคอยล์ร้อนรั่วจากการเชื่อม</option>
+                  <option value="" data-ec="not_cold">คาปาซิเตอร์คอมเพรสเซอร์เสีย</option>
+                  <option value="" data-ec="not_cold">แม็กเนตริกเสีย</option>
+                  <option value="" data-ec="not_cold">PCB Indoor เสีย</option>
+                  <option value="" data-ec="not_cold">ห้องขนาดใหญ่กว่าแอร์</option>
+                  <option value="" data-ec="not_cold">คอยล์เย็นตันระบายลมไม่ดี</option>
+                  <option value="" data-ec="not_cold">คอมเพรสเซอร์เสีย</option>
+                  <option value="" data-ec="slow_continue">Room Sensor  เสีย</option>
+                  <option value="" data-ec="slow_continue">PCB Indoor เสีย</option>
+                  <option value="" data-ec="slow_continue">Room Sensor ไม่อยู่ในตำแหน่งที่เหมาะสม</option>
+                  <option value="" data-ec="not_back_off">Room Sensor  เสีย</option>
+                  <option value="" data-ec="not_back_off">Room Sensor ไม่อยู่ในตำแหน่งที่เหมาะสม</option>
+                  <option value="" data-ec="not_back_off">ห้องขนาดใหญ่กว่าแอร์</option>
+                  <option value="" data-ec="not_back_off">PCB Indoor เสีย</option>
+                  <option value="" data-ec="smell">กลิ่นเหม็นจากสิ่งปฏิกูลภายนอกห้อง</option>
+                  <option value="" data-ec="smell">กลิ่นเหม็นจากท่อน้ำทิ้ง</option>
+                  <option value="" data-ec="smell">กลิ่นเหม็นจากซากสัตว์ตาย</option>
+                  <option value="" data-ec="smell">แอร์ตันสกปรก</option>
+                  <option value="" data-ec="no_nitrogen">แผงคอยล์เย็นรั่วจากการกัดกร่อน</option>
+                  <option value="" data-ec="no_nitrogen">แผงคอยล์เย็นรั่วจากการเชื่อม</option>
+                  <option value="" data-ec="no_nitrogen">จุกฝาปิดไนโตรเจนไม่แน่น</option>
+                  <option value="" data-ec="no_refrigerant">แผงคอยล์ร้อนรั่วจากการกัดกร่อน</option>
+                  <option value="" data-ec="no_refrigerant">แผงคอยล์ร้อนรั่วจากการเชื่อม</option>
+                  <option value="" data-ec="no_refrigerant">น้ำยารั่วที่บริเวณคอมเพรสเซอร์</option>
+                  <option value="" data-ec="no_refrigerant">น้ำยารั่วที่บริเวณเซอร์วิสวาล์ว</option>
+                </select>
+              </div>
+              <input type="text" class="form-control" name="cause_broken" placeholder="สาเหตุอาการเสีย (เพิ่มเติม)"/>
+            </div>
+
+            <div class="form-group">
+              <label for="report_repair" class="col-form-label">รายงานอาการซ่อม / ผลการซ่อม <code>*</code> :</label>
+              <textarea rows="2" class="form-control" name="report_repair"></textarea>
+            </div>
+            <h5 class="mt-2">บันทึกการทำงานระบบ</h5>
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th>รายการตรวจ</th>
+                  <th class="text-center" style="width: 100px">ก่อนซ่อม</th>
+                  <th class="text-center" style="width: 100px">หลังซ่อม</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1. แรงดันไฟฟ้า (V)</td>
+                  <td><input type="text" class="form-control text-right" name="tbl_volt_pre" placeholder="0"></td>
+                  <td><input type="text" class="form-control text-right" name="tbl_volt_post" placeholder="0"></td>
+                </tr>
+                <tr>
+                  <td>2. กระแสไฟฟ้า (A)</td>
+                  <td><input type="text" class="form-control text-right" name="tbl_amp_pre" placeholder="0"></td>
+                  <td><input type="text" class="form-control text-right" name="tbl_amp_post" placeholder="0"></td>
+                </tr>
+                <tr>
+                  <td>3. อุณหภูมิตั้งรีโมท (Mode Cool °C)</td>
+                  <td><input type="text" class="form-control text-right" name="tbl_term_remote_pre" placeholder="0"></td>
+                  <td><input type="text" class="form-control text-right" name="tbl_term_remote_post" placeholder="0"></td>
+                </tr>
+                <tr>
+                  <td>4. แรงดันน้ำยาด้านดูด (ด้านต่ำ) (PSI)</td>
+                  <td><input type="text" class="form-control text-right" name="tbl_psil_pre" placeholder="0"></td>
+                  <td><input type="text" class="form-control text-right" name="tbl_psil_post" placeholder="0"></td>
+                </tr>
+                <tr>
+                  <td>5. แรงดันน้ำยาด้านอัด (ด้านสูง) (PSI)</td>
+                  <td><input type="text" class="form-control text-right" name="tbl_psih_pre" placeholder="0"></td>
+                  <td><input type="text" class="form-control text-right" name="tbl_psih_post" placeholder="0"></td>
+                </tr>
+                <tr>
+                  <td>6. FCU อุณหภูมิลมจ่าย (หน้าคอลย์เย็น) (°C)</td>
+                  <td><input type="text" class="form-control text-right" name="tbl_fcu_out_pre" placeholder="0"></td>
+                  <td><input type="text" class="form-control text-right" name="tbl_fcu_out_post" placeholder="0"></td>
+                </tr>
+                <tr>
+                  <td>7. FCU อุณหภูมิลมกลับ  (หลังคอลย์เย็น) (°C)</td>
+                  <td><input type="text" class="form-control text-right" name="tbl_fcu_in_pre" placeholder="0"></td>
+                  <td><input type="text" class="form-control text-right" name="tbl_fcu_in_post" placeholder="0"></td>
+                </tr>
+                <tr>
+                  <td>8. CDU อุณหภูมิลมจ่าย (หน้าคอลย์ร้อน) (°C)</td>
+                  <td><input type="text" class="form-control text-right" name="tbl_cdu_out_pre" placeholder="0"></td>
+                  <td><input type="text" class="form-control text-right" name="tbl_cdu_out_post" placeholder="0"></td>
+                </tr>
+                <tr>
+                  <td>9. CDU อุณหภูมิลมกลับ  (หลังคอลย์ร้อน) (°C)</td>
+                  <td><input type="text" class="form-control text-right" name="tbl_cdu_in_pre" placeholder="0"></td>
+                  <td><input type="text" class="form-control text-right" name="tbl_cdu_in_post" placeholder="0"></td>
+                </tr>
+                <tr>
+                  <td>10. ขนาดห้อง (ตร.ม.)</td>
+                  <td><input type="text" class="form-control text-right" name="room_size" placeholder="0"></td>
+                
+                </tr>
+                <tr>
+                  <td>11. ระยะเดินท่อ (เมตร)</td>
+                  <td><input type="text" class="form-control text-right" name="pipe_length" placeholder="0"></td>
+               <tr>
+                <td>12. ท่อมีการเชื่อมหรือไม่</td>
+                <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pipe_welding" id="welding_yes" value="yes">
+                    <label class="form-check-label" for="welding_yes">ใช่</label>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pipe_welding" id="welding_no" value="no">
+                    <label class="form-check-label" for="welding_no">ไม่ใช่</label>
+                  </div>
+                </td>
+              </tr>
+
+              </tbody>
+            </table>
+            <small>สำหรับค่าใช้จ่ายกรุณากรอกใน "ฟอร์มบันทึกการซ่อม"</small>
+            <br/>
+
+            <label class="col-form-label mt-3">ปัญหาเกิดจาก:</label>
+            <div class="form-inline mb-2">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="tbl_cause" value="การติดตั้ง" id="tbl_cause1">
+                <label class="form-check-label" for="tbl_cause1">การติดตั้ง</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="tbl_cause" value="การประกอบ" id="tbl_cause2">
+                <label class="form-check-label" for="tbl_cause2">การประกอบ</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="tbl_cause" value="คุณภาพของวัตถุดิบ" id="tbl_cause3">
+                <label class="form-check-label" for="tbl_cause3">คุณภาพของวัตถุดิบ</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="tbl_cause" value="อื่นๆ" id="tbl_cause4">
+                <label class="form-check-label" for="tbl_cause4">อื่นๆ</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="text" class="form-control form-control-border" name="cause_other_txt" placeholder="(อื่นๆ โปรดระบุ)">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="attach_photo">ไฟล์หรือภาพประกอบ (ถ้ามี) (jpg, png, bmp, gif)</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">ประเภทไฟล์</span>
+                </div>
+                <select class="form-control" id="photoCategory">
+                    <option value="Job Sheet">ใบงาน (Job Sheet) </option>
+                    <option value="Product S/N">หมายเลขเครื่องภายในและภายนอก (Product S/N)</option>
+                    <option value="Defect part">อะไหล่เสีย (Defect part)</option>
+                    <option value="Install photo">รูปติดตั้งแฟนคอยล์/คอนเดนซิ่ง (Install photo)</option>
+                    <option value="Other">อื่นๆ (Other)</option>
+                  </select>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" accept="image/*" multiple="false" name="attach_photo" id="attachPhoto">
+                  <label class="custom-file-label" for="attach_photo"><i class="fas fa-upload mr-1"></i>เพิ่มไฟล์</label>
+                  <div class="progress hide" id="progress">
+                     <div class="progress-bar" role="progressbar" style="width:100%">0%</div>
+                  </div>
+                </div>
+              </div>
+              <div class="m-2">
+                  <div id="previewFile" class="row"></div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" id="btnSaveServed"><i class="fa fa-save"></i> บันทึกการเข้าบริการนี้</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      <b>Version</b> 0.1
+    </div>
+    <strong>Copyright &copy; 2021 Mavell Corporation.</strong> All rights reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<script src="../plugins/jquery/jquery.min.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../view/js/adminlte.min.js"></script>
+<script src="../plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.js" type="text/javascript"></script>
+<script src="../plugins/moment/moment.min.js"></script>
+<script src="../plugins/daterangepicker/daterangepicker.js"></script>
+<script src='../plugins/qrcode.js'></script>
+<script src="../view/js/global.js?v=25" type="text/javascript"></script>
+<script src="../plugins/select2/js/select2.full.min.js"></script>
+<script src="../plugins/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="../plugins/jQuery-File-Upload/js/jquery.fileupload.js"></script>
+<!-- Page script -->
+<script>
+var ldat = {id: 'new', cur_service_id : 0, schedule_changed: {1: false, 2: false, 3: false, 4: false, 5: false},
+          fixed : {total_propose: 0, total_cost: 0, part: [], claim: [] },
+          served: {files : [], files_cat : []}, valid_warranty : false };
+
+$($ => {
+  "use strict";
+
+  var q = getUrlVars();
+  ldat.query = q;
+
+ eb.pageInit(function(){
+   // callback if after app_uuid checkup
+
+  // mobile app use
+  if(q.app_uuid && q.app_uuid.length > 0){
+    // alert(q.app_uuid);
+    $(".main-header,.main-sidebar").remove();
+    $(".content-wrapper").css({margin: 0});
+    $('html,body').animate({scrollTop: $("#detailSec").offset().top}, 'slow');
+
+    // By pass login
+    eb.post("web", "page_init", {uuid : q.app_uuid, token : q.app_token}, function(r){
+      loadDetail(q);
+    });
+
+  }else{
+    loadDetail(q);
+  }
+
+
+
+  //
+  // Date&Time period picker
+  $('.dtrangepicker').daterangepicker({
+    timePicker: true,
+    timePickerIncrement: 15,
+    timePicker24Hour: true,
+    startDate: moment().startOf('hour'),
+    endDate: moment().startOf('hour').add(4, 'hour'),
+    locale: {
+      format: 'YYYY-MM-DD HH:mm'
+    }
+  }, function(start, end, label) {
+    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+  });
+
+
+  // Date&Time  picker for schedule (at)
+  $('.dt_schedule').daterangepicker({
+    opens: 'left',
+    timePicker: true,
+    singleDatePicker: true,
+    timePicker24Hour: true,
+    minDate:new Date(),
+    autoApply: false,
+    timePickerIncrement: 15,
+    locale: {
+      format: 'YYYY-MM-DD HH:mm:00'
+    }
+  }, function(start, end, label) {
+    var at = $(this.element[0]).data('at');
+    if(at){
+      ldat.schedule_changed[at] = true;
+    }
+    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+  });
+  $(".dt_schedule").val(""); //reset
+
+  // Preset the site by get query
+  if(parseInt(ldat.query.service_id) > 0){
+    ldat.cur_service_id = ldat.query.service_id;
+  }
+
+  ldat.firstLoad = true;
+
+  if(q.service_id == 'new'){
+    eb.showTgForm();
+    $("#form_main .card").css('border','2px solid green');
+  }
+
+  // Add Status button action for change
+  eb.soloBtnSet('btnSaveSRStatus','servReqStatus', 'web.html?a=s_service_request_status&service_id='+ldat.id,  undefined, function(){location.reload();});
+  eb.soloBtnSet('btnSaveRemark','staffNote', 'web.html?a=s_service_request_remark&service_id='+ldat.id,  undefined, function(){location.reload();});
+  eb.soloBtnSet('btnSaveComplete','completeStatus', 'web.html?a=s_service_request_status&service_id='+ldat.id, undefined, function(){location.reload();});
+  // eb.soloBtnSet('btnSaveDeferred','', 'web.html?a=s_service_requst_status&service_id='+ldat.id, undefined, function(){location.reload();});
+
+  // 1. Add Served
+  $('#btnSaveSchedule').on('click', function(){
+    let q = $('#form_schedule').serializeObject();
+    q.service_id = ldat.id;
+    var tid = $('#technicianSel').val();
+    if(tid > 0){
+      q.technician_id = tid;
+    }else{
+      q.technician_id = ldat.tech && ldat.tech.technician_id ? ldat.tech.technician_id : 0;
+    }
+    // q.schedule_changed = ldat.schedule_changed;
+    console.table(q);
+
+		if(q.datetime_service1 || q.datetime_service2 || q.datetime_service3 || q.datetime_service4 || q.datetime_service5
+      ) {
+      $(this).attr('disabled', 'true').html('<i class="fa fa-spinner fa-spin fa-fw"></i> กำลังบันทึก ...');
+
+			$('#btnSaveSchedule').addClass('disabled');
+      eb.post("web", "s_ss_appoint", q, function(rt){
+				if(rt > 0) {
+          alert('บันทึกการเข้าบริการสำเร็จ (#'+rt+')');
+          // $('#form_served input,#form_served textarea').val("");
+          // $("#btnSaveSchedule").removeAttr('disabled').html('<i class="fa fa-save"></i> บันทึกการเข้าบริการนี้');
+          // $("#editAppoint").modal('hide');
+          location.reload();
+          // getTimeline();
+        }else{
+          alert('Failed to save.')
+        }
+        $('#btnSaveSchedule').removeClass('disabled');
+			});
+      setTimeout(function(){
+        $("#btnSaveServed").removeAttr('disabled').removeClass('disabled').html('<i class="fa fa-save"></i> บันทึกการเข้าบริการนี้');
+      }, 4000);
+		}else{
+      alert('กรุณาระบุวันเวลาที่จะนัดหมายตามลำดับครั้งที่ปรากฎบนแบบฟอร์ม');
+    }
+	});
+
+  // 2. Add Served
+  $('#btnSaveServed').on('click', function(){
+    let q = {service_id: ldat.id}
+    q.served_start = moment($('#tbl_dtrangepicker').data('daterangepicker').startDate).format('YYYY-MM-DD HH:mm:00');
+    q.served_end = moment($('#tbl_dtrangepicker').data('daterangepicker').endDate).format('YYYY-MM-DD HH:mm:00');
+    q.technician_id = ldat.tech && ldat.tech.technician_id ? ldat.tech.technician_id : 0;
+
+    let d = $('#form_served').serializeObject();
+    d.files = ldat.served.files;
+    d.files_cat = ldat.served.files_cat;
+    d.error_cause = $("#errorCause option:selected").text();
+    q.schedule_at = d.schedule_at;
+
+    q.detail_json = d;
+    console.log(q);
+
+    if(d.tbl_period && d.tbl_period.indexOf(' - ') == -1){
+      alert("กรุณาระบุช่วงวัน/เวลาที่เข้าบริการ");
+      return false;
+    }
+		if(
+      eb.isnt('กรุณาระบุช่วงวัน/เวลาที่เข้าบริการ', d.tbl_period)
+      //  && eb.isnt('กรุณาระบุรายงานอาการซ่อม', d.cause_broken)
+      ) {
+      $(this).attr('disabled', 'true').html('<i class="fa fa-spinner fa-spin fa-fw"></i> กำลังบันทึก ...');
+
+			$('#btnSaveServed').addClass('disabled');
+      eb.post("web", "s_ss_served", q, function(rt){
+				if(rt > 0) {
+          alert('บันทึกการเข้าบริการสำเร็จ (#'+rt+')');
+          $('#form_served input,#form_served textarea').val("");
+          $("#btnSaveServed").removeAttr('disabled').html('<i class="fa fa-save"></i> บันทึกการเข้าบริการนี้');
+          $("#addServed").modal('hide');
+          $("#previewFile").html(''); ldat.served.files = []; ldat.served.files_cat = []; //reset
+          getTimeline();
+        }else{
+          alert('Failed to save.')
+        }
+        $('#btnSaveServed').removeClass('disabled');
+			});
+      setTimeout(function(){
+        $("#btnSaveServed").removeAttr('disabled').removeClass('disabled').html('<i class="fa fa-save"></i> บันทึกการเข้าบริการนี้');
+      }, 4000);
+		} // end if meter
+	});
+
+  // 3. Add Fixed
+  $('#btnSaveFixed').on('click', function(){
+    let q = {service_id: ldat.id}
+    let d = $('#form_fixed').serializeObject();
+    q.schedule_at = d.schedule_at;
+    d.total_propose = ldat.fixed.total_propose;
+    d.total_cost = ldat.fixed.total_cost;
+    d.claim = ldat.fixed.claim;
+    d.part = ldat.fixed.part;
+    q.detail_json = d;
+    // if(d.total_propose == 0) {
+    //   alert('ไม่พบยอดค่าใช้จ่ายที่เกิดขึ้นในการซ่อม?');
+    //   return false;
+    // }
+    console.info(q);
+    $(this).attr('disabled', 'true').html('<i class="fa fa-spinner fa-spin fa-fw"></i> กำลังบันทึก ...');
+
+		$('#btnSaveFixed').addClass('disabled');
+    eb.post("web", "s_ss_fixed", q, function(rt){
+			if(rt > 0) {
+        alert('บันทึกการซ่อมสำเร็จ (#'+rt+')');
+        $('#form_fixed input,#form_fixed textarea').val("");
+        $("#btnSaveFixed").removeAttr('disabled').html('<i class="fa fa-save"></i> บันทึกการซ่อมนี้');
+        $("#tblParCost,#tblPartClaim").find('tr[data-none="0"]').remove();
+        $("#tblParCost,#tblPartClaim").find('tr[data-none="1"]').show();
+        $("#addFixed").modal('hide');
+
+        getTimeline();
+      }else{
+        alert('Failed to save.')
+      }
+      $('#btnSaveFixed').removeClass('disabled');
+		});
+    setTimeout(function(){
+      $("#btnSaveFixed").removeAttr('disabled').removeClass('disabled').html('<i class="fa fa-save"></i> บันทึกการซ่อมนี้');
+    }, 4000);
+	});
+
+  // 4. Add Comment 23/04/2021
+  $('#btnSaveComment').on('click', function(){
+    var q = {service_id: ldat.id}
+    q.comment_txt = $('#comment_txt').val();
+    q.technician_id = ldat.tech && ldat.tech.technician_id ? ldat.tech.technician_id : 0;
+    console.table(q);
+		if(eb.isnt('กรุณาใส่ความเห็น', q.comment_txt)) {
+      $(this).attr('disabled', 'true').html('<i class="fa fa-spinner fa-spin fa-fw"></i> กำลังบันทึก ...');
+
+			$('#btnSaveComment').addClass('disabled');
+      eb.post("web", "s_ss_comment", q, function(rt){
+				if(rt > 0) {
+          alert('บันทึกความเห็นสำเร็จ');
+          $('#comment_txt').val("");
+          $("#addComment").modal('hide');
+          $("#btnSaveComment").removeAttr('disabled').html('<i class="fa fa-save"></i> บันทึกความเห็น');
+          getTimeline();
+        }else{
+          alert('Failed to save.')
+        }
+        $('#btnSaveComment').removeClass('disabled');
+			});
+      setTimeout(function(){
+        $("#btnSaveComment").removeAttr('disabled').removeClass('disabled').html('<i class="fa fa-save"></i> บันทึกความเห็น');
+      }, 4000);
+		} // end if meter
+	});
+
+  // 5. Record the stock out 02/05/2021
+  $('#btnCreatePickup').on('click', function(){
+    let ckb = $('#form_stock_out :checkbox:checked:not(:disabled)');
+    let q = {to_out : []};
+      ckb.each(function(k,v){
+        var did = $(v).val();
+        var itemid = $(v).attr('data-itemid');
+        var qty = $(v).attr('data-qty');
+        if(did > 0) q.to_out.push({
+          "item_id" : itemid ? itemid : 0,
+          "claim_did" : did,
+          "qty" : qty
+        });
+      });
+    q.service_id = ldat.id;
+    q.customer_id = ldat.load.serv.customer_id;
+    q.stock_out_id = "new";
+    console.info(q);
+
+		if(q.to_out.length == 0) {
+      alert(' ยังไม่ได้เลือกรายการที่จะเบิก ');
+      return false;
+    }else{
+      $(this).attr('disabled', 'true').html('<i class="fa fa-spinner fa-spin fa-fw"></i> กำลังบันทึก ...');
+
+			$('#btnCreatePickup').addClass('disabled');
+      eb.post("web", "s_stock_out_by_serv_detail", q, function(rt){
+				if(rt > 0) {
+          alert('บันทึกใบเบิกสำเร็จ');
+          location.reload();
+          $('#comment_txt').val("");
+          $("#btnCreatePickup").removeAttr('disabled').html('<i class="fa fa-save"></i> บันทึกความเห็น');
+          getTimeline();
+        }else{
+          alert('Failed to save.')
+        }
+        $('#btnCreatePickup').removeClass('disabled');
+			});
+      setTimeout(function(){
+        $("#btnCreatePickup").removeAttr('disabled').removeClass('disabled').html('<i class="fa fa-save"></i> บันทึกความเห็น');
+      }, 4000);
+		} // end if meter
+	});
+
+  $('#btnFormPrint').on('click', function(){
+    $(this).attr('disabled', 'true').html('<i class="fa fa-spinner fa-spin fa-fw"></i> กำลังบันทึก ...');
+    eb.post("report", "form_service_request", {service_id: ldat.cur_service_id},function (r) {
+      window.location = r.file;
+      // setTimeout(function(){
+      //   window.location.reload();
+      // }, 1000);
+      $("#btnFormPrint").removeAttr('disabled').html('<i class="fas fa-print"></i> Download ใบแจ้งบริการ');
+    });
+  });
+
+  // Seach the part
+  $('#partItemId, #partItemClaim').select2({
+    placeholder: 'กรุณาระบุคำค้นหา ...',
+    ajax: {
+      url: eb.api_path+eb.api_version+"/web.html?a=part_query",
+      dataType: 'json',
+      processResults: function (d) {
+        // console.log(d.data);
+        let items = [];
+        $.each(d.data,function(k,v){
+          items.push({text: v.item,id: v.item_code, data: v});
+        });
+        return {
+          results: items
+        };
+      }
+    }
+  });
+  //
+  // // Seach the item serial
+  // $('#stockOutSel').select2({
+  //   placeholder: 'กรุณาระบุคำค้นหา ...',
+  //   ajax: {
+  //     url: eb.api_path+eb.api_version+"/web.html?a=serial_query",
+  //     dataType: 'json',
+  //     processResults: function (d) {
+  //       // console.log(d.data);
+  //       let items = [];
+  //       $.each(d.data,function(k,v){
+  //         items.push({text: v.item,id: v.item_code, data: v});
+  //       });
+  //       return {
+  //         results: items
+  //       };
+  //     }
+  //   }
+  // });
+
+  // Select the technician
+  $('#technicianSel').select2({
+    placeholder: 'กรุณาระบุชื่อช่าง, เบอร์, หรืออีเมล์',
+    ajax: {
+      url: eb.api_path+eb.api_version+"/web.html?a=technician_query",
+      dataType: 'json',
+      processResults: function (d) {
+        // console.log(d.data);
+        let items = [];
+        $.each(d.data,function(k,v){
+          items.push({
+            text: v.technician,
+            id: v.technician_id
+          });
+        });
+        return {
+          results: items
+        };
+      }
+    }
+  });
+
+  // Add part into table เพิ่มอะไหล่ลงตาราง
+  $("#btnAddPart").on('click', function(){
+    var d = $("#partItemClaim").select2('data');
+    console.log(d);
+
+    if(d && d[0]){
+      var is_added = false, sum = 0; //ถูกเพิ่มไปในตารางแล้วหรือยัง?
+      $.each(ldat.fixed.claim, function(k,v){
+        if(v.item_code == d[0].id) {
+          is_added = true;
+          return false;
+        }
+        sum += v.qty && v.cost ? parseFloat(v.qty) * parseFloat(v.cost) : 0;
+      });
+
+      if(is_added) {
+        alert('รายการนี้ถูกเพิ่มลงไปแล้ว');
+      }else{
+        $("#tblParCost").find('tr[data-none="1"]').hide();
+        let qty = parseFloat($("#partQty").val());
+        let cost = parseFloat($("#partCost").val());
+        if(qty <= 0 && cost <= 0){
+          alert("กรุณากรอกราคาต่อหน่วย และจำนวน");
+          return false;
+        }
+        if(qty > parseFloat(d[0].data.qty)){
+          alert("จำนวนที่กรอกมากกว่าที่มีในคลัง กรุณาตรวจสอบกับเจ้าหน้าที่คลังอีกครั้ง");
+        }
+
+        sum += parseFloat(qty) * parseFloat(cost);
+        $('#tblParCost tbody').append(`<tr data-none="0">
+          <td>${d[0].id}</td>
+          <td>${d[0].text}</td>
+          <td>อะไหล่</td>
+          <td>${qty.formatMoney()}</td>
+          <td>${cost.formatMoney()}</td>
+          <td>${(cost*qty).formatMoney()}</td>
+        </tr>`);
+        ldat.fixed.claim.push({
+          "item_code": d[0].id,
+          "qty": qty,
+          "cost": cost,
+          "item_id": d[0].data.item_id,
+          "qty_unit": d[0].data.qty_unit,
+          "item_type": 'อะไหล่',
+          "total": cost*qty,
+          "item_text": d[0].text
+        });
+        $("#partQty,#partCost").val(""); //reset
+        updateFormFixedTotal(sum, 0);
+      }
+    } // d[0]
+  });
+
+  $('#partItemClaim').on('select2:select', function (e) {
+    var d = e.params.data;
+    console.log(d.data);
+    if(d.data.cost && d.data.cost > 0){
+      $("#partCost").val(d.data.cost);
+    }
+  });
+
+  // Add part into table เพิ่มอะไหล่ลงตารางเคลมประกัน
+  $("#btnAddPartClaim").on('click', function(){
+    if(!ldat.valid_warranty){
+      alert('ขออภัยสินค้าอยู่นอกประกัน');
+      return;
+    }
+    var d = $("#partItemId").select2('data');
+    console.log(d);
+
+    if(d && d[0]){
+      var is_added = false; //ถูกเพิ่มไปในตารางแล้วหรือยัง?
+      $.each(ldat.fixed.part, function(k,v){
+        if(v.item_code == d[0].id) {
+          is_added = true;
+        }
+      });
+
+      if(is_added) {
+        alert('รายการนี้ถูกเพิ่มลงไปแล้ว');
+      }else{
+        $("#tblPartClaim").find('tr[data-none="1"]').hide();
+        $('#tblPartClaim tbody').append(`<tr data-none="0">
+          <td>${d[0].id}</td>
+          <td>${d[0].text}</td>
+          <td></td>
+        </tr>`);
+        ldat.fixed.part.push({"item_code": d[0].id, "item_text": d[0].text, "item_id": d[0].data.item_id})
+      }
+    }
+  });
+
+  // Calculate Fixed cost sum
+  $("#costTotalTable input[type='number']").on('keyup change', function(){
+    let sum = 0;
+    $("#costTotalTable input[type='number']").each((k,v) => {
+      sum += Number($(v).val());
+    });
+    // console.log(sum);
+    updateFormFixedTotal(0,sum);
+  });
+
+  // Upload file (afeter fixed)
+	$('#attachPhoto')
+    .change(function(){
+      let fn = $('#attachPhoto').val();
+      let fileCat = $('#photoCategory').val();
+      let fc = ldat.served.files.length;
+      console.info(' filename : '+ fn+ ' count : '+ fc);
+      if(fn.toLowerCase().match(/\.(jpg|png|gif|jpeg|bmp)/g)){
+        if (this.files && this.files[0]) {
+          $("#previewFile").append("<div class='col-6'>"+
+            "<img id='previewHolder"+fc+"' style='width:100%;'/>"+
+            "ประเภทไฟล์ : "+ fileCat+'</div>');
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            $('#previewHolder'+fc).attr('src', e.target.result);
+          }
+          reader.readAsDataURL(this.files[0]);
+        // } else if(fn.toLowerCase().match(/\.(jpg|png|gif|jpeg|bmp)/g)){
+
+        } else {
+          alert('select a file to see preview');
+          $('#previewHolder'+fc).parent().remove();
+        }
+      }
+    })
+		.attr('data-url', '../api/v1/web.html?a=serv_req_served_file&service_id='+ldat.id)
+		.fileupload({
+			dataType: 'json',
+			done: function (e, data1) {
+				if( data1.result.err_code == 0 && data1.result.data.file){
+          let fileCat = $('#photoCategory').val();
+          ldat.served.files.push(data1.result.data.file);
+          ldat.served.files_cat.push(fileCat);
+        }else{
+          alert(data1.result.err_msg);
+          $('#previewHolder'+fc).append('src', '');
+        }
+			},
+			progressall: function (e, data) {
+        $("#progress").removeClass("hide");
+				var progress = parseInt(data.loaded / data.total * 100, 10);
+				$('#progress .progress-bar').css('width', progress + '%').html(progress + '%');
+			}
+	});
+
+}); // end pageInit
+
+});
+
+const updateFormFixedTotal = (cost,sum) => {
+  if(cost) ldat.fixed.total_propose = cost;
+  if(sum) ldat.fixed.total_cost = sum;
+  $("#totalPropose").html(ldat.fixed.total_propose.formatMoney() + ' บาท');
+  $("#totalRepairCost").html((ldat.fixed.total_propose+ldat.fixed.total_cost).formatMoney() + ' บาท');
+  console.log(ldat.fixed);
+};
+
+
+const loadDetail = (q) => {
+  if(q.service_id > 0){
+    ldat.id = q.service_id;
+    ldat.pk = 'SR'+eb.zerofill(q.service_id,8);
+    getJobDetail(q.service_id);
+  }
+}
+
+const getJobDetail = ( serviceId ) => {
+  eb.post("web", "serv_req_detail", {service_id: serviceId},function(d){
+    if(d.serv){
+      if(d.serv.service_id) $(".serviceId").html(ldat.pk); // 'SR'+eb.zerofill(d.serv.service_id,8)
+
+      if(d.serv.status > -1) {
+        // alert(d.serv.status);
+        $("#serviceStatus").html('<span class="badge bg-'+eb.serv_req_status_col[d.serv.status]+' white">'+eb.serv_req_status[d.serv.status]+'</span>');
+        // On service, tab 2
+        if(d.serv.status == 2 || d.serv.status == 3 || d.serv.status == 4) $('#detailTab a[href="#timeline"]').tab('show');
+        else if(d.serv.status == 5) $('#detailTab a[href="#sparepart"]').tab('show');
+        $("#servReqStatus").val(d.serv.status);
+      }
+
+      $("#sla").html(eb.calSLA(d.serv));
+      var tplsch = '', tplschPre = '', arrsch = {};
+      if(d.serv.datetime_service1) {
+        $("input[name=datetime_service1]").val(d.serv.datetime_service1);
+        tplsch += '<option value="1">ครั้งที่ 1 '+d.serv.datetime_service1+'</option>';
+        arrsch[1] = d.serv.datetime_service1;
+      }
+      if(d.serv.datetime_service2) {
+        $("input[name=datetime_service2]").val(d.serv.datetime_service2);
+        tplsch += '<option value="2">ครั้งที่ 2 '+d.serv.datetime_service2+'</option>';
+        arrsch[2] = d.serv.datetime_service2;
+      }
+      if(d.serv.datetime_service3) {
+        $("input[name=datetime_service3]").val(d.serv.datetime_service3);
+        tplsch += '<option value="3">ครั้งที่ 3 '+d.serv.datetime_service3+'</option>';
+        arrsch[3] = d.serv.datetime_service3;
+      }
+      if(d.serv.datetime_service4) {
+        $("input[name=datetime_service4]").val(d.serv.datetime_service4);
+        tplsch += '<option value="4">ครั้งที่ 4 '+d.serv.datetime_service4+'</option>';
+        arrsch[4] = d.serv.datetime_service4;
+      }
+      if(d.serv.datetime_service5) {
+        $("input[name=datetime_service5]").val(d.serv.datetime_service5);
+        tplsch += '<option value="5">ครั้งที่ 5 '+d.serv.datetime_service5+'</option>';
+        arrsch[5] = d.serv.datetime_service5;
+      }
+      ldat.schedule_at = arrsch;
+      $("#serviceSchedule").html(eb.findScheduleAt(d.serv));
+      $("select[name='schedule_at']").html(tplsch);
+      enableSchedule(d.serv);
+
+      if(d.serv.indoor_sn != null && d.serv.indoor_sn != ''){
+        $("#tbl_fcu").prop('checked', true);
+        $("#warranty_id").val(d.serv.indoor_sn);
+      }
+      if(d.serv.outdoor_sn != null && d.serv.outdoor_sn != ''){
+        $("#tbl_condensing").prop('checked', true);
+      }
+
+      var tplp = '';
+
+      // 1. Service Request
+      $.each(d.serv, function(k,v){
+        $('#serv_'+k+',.serv_'+k).html(v);
+        tplp +=  k + ' : ' + v+' <br/>';
+      });
+
+      // toggle error cause
+      if(d.serv.error_code != 0){
+        $("#errorCause option").hide();
+        $("#errorCause option[data-ec="+d.serv.error_code+"]").show();
+      }
+
+      if(d.serv.request_latlng != '') {
+        $(".serv_request_latlng").html('<a href="https://www.google.com/maps/dir//?saddr=My+Location' + '&daddr=' + d.serv.request_latlng + '" target="_blank">ค้นหาเส้นทาง '+d.serv.request_latlng+'</a>');
+      }
+
+      if(d.serv.filename && d.serv.filename.length > 5 && d.serv.filename.substring(0,1) == '['){
+        let fn = JSON.parse(d.serv.filename);
+        $("#filename").html("");
+        $.each(fn, function(k,v){
+          $("#filename").append(
+            (v.toLowerCase().match(/\.(jpg|png|gif|jpeg|bmp)/g))
+              ? '<img src="'+v+'" width="100%"/>'
+              : '<video controls><source src="'+v+'" type=\"video/mp4\"></video>');
+        });
+      }
+      if(d.serv.customer_id > 0) $("#custProfileLink").removeAttr('disabled').attr('href', 'warranty_check.html?customer_id?='+d.serv.customer_id).removeClass('disabled');
+      if(d.serv.technician_id > 0) $("#techProfileLink").attr('href', 'technician.html?technician_id='+d.serv.technician_id).removeClass('disabled');
+
+      // 2. Technicain Info
+      if(d.tech){
+        $.each(d.tech, function(k,v){
+          $('#technician_'+k+',.technician_'+k).html(v);
+          tplp +=  k + ' : ' + v+' <br/>';
+        });
+        if(d.tech.technician_id > 0){
+          console.log('set technician # ' + d.tech.technician_id+'');
+          var tname = d.tech.firstname+" " +d.tech.lastname + " - " + d.tech.technician_code;
+          if ($('#technicianSel').find("option[value='" + d.tech.technician_id + "']").length) {
+            $('#technicianSel').val(tname).trigger('change');
+          } else {
+            var newOpt = new Option(tname, d.tech.technician_id, true, true);
+            $('#technicianSel').append(newOpt).trigger('change');
+          }
+        }
+        ldat.tech = d.tech;
+      }
+
+      // 3. Customer Profile
+      $.each(d.customer, function(k,v){
+        // console.log(d.warranty);
+        $('#cus_'+k).html(v);
+        tplp +=  k + ' : ' + v+' <br/>';
+      });
+      if(d.customer && d.customer.avatar && d.customer.avatar != '') {
+        $("#cusAvatar").attr('src', d.customer.avatar);
+      }
+
+      // 4. Warranty & Customer (from register)
+      $.each(d.warranty, function(k,v){
+        // console.log(d.warranty);
+        $('#reg_'+k).html(v);
+        tplp +=  k + ' : ' + v+' <br/>';
+      });
+      // if(d.warranty && d.warranty.status) $("#warranty_status, #warranty_status2").html('<span class="badge bg-'+eb.prod_reg_status_col[d.warranty.status]+' white">'+eb.prod_reg_status[d.warranty.status]+'</span>');
+      if(d.warranty && d.warranty.status) $("#registered_status,#registered_status2").html('<span class="badge bg-'+eb.prod_reg_status_col[d.warranty.status]+' white">'+eb.prod_reg_status[d.warranty.status]+'</span>');
+      if(d.warranty && (d.warranty.date_purchased == null || d.warranty.date_purchased == '')) $("#date_purchased").html('(ลูกค้าไม่ได้ระบุวันซื้อไว้ตอนลงทะเบียน)');
+      if(d.warranty && (d.warranty.date_installed == null || d.warranty.date_installed == '')) $("#date_purchased").html('(ลูกค้าไม่ได้ระบุวันติดตั้งไว้ตอนลงทะเบียน)');
+      if(d.warranty && d.warranty.badge) {
+        $("#valid_warranty1").prop('checked',true);
+          $("#warranty_status2").html(d.warranty.badge);
+          $("#warranty_status,#warranty_status3").html(d.warranty.badge + '<br/>' +d.warranty.warranty_txt);
+          ldat.valid_warranty = true;
+      }else {
+        $("#valid_warranty2").prop('checked',true);
+        $("#warranty_status2").html("นอกประกัน");//
+        ldat.valid_warranty = false;
+      }
+
+      $("#date_warranty_end").html("");
+      if(d.warranty && d.warranty.expire_y1)
+        $("#date_warranty_end").append("ประกันเปลี่ยนเครื่อง : " + (d.warranty.warranty_check == 'Y' ? '<div class="badge badge-success">': '<div class="badge badge-danger">') + d.warranty.expire_y1+'</div><br/>');
+        if(d.warranty && d.warranty.expire_y5)
+          $("#date_warranty_end").append("ประกันอุปกรณ์ไฟฟ้า : " + (d.warranty.warranty_check == 'Y' || d.warranty.warranty_check == 'Y5' ? '<div class="badge badge-success">': '<div class="badge badge-danger">') + d.warranty.expire_y5+'</div><br/>');
+      if(d.warranty && d.warranty.expire_y12)
+        $("#date_warranty_end").append("ประกัน Compressor : " + (d.warranty.warranty_check.indexOf('Y') > -1 ? '<div class="badge badge-success">': '<div class="badge badge-danger">') + d.warranty.expire_y12 + '</div>');
+
+
+      if(d.serv && d.serv.status) $("#serviceStatus").html('<span class="badge bg-'+eb.serv_req_status_col[d.serv.status]+' white">'+eb.serv_req_status[d.serv.status]+'</span>');
+
+      // 5. Claim Sheet (tab 4)
+      if(d.claim_sheet){
+        var tplULC = '', tplULCstr = '', tplLOut = '', sort = 1, sOutIds = {}, total_propose = 0;
+        console.log(d.claim_sheet);
+        $.each(d.claim_sheet, function(k,v){
+          tplULC += `<tr>
+            <td rowspan="2"><input type="checkbox" id="ulPartCk${k}" name="ulPartCk[]" ${v.stock_out_did > 0 ? 'disabled checked': ''}  data-qty="${v.qty}" data-itemid="${v.item_id}" value="${v.claim_did}"></td>
+            <td colspan="5"><label for="ulPartCk${k}" style="margin-bottom:0;"><strong>${eb.snull(v.item_code)}</strong> -  ${eb.snull(v.item_name)}</label></td>
+          </tr>
+          <tr class="text-center">
+            <td>${v.claim_id > 0 ? '<a href="claim.html?claim_id='+v.claim_id+'">CL'+eb.zerofill(v.claim_id,8)+'</a>' : '-'}</td>
+            <td><div class="badge badge-info">${eb.snull(v.scheduled_at)}</div></td>
+            <td>${v.cost ? parseFloat(v.cost).formatMoney(): "0"}</td>
+            <td>${v.qty ? parseFloat(v.qty).formatMoney(): "0"}</td>
+            <td>${v.qty_remain <= v.qty ? '<div class="text-red">' : ''}${v.qty_remain ? parseFloat(v.qty_remain).formatMoney(): "0"}${v.qty_remain <= v.qty ? '</di>' : ''}</td>
+          </tr>`;
+          total_propose += parseFloat(v.cost)*parseFloat(v.qty);
+          tplULCstr += `<br/>- <strong>${eb.snull(v.item_code)}</strong> ${eb.snull(v.item_name)}`;
+
+          // If already reimburse
+          if(v.stock_out_did > 0 ){
+            tplLOut += `
+            <tr class="text-center">
+              <td>${sort}.</td>
+              <td>${v.stock_out_id > 0 ? '<a href="stock_picking.html?stock_out_id='+v.stock_out_id+'"><strong>PK'+eb.zerofill(v.stock_out_id,8)+'</strong></a>' : '-'} ${v.claim_id > 0 ? '<a href="claim.html?claim_id='+v.claim_id+'">CL'+eb.zerofill(v.claim_id,8)+'</a>' : '-'}</td>
+              <td><label style="margin-bottom:0;"><strong>${eb.snull(v.item_code)}</strong></td>
+              <td>${eb.snull(v.item_name)}</td>
+              <td>${v.cost ? parseFloat(v.cost).formatMoney(): "0"}</td>
+              <td>${v.qty ? parseFloat(v.qty).formatMoney(): "0"}</td>
+            </tr>`;
+            sort++;
+            if(!sOutIds[v.stock_out_id]) sOutIds[v.stock_out_id] = v.stock_out_id;
+          }
+
+          tplp +=  '  ------ Claim Item ------ <br/>'+k + ' : ' + JSON.stringify(v)+' <br/>';
+        });
+        // สรุปรายการอะไหล่ที่ใช้ - ใบเคลมทั้งหมดของงานบริการ
+        if(tplULC != '') $("#tblUnlistClaim tbody").html(tplULC);
+        if(tplULCstr != '') $(".part_list").html(tplULCstr);
+        if(total_propose > -1) $(".total_propose").html(total_propose.formatMoney());
+        // รายการที่ทำเบิกแล้ว
+        if(tplLOut != '') $("#tblListOut tbody").html(tplLOut);
+
+        //เลือกรายการเพื่อพิมพ์
+        if(sOutIds != {}){
+          $("#stockOutIDsel").html("");
+          $.each(sOutIds, function(k,v){
+            $("#stockOutIDsel").append('<option value="'+k+'">'+(ldat.pk)+'</option>');
+          });
+          $("#btnStockOutPrint").removeAttr("disabled");
+        }
+      } // end of claim_d
+
+      // 4. Indoor S/N info
+      if(d.serial_in) {
+        $.each(d.serial_in, function(k,v){
+          $('#serialin_'+k+',.serv_'+k).html(eb.snull(v, 'ไม่พบข้อมูล'));
+          tplp +=  k + ' : ' + v+' <br/>';
+        });
+        // เลขที่ใบเบิก 8 หลัก
+        if(d.serial_in.stock_out_id > 0) $("#serialin_stock_out_id").html('<a href="stock_picking.html?stock_out_id='+d.serial_in.stock_out_id+'" target="_blank">PK'+eb.zerofill(d.serial_in.stock_out_id,8)+"</a>")
+
+        if(d.serial_in.mfd && !ldat.valid_warranty){
+          ldat.valid_warranty = true;
+          var mfd = moment(d.serial_in.mfd);
+          var yearago = moment().subtract(1, 'years');
+          if(mfd.isSameOrAfter(yearago)){
+            $("#valid_warranty1").prop('checked',true);
+            $("#warranty_status2").html("มีประกัน เครื่อง Indoor");//ไม่พบประกัน
+            ldat.valid_warranty = true;
+          }
+        }
+      }
+
+      // 5. Outdoor S/N info
+      if(d.serial_out) {
+        $.each(d.serial_out, function(k,v){
+          $('#serialout_'+k+',.serv_'+k).html(eb.snull(v, 'ไม่พบข้อมูล'));
+          tplp +=  k + ' : ' + v+' <br/>';
+        });
+        // เลขที่ใบเบิก 8 หลัก
+        if(d.serial_out.stock_out_id > 0) $("#serialout_stock_out_id").html('<a href="stock_picking.html?stock_out_id='+d.serial_out.stock_out_id+'" target="_blank">PK'+eb.zerofill(d.serial_out.stock_out_id,8)+"</a>")
+
+        if(d.serial_out.mfd && !ldat.valid_warranty){
+          var mfd = moment(d.serial_out.mfd);
+          var yearago = moment().subtract(1, 'years');
+          if(mfd.isSameOrAfter(yearago)){
+            $("#valid_warranty1").prop('checked',true);
+            $("#warranty_status2").html("มีประกัน เครื่อง Outdoor");//ไม่พบประกัน
+            ldat.valid_warranty = true;
+          }
+        }
+      }
+
+      // Remove hide of Manufactor and W/H Info if EWC admin or technician
+      console.log(ldat_perm);
+      if(ldat_perm && ldat_perm.role && ldat_perm.sc_id &&
+        (ldat_perm.role > 1 || ldat_perm.sc_id == -1)){
+        $('.only_admin').removeClass('hide');
+      }
+
+      ldat.load = d;
+
+      getTimeline();
+
+
+      $('#inv_result').html(tplp + '<br/><div id="qrCode"></div>');
+      new QRCode(document.getElementById("qrCode"), {
+    		text: ldat.pk,
+    		width: 128,
+    		height: 128,
+    		colorDark : "#000000",
+    		colorLight : "#ffffff",
+    		correctLevel : QRCode.CorrectLevel.H
+    	});
+      new QRCode(document.getElementById("qrCodeShow"), {
+    		text: 'https://cs.mavellair.com/pages/service_detail.html?service_id=' + ldat.id,//ldat.pk,
+    		width: 80,height: 80,
+    	});
+      $("#qrCode > img, #qrCodeShow > img").css({"margin":"auto"});
+
+    }
+  });
+};
+
+const getTimeline = (  ) => {
+  eb.post("web", "serv_req_detail_timeline", {service_id: ldat.id}, function(d){
+    let tpl = '', tplFiles = '' , last_dt;
+
+    // Render User Rating
+    if(d.reviewed){
+      $.each(d.reviewed, function(k,v){
+        var dt = moment(v.updated_at).format('DD/MM/YYYY');
+        var tt = moment(v.updated_at).format('HH:mm');
+        last_dt = dt;
+        // if(last_dt != dt){
+          tpl += `<div class="time-label">
+            <span class="bg-secondary">${dt}</span>
+          </div>`;
+        // }
+        tpl += `<div>
+          <i class="fas fa-star bg-warning text-white"></i>
+          <div class="timeline-item">
+            <span class="time"><i class="far fa-clock"></i> ${tt} </span>
+            <h3 class="timeline-header"><a href="${v.customer_id > 0 ? 'customer.html?customer_id='+v.technician_id : 'javascript:;'}">${eb.snull(v.customer)}</a> คะแนนความพึงพอใจ</h3>
+            <div class="timeline-body">
+            <div class="badge badge-warning">${renderStars(v.rate_star)}</i></div><br/>
+              ${eb.nl2br(v.comment)}
+            </div>
+          </div>
+        </div>`;
+      });
+    }// end if reviewed
+
+    if(d.detail){
+      $.each(d.detail, function(k,v){
+        var dt = moment(v.updated_at).format('DD/MM/YYYY');
+        var tt = moment(v.updated_at).format('HH:mm');
+        if(last_dt != dt){
+          tpl += `<div class="time-label">
+            <span class="bg-secondary">${dt}</span>
+          </div>`;
+          last_dt = dt;
+        }
+
+        //// TYPE OF COMMENT
+        if(v.timeline_type == 'comment'){
+          tpl += `<div>
+            <i class="fas fa-comment bg-grey text-white"></i>
+            <div class="timeline-item">
+              <span class="time"><i class="far fa-clock"></i> ${tt} <a herf="javascript:;" onclick="eb.sendAction('x_ss_tl',${v.sr_detail_id}, true, 'ต้องการลบความเห็นนี้? (#${v.sr_detail_id})', true);" class="btn btn-xs btn-outline-danger ml-1"><i class="far fa-trash-alt"></i></a></span>
+              <h3 class="timeline-header"><a href="${v.user_id > 0 ? 'user_edit.html?user_id='+v.user_id : 'javascript:;'}">${eb.snull(v.fullname)} - ${v.username}</a> ผู้แสดงความเห็น</h3>
+              <div class="timeline-body">
+                ${eb.nl2br(v.detail)}
+              </div>
+            </div>
+          </div>`;
+        }// type of `comment`
+
+        //// TYPE OF CUSTOMER APPOINTMENT
+        else if(v.timeline_type == 'appointed'){
+          tpl += `<div>
+            <i class="fas fa-calendar-alt bg-danger text-white"></i>
+            <div class="timeline-item">
+              <span class="time"><i class="far fa-clock"></i> ${tt}</span>
+              <h3 class="timeline-header"><a href="${v.user_id > 0 ? 'user_edit.html?user_id='+v.user_id : 'javascript:;'}">${eb.snull(v.fullname)} - ${v.username}</a> ผู้ทำบันทึกนัดหมาย</h3>
+              <div class="timeline-body">
+                ${eb.nl2br(v.detail)}
+              </div>
+            </div>
+          </div>`;
+        }// type of `comment`
+
+        /// TYPE OF FIXED ACTION
+        else if(v.timeline_type == 'fixed'){
+          var dd = (v.detail) ? JSON.parse(v.detail) : {};
+          // console.info(dd);
+          var tpl_claim = '', tpl_part = '';
+          $.each(dd.part, function(k,vv){
+            tpl_part += `<tr>
+              <td>${eb.snull(vv.item_code)}</td>
+              <td>${eb.snull(vv.item_text)}</td>
+              <td>${eb.snull(vv.item_type)}</td>
+            </tr>`;
+          });
+
+          $.each(dd.claim, function(k,vv){
+            tpl_claim += `<tr>
+              <td>${eb.snull(vv.item_code)}</td>
+              <td>${eb.snull(vv.item_text)}</td>
+              <td>${vv.qty ? parseFloat(vv.qty).formatMoney(): "0"}</td>
+              <td>${vv.cost ? parseFloat(vv.cost).formatMoney(): "0"}</td>
+              <td>${vv.cost && vv.qty ? (parseFloat(vv.cost)*parseFloat(vv.qty)).formatMoney(): "0"}</td>
+            </tr>`;
+
+          });
+
+          tpl += `<div>
+            <i class="fas fa-wrench bg-primary"></i>
+            <div class="timeline-item">
+              <span class="time"><i class="far fa-clock"></i> ${tt} <a herf="javascript:;" onclick="eb.sendAction('x_ss_tl',${v.sr_detail_id}, true, 'ต้องการลบการซ่อมบริการนี้? (#${v.sr_detail_id})', true);" class="btn btn-xs btn-outline-danger ml-1"><i class="far fa-trash-alt"></i></a></span>
+              <h3 class="timeline-header"><a href="${v.user_id > 0 ? 'user_edit.html?user_id='+v.user_id : 'javascript:;'}">${eb.snull(v.fullname)} - ${v.username}</a> ผู้บันทึกอะไหล่ซ่อม/เคลม ${v.schedule_at && v.schedule_at > 0 ? ' <div class="badge badge-warning">ครั้งที่ '+v.schedule_at + ' '+ldat.schedule_at[v.schedule_at]+'</div><br/>' : ''}</h3>
+              <div class="timeline-body">
+                <div class="row">
+                  <div class="col-12">
+                    <h5 class="mt-2">บันทึกงานซ่อม</h5>
+                    <h6 class="mt-2">รายการเคลมอะไหล่ (ในประกัน)</h6>
+                    <table class="table table-sm small">
+                      <thead>
+                        <tr>
+                          <th style="width: 120px">รหัสอะไหล่</th>
+                          <th>ชื่ออะไหล่</th>
+                          <th style="width: 100px">S/N</th>
+                        </tr>
+                      </thead>
+                      ${eb.snull(tpl_part, '<tr><td colspan="4">ไม่พบรายการที่บันทึก</td></tr>')}
+                    </table>
+
+                    <h6 class="mt-1">รายการค่าใช้จ่ายอะไหล่</h6>
+                    <table class="table table-sm small">
+                      <thead>
+                        <tr>
+                          <th style="width: 120px">รหัสรายการ</th>
+                          <th>รายการ</th>
+                          <th style="width: 100px">จำนวน</th>
+                          <th style="width: 100px">ราคา/หน่วย</th>
+                          <th style="width: 100px">รวม (บาท)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        ${eb.snull(tpl_claim, '<tr><td colspan="6">ไม่พบรายการที่บันทึก</td></tr>')}
+                        <tr>
+                          <td colspan="4" class="text-right">รวม</td>
+                          <td>${dd.total_propose ? parseFloat(dd.total_propose).formatMoney(): "0.00"} บาท</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <label>สรุปรายการค่าซ่อม:</label>
+                    <table class="table table-sm small">
+                      <thead>
+                        <tr>
+                          <th>รายการ</th>
+                          <th class="text-center" style="width: 100px">ราคา</th>
+                        </tr>
+                      </thead>
+                      <tbody>`;
+
+                      if(dd.repair_cost > 0)
+                        tpl += `<tr>
+                          <td>ค่าซ่อม <div class="badge badge-info">${eb.snull(dd.repair_txt, '')}</div></td>
+                          <td class="text-center">${parseFloat(dd.repair_cost).formatMoney()}</td>
+                        </tr>`;
+                      if(dd.service_cost > 0)
+                          tpl += `<tr>
+                          <td>ค่าบริการ <div class="badge badge-info">${eb.snull(dd.service_txt, '')}</div></td>
+                          <td class="text-center">${parseFloat(dd.service_cost).formatMoney()}</td>
+                        </tr>`;
+
+                      if(dd.serv_training_cost > 0)
+                          tpl += `<tr>
+                          <td>ค่าอาจารย์/Extra/วิทยากร <div class="badge badge-info">${eb.snull(dd.serv_training_txt, '')}</div></td>
+                          <td class="text-center">${parseFloat(dd.serv_training_cost).formatMoney()}</td>
+                        </tr>`;
+                      if(dd.serv_upcountry_cost > 0)
+                          tpl += `<tr>
+                          <td>ค่าใช้จ่ายงานบริการ ตจว. <div class="badge badge-info">${eb.snull(dd.serv_upcountry_txt, '')}</div></td>
+                          <td class="text-center">${parseFloat(dd.serv_upcountry_cost).formatMoney()}</td>
+                        </tr>`;
+                      if(dd.equip_asc_cost > 0)
+                          tpl += `<tr>
+                          <td>ค่าอุปกรณ์งาน ASC <div class="badge badge-info">${eb.snull(dd.equip_asc_txt, '')}</div></td>
+                          <td class="text-center">${parseFloat(dd.equip_asc_cost).formatMoney()}</td>
+                        </tr>`;
+
+                      if(dd.petrol_cost > 0)
+                          tpl += `<tr>
+                          <td>ค่าน้ำมัน </td>
+                          <td class="text-center">${parseFloat(dd.petrol_cost).formatMoney()}</td>
+                        </tr>`;
+                      if(dd.highway_cost > 0)
+                          tpl += `<tr>
+                          <td>ค่าทางด่วน / Easy Pass </td>
+                          <td class="text-center">${parseFloat(dd.highway_cost).formatMoney()}</td>
+                        </tr>`;
+                      if(dd.shopping_cost > 0)
+                          tpl += `<tr>
+                          <td>ค่าขนส่ง <div class="badge badge-info">${eb.snull(dd.shopping_cost_txt, '')}</div></td>
+                          <td class="text-center">${parseFloat(dd.shopping_cost).formatMoney()}</td>
+                        </tr>`;
+                      if(dd.prettycash > 0)
+                          tpl += `<tr>
+                          <td>เงินสดย่อย (ค่าอุปกรณ์, ค่าส่งอะไหล่, อื่นๆ) </td>
+                          <td class="text-center">${parseFloat(dd.prettycash).formatMoney()}</td>
+                        </tr>`;
+
+
+                      if(dd.transport_cost > 0)
+                        tpl += `<tr>
+                          <td>ชดเชยค่าเดินทาง <div class="badge badge-info">${eb.snull(dd.transport_cost_txt, '')} กม.</div></td>
+                          <td class="text-center">${parseFloat(dd.transport_cost).formatMoney()}</td>
+                        </tr>`;
+                      if(dd.other_cost > 0)
+                        tpl += `<tr>
+                          <td>อื่นๆ <div class="badge badge-info">${eb.snull(dd.other_cost_txt, '')}</div></td>
+                          <td class="text-center">${parseFloat(dd.other_cost).formatMoney()}</td>
+                        </tr>`;
+
+                        tpl += `<tr>
+                        <td class="text-right">รวมเป็นเงินทั้งสิ้น</td>
+                        <td>${dd.total_cost ? parseFloat(dd.total_cost).formatMoney(): "0.00"} บาท</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>`;
+        }// type of `fixed`
+
+        /// TYPE OF SERVED ACTION
+        else if(v.timeline_type == 'served'){
+          var dd = (v.detail) ? JSON.parse(v.detail) : {};
+          console.info(dd);
+
+          var showFiles = '';
+          if(dd.files) $.each(dd.files, function(k,v){
+            showFiles +="<div class='col-6 col-6-xs'><a href='"+v+"' target='_blank'><img src='"+v+"' style='width:100%;'/>ประเภทไฟล์ : "+ dd.files_cat[k]+'</a></div>';
+            tplFiles += '<li><a href="'+v+'" target="_blank" class="btn-link text-secondary"><i class="far fa-fw fa-file-image"></i> '+ dd.files_cat[k]+' - '+ (v ? v.split('/')[v.split('/').length-1] : '(N/A)') +'</a></li>';
+          });
+
+          tpl += `<div>
+            <i class="fas fa-clipboard-list bg-success"></i>
+            <div class="timeline-item">
+              <span class="time"><i class="far fa-clock"></i> ${tt} <a herf="javascript:;" onclick="eb.sendAction('x_ss_tl',${v.sr_detail_id}, true, 'ต้องการลบรายการเข้าบริการนี้? (#${v.sr_detail_id})', true);" class="btn btn-xs btn-outline-danger ml-1"><i class="far fa-trash-alt"></i></a></span>
+              <h3 class="timeline-header"><a href="${v.user_id > 0 ? 'user_edit.html?user_id='+v.user_id : 'javascript:;'}">${eb.snull(v.fullname)} - ${v.username}</a> ผู้บันทึกการเข้าบริการ ${v.schedule_at && v.schedule_at > 0 ? ' <div class="badge badge-warning">ครั้งที่ '+v.schedule_at + ' '+ldat.schedule_at[v.schedule_at]+'</div><br/>' : ''}</h3>
+              <div class="timeline-body">
+                การตรวจเช็คการรับประกัน :
+                ${dd.valid_warranty && dd.valid_warranty == 'yes' ? '<div class="badge badge-success">อยู่ในประกัน</div> <small> เลขที่ : '+ eb.snull(dd.warranty_id)+'</small>' : '<div class="badge badge-danger">นอกประกัน</div>' }
+                <br/>
+                ${dd.tbl_fcu && dd.tbl_fcu == 1 ? '<div class="badge badge-primary">Fancoil</div>' : '' }
+                ${dd.tbl_condensing && dd.tbl_condensing == 1 ? '<div class="badge badge-primary">Condensing</div>' : '' }
+              </div>
+              <div class="timeline-body">
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <div class="info-box bg-light">
+                      <div class="info-box-content">
+                        <span class="info-box-text text-left">วันเวลาที่นัดหมาย</span>
+                        <span class="info-box-number text-center mb-0">${v.schedule_at && v.schedule_at > 0 ? ldat.schedule_at[v.schedule_at] : 'ไม่พบ'}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <div class="info-box bg-light">
+                      <div class="info-box-content">
+                        <span class="info-box-text text-left">วันเวลาที่ให้บริการจริง</span>
+                        <span class="info-box-number text-center mb-0">${eb.snull(v.served_start)} ถึง ${eb.snull(v.served_end)} </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <div class="info-box bg-light">
+                      <div class="info-box-content">
+                        <span class="info-box-text text-left">รายละเอียดการเสีย</span>
+                        <span class="info-box-number text-center mb-0">${eb.nl2br(dd.served_detail)}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <div class="info-box bg-light">
+                      <div class="info-box-content">
+                        <span class="info-box-text text-left">Error Code</span>
+                        <span class="info-box-number text-center mb-0">${eb.snull(dd.served_error_code)}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <div class="info-box bg-light">
+                      <div class="info-box-content">
+                        <span class="info-box-text text-left">สาเหตุอาการเสีย</span>
+                        <span class="info-box-number text-center mb-0">${eb.nl2br(dd.error_cause) + (dd.cause_broken != "" ? '<br/>คำอธิบายสาเหตุเพิ่มเติม : ' +eb.nl2br(dd.cause_broken) : "")}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <div class="info-box bg-light">
+                      <div class="info-box-content">
+                        <span class="info-box-text text-left">รายงานอาการซ่อม / ผลการซ่อม</span>
+                        <span class="info-box-number text-center mb-0">${eb.nl2br(dd.report_repair)}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <div class="info-box bg-light">
+                      <div class="info-box-content">
+                        <span class="info-box-text text-left">ปัญหาเกิดจาก</span>
+                        <span class="info-box-number text-center mb-0">${eb.nl2br(dd.tbl_cause)} ${eb.snull(dd.cause_other_txt, '')}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <hr/>
+                    <h5 class="mt-2">บันทึกการทำงานระบบ</h5>
+                    <table class="table table-sm">
+                      <thead>
+                        <tr class="small"><th>รายการตรวจ</th><th style="width: 100px">ก่อนซ่อม</th><th style="width: 100px">หลังซ่อม</th></tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                        <td>1. แรงดันไฟฟ้า (V)</td>
+                        <td>${eb.snull(dd.tbl_volt_pre)}</td>
+                        <td>${eb.snull(dd.tbl_volt_post)}</td>
+                      </tr>
+                      <tr>
+                        <td>2. กระแสไฟฟ้า (A)</td>
+                        <td>${eb.snull(dd.tbl_amp_pre)}</td>
+                        <td>${eb.snull(dd.tbl_amp_post)}</td>
+                      </tr>
+                      <tr>
+                        <td>3. อุณหภูมิตั้งรีโมท (Mode Cool °C)</td>
+                        <td>${eb.snull(dd.tbl_term_remote_pre)}</td>
+                        <td>${eb.snull(dd.tbl_term_remote_post)}</td>
+                      </tr>
+                      <tr>
+                        <td>4. แรงดันน้ำยาด้านดูด (ด้านต่ำ) (PSI)</td>
+                        <td>${eb.snull(dd.tbl_psil_pre)}</td>
+                        <td>${eb.snull(dd.tbl_psil_post)}</td>
+                      </tr>
+                      <tr>
+                        <td>5. แรงดันน้ำยาด้านอัด (ด้านสูง) (PSI)</td>
+                        <td>${eb.snull(dd.tbl_psih_pre)}</td>
+                        <td>${eb.snull(dd.tbl_psih_post)}</td>
+                      </tr>
+                      <tr>
+                        <td>6. FCU อุณหภูมิลมจ่าย (หน้าคอลย์เย็น) (°C)</td>
+                        <td>${eb.snull(dd.tbl_fcu_out_pre)}</td>
+                        <td>${eb.snull(dd.tbl_fcu_out_post)}</td>
+                      </tr>
+                      <tr>
+                        <td>7. FCU อุณหภูมิลมกลับ  (หลังคอลย์เย็น) (°C)</td>
+                        <td>${eb.snull(dd.tbl_fcu_in_pre)}</td>
+                        <td>${eb.snull(dd.tbl_fcu_in_post)}</td>
+                      </tr>
+                      <tr>
+                        <td>8. CDU อุณหภูมิลมจ่าย (หน้าคอลย์ร้อน) (°C)</td>
+                        <td>${eb.snull(dd.tbl_cdu_out_pre)}</td>
+                        <td>${eb.snull(dd.tbl_cdu_out_post)}</td>
+                      </tr>
+                      <tr>
+                        <td>9. CDU อุณหภูมิลมกลับ  (หลังคอลย์ร้อน) (°C)</td>
+                        <td>${eb.snull(dd.tbl_cdu_in_pre)}</td>
+                        <td>${eb.snull(dd.tbl_cdu_in_post)}</td>
+                      </tr>
+                        <tr>
+                        <td>10. ขนาดห้อง (ตร.ม.)</td>
+                        <td colspan="2">${eb.snull(dd.room_size)}</td>
+                      </tr>
+                      <tr>
+                        <td>11. ระยะเดินท่อ (เมตร)</td>
+                        <td colspan="2">${eb.snull(dd.pipe_length)}</td>
+                      </tr>
+                      <tr>
+                        <td>12. ท่อมีการเชื่อมหรือไม่</td>
+                        <td colspan="2">
+                          ${dd.pipe_welding === 'yes' ? 'ใช่' : dd.pipe_welding === 'no' ? 'ไม่ใช่' : '-'}
+                        </td>
+                      </tr>
+
+                      </tbody>
+                    </table>
+                    ${showFiles ? 'ภาพประกอบ :' : ''}
+                    <div class="row">${showFiles}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>`;
+        }// type of `served`
+      }); // end of each
+    } // end if `detail`
+
+    if(tpl != '') $("#servReqTimeline").html(tpl);
+    $("#servedFilesLI").html(tplFiles != '' ? tplFiles : '<small>ไม่พบไฟล์ที่บันทึกไว้</small>');
+  });
+
+  // On check to select claim to reimburse
+  $("#ulPartCkAll").change(function() {
+    $("input[name='ulPartCk\[\]']").prop('checked', (this.checked ? true : false));
+  });
+
+};
+
+function renderStars(star){
+  let tpl = "";
+  for (var i=0; i < star; i++) tpl +='<i class="fas fa-star"></i>';
+  return tpl;
+}
+
+const enableSchedule = (d) => {
+  let dt = {
+    1: moment(d.datetime_service1),
+    2: moment(d.datetime_service2),
+    3: moment(d.datetime_service3),
+    4: moment(d.datetime_service4),
+    5: moment(d.datetime_service5)
+  };
+  let today = moment();
+  // console.info(dt);console.info(today);
+  // console.info(dt[1].isSameOrBefore(today));
+  if(dt[1].isSameOrBefore(today)) {
+    $("input[name=datetime_service2]").removeAttr("disabled");
+    $("input[name=datetime_service1]").attr("disabled", "disabled");
+  }
+  if(dt[2].isSameOrBefore(dt[1])) {
+    $("input[name=datetime_service3]").removeAttr("disabled");
+    $("input[name=datetime_service2]").attr("disabled", "disabled");
+  }
+  if(dt[3].isSameOrBefore(dt[2])) {
+    $("input[name=datetime_service4]").removeAttr("disabled");
+    $("input[name=datetime_service3]").attr("disabled", "disabled");
+  }
+  if(dt[4].isSameOrBefore(dt[3])) {
+    $("input[name=datetime_service5]").removeAttr("disabled");
+    $("input[name=datetime_service4]").attr("disabled", "disabled");
+  }
+};
+
+</script>
+</body>
+</html>
