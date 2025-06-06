@@ -269,42 +269,74 @@ switch ($action) {
 		echoJson(0, ['id' => $id, 'pk' => $pk, 'sn' => $sn]);
 		break;
 
-case 'save_service_detail':
-    dbCon();
+	case 'save_service_detail':
 
-    $service_id = $_POST['id'];
+		dbCon();
 
-    // เก็บเฉพาะ field ที่เกี่ยวข้อง
-    $detail = [
-        'tbl_volt_pre' => $_POST['tbl_volt_pre'] ?? null,
-        'tbl_amp_pre' => $_POST['tbl_amp_pre'] ?? null,
-        'tbl_term_remote_pre' => $_POST['tbl_term_remote_pre'] ?? null,
-        'tbl_psil_pre' => $_POST['tbl_psil_pre'] ?? null,
-        'tbl_psih_pre' => $_POST['tbl_psih_pre'] ?? null,
-        'tbl_fcu_out_pre' => $_POST['tbl_fcu_out_pre'] ?? null,
-        'tbl_fcu_in_pre' => $_POST['tbl_fcu_in_pre'] ?? null,
-        'tbl_cdu_out_pre' => $_POST['tbl_cdu_out_pre'] ?? null,
-        'tbl_cdu_in_pre' => $_POST['tbl_cdu_in_pre'] ?? null,
-        'room_size' => $_POST['room_size'] ?? null,
-        'pipe_length' => $_POST['pipe_length'] ?? null,
-        'pipe_welding' => $_POST['pipe_welding'] ?? null
-    ];
+		$service_id = $_POST['id'];
+		$form = json_decode($_POST['detail'], true);
 
-    $detail_json = json_encode($detail, JSON_UNESCAPED_UNICODE);
+		if (!$form) {
+			echo json_encode(['status' => 'error', 'msg' => 'JSON decode failed', 'raw' => $_POST['detail']]);
+			exit;
+		}
 
-    $stmt = $pdo->prepare("
-        INSERT INTO service_request_detail (service_id, detail)
-        VALUES (:id, :detail)
-        ON DUPLICATE KEY UPDATE detail = :detail
-    ");
-    $stmt->execute([
-        ':id' => $service_id,
-        ':detail' => $detail_json
-    ]);
+		$detail = [
+			'tbl_volt_pre' => $form['tbl_volt_pre'] ?? null,
+			'tbl_amp_pre' => $form['tbl_amp_pre'] ?? null,
+			'tbl_term_remote_pre' => $form['tbl_term_remote_pre'] ?? null,
+			'tbl_psil_pre' => $form['tbl_psil_pre'] ?? null,
+			'tbl_psih_pre' => $form['tbl_psih_pre'] ?? null,
+			'tbl_fcu_out_pre' => $form['tbl_fcu_out_pre'] ?? null,
+			'tbl_fcu_in_pre' => $form['tbl_fcu_in_pre'] ?? null,
+			'tbl_cdu_out_pre' => $form['tbl_cdu_out_pre'] ?? null,
+			'tbl_cdu_in_pre' => $form['tbl_cdu_in_pre'] ?? null,
+			'room_size' => $form['room_size'] ?? null,
+			'pipe_length' => $form['pipe_length'] ?? null,
+			'pipe_welding' => $form['pipe_welding'] ?? null
+		];
 
-    echo json_encode(['status' => 'ok']);
-    exit;
-    break;
+		$detail_json = json_encode($detail, JSON_UNESCAPED_UNICODE);
+
+		try {
+			// 🔍 ตรวจสอบก่อนว่ามี record นี้หรือยัง
+			$checkStmt = $pdo->prepare("SELECT COUNT(*) FROM service_request_detail WHERE service_id = :id");
+			$checkStmt->execute([':id' => $service_id]);
+			$exists = $checkStmt->fetchColumn() > 0;
+
+			if ($exists) {
+				// ✏️ UPDATE
+				$stmt = $pdo->prepare("UPDATE service_request_detail SET detail = :detail WHERE service_id = :id");
+				$action = 'update';
+			} else {
+				// 🆕 INSERT
+				$stmt = $pdo->prepare("INSERT INTO service_request_detail (service_id, detail) VALUES (:id, :detail)");
+				$action = 'insert';
+			}
+
+			$stmt->execute([
+				':id' => $service_id,
+				':detail' => $detail_json
+			]);
+
+			echo json_encode([
+				'status' => 'ok',
+				'action' => $action,
+				'rows_affected' => $stmt->rowCount()
+			]);
+
+		} catch (Exception $e) {
+			echo json_encode([
+				'status' => 'error',
+				'message' => $e->getMessage()
+			]);
+		}
+
+		exit;
+		break;
+
+
+
 
 	/**
 	 *	Check S/N

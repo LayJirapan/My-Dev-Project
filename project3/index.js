@@ -81,7 +81,7 @@ $($ => {
 
   // Create the script tag, set the appropriate attributes
   var script = document.createElement('script');
-  script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAFsTx4iS0Bx0aWdxXR1ZZfkWJQeYUpfos&callback=initmap1';
+  script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB2B1lK3UAPBHg3BqNj9Mm5NTlqtpNmERQ&loading=async&callback=initmap1';
   script.async = true;
   document.head.appendChild(script);
 
@@ -654,17 +654,66 @@ function clickServReqSubmit(){
   delete q.requester_title_other;
   console.info(q);
 
+  // ตรวจสอบช่างผู้แจ้งขอรับบริการ เฉพาะเมื่อเลือก "ช่าง/ASC"
+  if ($('input[name="user_type"]:checked').val() === 'technician') {
+    if (!q.technician_name || q.technician_name.trim() === '') {
+      Swal.fire('กรุณากรอกชื่อ-นามสกุลของช่างผู้แจ้งบริการ','','error');
+      return;
+    }
+    if (!q.technician_phone || q.technician_phone.trim() === '') {
+      Swal.fire('กรุณากรอกเบอร์โทรศัพท์ของช่างผู้แจ้งบริการ','','error');
+      return;
+    }
+  }
   if(q.error_code == 0 && q.description == ""){
     Swal.fire('กรุณาระบุอาการเสีย หรือรายละเอียด / Error description','','error');return;
   }
+  if (ldat.serv_req_query.filename.length === 0) {
+  Swal.fire('กรุณาแนบไฟล์อย่างน้อย 1 ไฟล์ประกอบการแจ้งซ่อม','','error');
+  return;
+}
+
+    // ตรวจสอบชื่อและเบอร์ผู้ขอรับบริการก่อน
+  if (!q.requester_name || q.requester_name.trim() === "") {
+    Swal.fire('กรุณากรอกชื่อและนามสกุลผู้ขอรับบริการ', '', 'error');
+    return;
+  }
+  if (!q.requester_phone || q.requester_phone.trim() === "") {
+    Swal.fire('กรุณากรอกเบอร์โทรศัพท์ผู้ขอรับบริการ', '', 'error');
+    return;
+  }
+  /*
+  if (
+  $('input[name="user_type"]:checked').val() === 'technician' &&
+  ['com_lock', 'com_notsuck', 'outdoor_noise'].includes(q.error_code)
+    ) {
+  const requiredTechFields = {
+    tbl_volt_pre: '1.แรงดันไฟฟ้า (V)',
+    tbl_amp_pre: '2.กระแสไฟฟ้า (A)',
+    tbl_term_remote_pre: '3.อุณหภูมิตั้งรีโมท(°C)',
+    tbl_psil_pre: '4.แรงดันน้ำยาด้านดูด(ด้านต่ำ)(PSI)',
+    tbl_fcu_out_pre: '6.FCU อุณหภูมิลมจ่าย(หน้าคอยล์เย็น)(°C)',
+    tbl_fcu_in_pre: '7.FCU อุณหภูมิลมกลับ(หลังคอยล์เย็น)(°C)',
+    tbl_cdu_out_pre: '8.CDU อุณหภูมิลมจ่าย(หน้าคอยล์ร้อน)(°C)',
+    tbl_cdu_in_pre: '9.CDU อุณหภูมิลมกลับ(หลังคอยล์ร้อน)(°C)',
+    pipe_length: '11.ระยะเดินท่อ (เมตร)',
+    pipe_welding: '12.ท่อมีการเชื่อมหรือไม่'
+  };
+
+  for (const [field, label] of Object.entries(requiredTechFields)) {
+    if (!q[field] || q[field].trim() === '') {
+      Swal.fire(`กรุณากรอก ${label} ให้ครบถ้วน`, '', 'error');
+      return;
+    }
+  }
+}
+*/
 
   if(
     eb.isnt('ประเภทสินค้า / Product Type', q.product_type)
     && eb.isnt("รุ่นสินค้า / Model ID", q.product_model)
     && eb.isnt('หมายเลขเครื่องภายใน / Indoor Unit Serial No.', q.indoor_sn)
     // && eb.isnt('หมายเลขเครื่องภายนอก / Outdoor Unit Serial No.', q.outdoor_sn)
-    && eb.isnt('ชื่อและนามสกุลผู้ขอรับบริการ / Requester Full Name', q.requester_name)
-    && eb.isnt('โทรศัพท์ผู้ขอรับบริการ / Requester Phone', q.requester_phone)
     // && eb.isnt('อีเมล์ผู้ขอรับบริการ / Requester Email', q.requester_email)
     && eb.isnt('กรุณากดยินยอมข้อมูลส่วนบุคคลของท่าน / Please press consent of your personal information.', q.user_accept_, "1")
    ) {
@@ -691,10 +740,18 @@ function clickServReqSubmit(){
 function servReqSubmit(){
   eb.post("public", "s_service_request", ldat.serv_req_query, function(rt){
     if(rt.id && rt.id > 0) {
-              // ✅ 1. เตรียม JSON จากฟอร์ม
+      // ✅ 1. เตรียม JSON จากฟอร์ม
+      const allowedKeys = [
+        'tbl_volt_pre2', 'tbl_amp_pre2', 'tbl_term_remote_pre2',
+        'tbl_psil_pre2', 'tbl_psih_pre2',
+        'tbl_fcu_out_pre2', 'tbl_fcu_in_pre2',
+        'tbl_cdu_out_pre2', 'tbl_cdu_in_pre2',
+        'room_size2', 'pipe_length2', 'pipe_welding2'
+      ];
+
       let detail = {};
       $.each($('#form_service_request').serializeObject(), function(k, v) {
-        if (k.endsWith('2')) {
+        if (allowedKeys.includes(k)) {
           detail[k.slice(0, -1)] = v;
         }
       });
@@ -708,19 +765,30 @@ function servReqSubmit(){
           console.warn('บันทึกรายละเอียดไม่สำเร็จ');
         }
       });
-      // $('#btnSubmitServReqReset').click();
+
+      // ✅ 3. รายงานผล
       localStorage.setItem("_mv_sr_ids", JSON.stringify(rt));
       ldat.sr_ids = rt;
       setStatusSR(0);
       Swal.fire('ระบบได้รับคำขอบริการของคุณแล้ว เจ้าหน้าที่จะดำเนินการติดต่อท่านโดยเร็ว');
-      $("#previewFile").html(''); ldat.serv_req_query = []; //reset
-    }else{
-      Swal.fire('Service Request Failure, please try again.')
+      $("#previewFile").html('');
+      ldat.serv_req_query = []; //reset
+      // ✅ เคลียร์ฟอร์มเพิ่มเติม
+      $('#form_service_request')[0].reset(); // ล้างฟอร์มทั้งหมด
+      $("#productModel2").val(null).trigger('change'); // เคลียร์ select2 รุ่น
+      $("#errorCode").val(null).trigger('change');     // เคลียร์ select2 error code
+      $("input[type=radio][name=pipe_welding]").prop('checked', false); // เคลียร์ radio
+      $("#statusServRerv").parent().addClass('hide'); // ซ่อนสถานะ
+      $('html, body').animate({ scrollTop: 0 }, 'slow'); // เลื่อนขึ้นไปบนสุด
+    } else {
+      Swal.fire('Service Request Failure, please try again.');
     }
+
     $('#btnSubmitServReq').removeAttr('disabled').html('<i class="fas fa-paper-plane mr-1"></i> แจ้งขอรับบริการ');
     grecaptcha.reset();
   });
 }
+
 
 // var geocoder = new google.maps.Geocoder();
 

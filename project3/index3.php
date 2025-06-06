@@ -147,6 +147,16 @@
      visibility: hidden;
    }
 
+   .contect-links {
+    margin-left: auto;
+    display: flex;
+    align-items: center
+    gap: 15px;
+   }
+   .contect-links {
+    font-size: 4rem;
+   }
+
 
    #closeButton {
      float: right;
@@ -230,6 +240,16 @@
         <img src="./view/img/mavell_flogo.png" alt="Mavell Air" class="brand-image" style="opacity: .8">
         <span class="brand-text font-weight-light">Hi Mavell - CSMS</span>
       </a>
+
+      <div class="contact-links">
+    <a href="https://line.me/R/ti/p/@hid9685y" target="_blank" title="แอดไลน์">
+      <i class="fab fa-line"></i>
+    </a>
+
+    <a href="tel:+66649317999" title="ติดต่อเจ้าหน้าที่">
+      <i class="fas fa-phone"></i>
+    </a>
+  </div>
 
       <!-- <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -863,7 +883,7 @@
                               <textarea class="form-control" name="description2" rows="3" placeholder="Enter your description..." id="description"></textarea>
                             </div>
                             <div class="form-group">
-                              <label for="attach_photo">ไฟล์หรือภาพประกอบ (ถ้ามี)</label>
+                              <label for="attach_photo">ไฟล์หรือภาพประกอบ (อย่างน้อย 1 ภาพ)</label>
                               <div class="input-group">
                                 <div class="custom-file">
                                   <input type="file" class="custom-file-input" accept="image/*,video/*" multiple="false" name="attach_photo" id="attachPhoto">
