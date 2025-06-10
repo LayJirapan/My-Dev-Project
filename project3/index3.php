@@ -56,6 +56,39 @@
      overflow: hidden;
      border-right: 1px solid rgba(0, 0, 0, 0.25);
    }
+  .top-contact-icons {
+    position: absolute;
+    top: 15px;
+    right: 500px;
+    display: flex;
+    gap: 20px;
+    z-index: 9999;
+  }
+
+  .top-contact-icons a i {
+    font-size: 30px;
+    color: #004080;
+    transition: transform 0.2s;
+  }
+
+  .top-contact-icons a:hover i {
+    transform: scale(1.2);
+    color: #007bff;
+  }
+
+  /* Responsive: ปรับขนาดไอคอนเมื่อเปิดบนมือถือ */
+  @media (max-width: 768px) {
+    .top-contact-icons {
+      top: 15px;
+      right: 20px;
+      gap: 20px;
+    }
+
+    .top-contact-icons a i {
+      font-size: 28px;
+    }
+  }
+
    .quiet {
      color: #888;
    }
@@ -241,11 +274,10 @@
         <span class="brand-text font-weight-light">Hi Mavell - CSMS</span>
       </a>
 
-      <div class="contact-links">
+  <div class="top-contact-icons">
     <a href="https://line.me/R/ti/p/@hid9685y" target="_blank" title="แอดไลน์">
       <i class="fab fa-line"></i>
     </a>
-
     <a href="tel:+66649317999" title="ติดต่อเจ้าหน้าที่">
       <i class="fas fa-phone"></i>
     </a>
@@ -813,7 +845,7 @@
                                       <div class="input-group-text bg-warning"><i class="fa fa-qrcode mr-1"></i> QR Code</div>
                                   </div>
                               </div>
-                              <button type="button" class="btn btn-block btn-sm btn-secondary mt-1" id="btnFindSN2"><i class="fas fa-search"></i> ค้นหารหัสผลิตภัณฑ์</button>
+                              <button type="button" class="btn btn-block btn-sm btn-secondary mt-1" id="btnFindSN2"><i class="fas fa-search"></i> กรุณากดค้นหารหัสผลิตภัณฑ์ที่นี่</button>
                               <!-- <select class="form-control" id="snQuery"></select> -->
                               <input type="hidden" name="indoor_sn2">
                               <input type="hidden" name="outdoor_sn2">
@@ -1030,42 +1062,48 @@
                     <div class="card-body">
 
 
-                <div class="row">
+                
+                    <div class="row">
                   <div class="col-md-6">
+                       
                     <div class="form-group row">
-                      <label class="col-6 col-form-label">1. แรงดันไฟฟ้า (V)<span class="text-danger ml-1">*</span></label>
+                      <label class="col-6 col-form-label">1. ขนาดห้อง (ตร.ม.)<span class="text-danger ml-1">*</span></label>
+                      <div class="col-6">
+                        <input type="number" name="room_size2" class="form-control w-75 w-md-50" placeholder="">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-6 col-form-label">2. แรงดันไฟฟ้า (V)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="tbl_volt_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
                     <div class="form-group row">
-                      <label class="col-6 col-form-label">2. กระแสไฟฟ้า (A)<span class="text-danger ml-1">*</span></label>
+                      <label class="col-6 col-form-label">3. กระแสไฟฟ้า (A)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="tbl_amp_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
                     <div class="form-group row">
-                      <label class="col-6 col-form-label">3. อุณหภูมิตั้งรีโมท (Mode Cool °C)<span class="text-danger ml-1">*</span></label>
+                      <label class="col-6 col-form-label">4. อุณหภูมิตั้งรีโมท (Mode Cool °C)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="tbl_term_remote_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
                     <div class="form-group row">
-                      <label class="col-6 col-form-label">4. แรงดันน้ำยาด้านดูด (ด้านต่ำ) (PSI)<span class="text-danger ml-1">*</span></label>
+                      <label class="col-6 col-form-label">5. แรงดันน้ำยาด้านดูด (ด้านต่ำ) (PSI)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="tbl_psil_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
+                  </div>
 
-                    <div class="form-group row">
-                      <label class="col-6 col-form-label">5. แรงดันน้ำยาด้านส่ง (ด้านสูง) (PSI)</label>
-                      <div class="col-6">
-                        <input type="number" name="tbl_psih_pre2" class="form-control w-75 w-md-50" placeholder="">
-                      </div>
-                    </div>
+                  <!-- ฝั่งขวา: ข้อ 7 - 12 -->
+                  <div class="col-md-6">
 
                     <div class="form-group row">
                       <label class="col-6 col-form-label">6. FCU อุณหภูมิลมจ่าย (หน้าคอยล์เย็น) (°C)<span class="text-danger ml-1">*</span></label>
@@ -1073,10 +1111,7 @@
                         <input type="number" name="tbl_fcu_out_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
-                  </div>
 
-                  <!-- ฝั่งขวา: ข้อ 7 - 12 -->
-                  <div class="col-md-6">
                     <div class="form-group row">
                       <label class="col-6 col-form-label">7. FCU อุณหภูมิลมกลับ (หลังคอยล์เย็น) (°C)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
@@ -1099,32 +1134,12 @@
                     </div>
 
                     <div class="form-group row">
-                      <label class="col-6 col-form-label">10. ขนาดห้อง (ตร.ม.)</label>
-                      <div class="col-6">
-                        <input type="number" name="room_size2" class="form-control w-75 w-md-50" placeholder="">
-                      </div>
-                    </div>
-
-                    <div class="form-group row">
-                      <label class="col-6 col-form-label">11. ระยะเดินท่อ (เมตร)<span class="text-danger ml-1">*</span></label>
+                      <label class="col-6 col-form-label">10. ระยะเดินท่อ (เมตร)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="pipe_length2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
-                    <div class="form-group row">
-                      <label class="col-6 col-form-label">12. ท่อมีการเชื่อมหรือไหม<span class="text-danger ml-1">*</span></label>
-                      <div class="col-6">
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="pipe_welding2" id="welding_yes2" value="yes">
-                          <label class="form-check-label" for="welding_yes2">ใช่</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="pipe_welding2" id="welding_no2" value="no">
-                          <label class="form-check-label" for="welding_no2">ไม่ใช่</label>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
                 </div>

@@ -216,18 +216,16 @@ switch ($action) {
 		// if(!isset($_POST['requester_email']) || $_POST['requester_email'] == '') echoJson(8, 'Requester\'s email required');
 		if(!isset($_POST['user_accept_']) || $_POST['user_accept_'] == '') echoJson(9, 'User accpetance required');
 		dbCon();
+		unset($_POST['room_size']);
         unset($_POST['tbl_volt_pre']);
         unset($_POST['tbl_amp_pre']);
         unset($_POST['tbl_term_remote_pre']);
         unset($_POST['tbl_psil_pre']);
-        unset($_POST['tbl_psih_pre']);
         unset($_POST['tbl_fcu_out_pre']);
         unset($_POST['tbl_fcu_in_pre']);
         unset($_POST['tbl_cdu_out_pre']);
         unset($_POST['tbl_cdu_in_pre']);
-        unset($_POST['room_size']);
         unset($_POST['pipe_length']);
-        unset($_POST['pipe_welding']);
 
 		$data = $_POST;
 		$data['indoor_sn'] = clean($data['indoor_sn']);
@@ -269,67 +267,48 @@ switch ($action) {
 		echoJson(0, ['id' => $id, 'pk' => $pk, 'sn' => $sn]);
 		break;
 
-	case 'save_service_detail':
+		//ส่งข้อมูล JSON ลง database
 
+		case 'save_service_detail':
+		global $db;
 		dbCon();
 
 		$service_id = $_POST['id'];
 		$form = json_decode($_POST['detail'], true);
 
 		if (!$form) {
-			echo json_encode(['status' => 'error', 'msg' => 'JSON decode failed', 'raw' => $_POST['detail']]);
+			echo json_encode(['status' => 'error', 'msg' => 'JSON decode failed']);
 			exit;
 		}
 
-		$detail = [
-			'tbl_volt_pre' => $form['tbl_volt_pre'] ?? null,
-			'tbl_amp_pre' => $form['tbl_amp_pre'] ?? null,
-			'tbl_term_remote_pre' => $form['tbl_term_remote_pre'] ?? null,
-			'tbl_psil_pre' => $form['tbl_psil_pre'] ?? null,
-			'tbl_psih_pre' => $form['tbl_psih_pre'] ?? null,
-			'tbl_fcu_out_pre' => $form['tbl_fcu_out_pre'] ?? null,
-			'tbl_fcu_in_pre' => $form['tbl_fcu_in_pre'] ?? null,
-			'tbl_cdu_out_pre' => $form['tbl_cdu_out_pre'] ?? null,
-			'tbl_cdu_in_pre' => $form['tbl_cdu_in_pre'] ?? null,
-			'room_size' => $form['room_size'] ?? null,
-			'pipe_length' => $form['pipe_length'] ?? null,
-			'pipe_welding' => $form['pipe_welding'] ?? null
+		$detail_json = json_encode($form, JSON_UNESCAPED_UNICODE);
+		$now = date('Y-m-d H:i:s');
+		$data = [
+			'detail' => $detail_json,
+			'timeline_type' => 'appointed',
+			'updated_at' => $now
 		];
 
-		$detail_json = json_encode($detail, JSON_UNESCAPED_UNICODE);
-
 		try {
-			// 🔍 ตรวจสอบก่อนว่ามี record นี้หรือยัง
-			$checkStmt = $pdo->prepare("SELECT COUNT(*) FROM service_request_detail WHERE service_id = :id");
-			$checkStmt->execute([':id' => $service_id]);
-			$exists = $checkStmt->fetchColumn() > 0;
+			$exists = $db->where('service_id', $service_id)->getValue('service_request_detail', 'COUNT(*)');
 
-			if ($exists) {
-				// ✏️ UPDATE
-				$stmt = $pdo->prepare("UPDATE service_request_detail SET detail = :detail WHERE service_id = :id");
+			if ($exists > 0) {
+				// UPDATE
+				$db->where('service_id', $service_id)->update('service_request_detail', $data);
 				$action = 'update';
 			} else {
-				// 🆕 INSERT
-				$stmt = $pdo->prepare("INSERT INTO service_request_detail (service_id, detail) VALUES (:id, :detail)");
+				// INSERT
+				$data['service_id'] = $service_id;
+				$data['created_at'] = $now;
+				$db->insert('service_request_detail', $data);
 				$action = 'insert';
 			}
 
-			$stmt->execute([
-				':id' => $service_id,
-				':detail' => $detail_json
-			]);
-
-			echo json_encode([
-				'status' => 'ok',
-				'action' => $action,
-				'rows_affected' => $stmt->rowCount()
-			]);
+			echo json_encode(['status' => 'ok', 'action' => $action]);
 
 		} catch (Exception $e) {
-			echo json_encode([
-				'status' => 'error',
-				'message' => $e->getMessage()
-			]);
+			file_put_contents("error_log.txt", $e->getMessage() . "\n", FILE_APPEND); //เก็บ log
+			echo json_encode(['status' => 'error', 'msg' => $e->getMessage()]);
 		}
 
 		exit;

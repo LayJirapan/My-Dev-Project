@@ -742,11 +742,12 @@ function servReqSubmit(){
     if(rt.id && rt.id > 0) {
       // ✅ 1. เตรียม JSON จากฟอร์ม
       const allowedKeys = [
+        'room_size2',
         'tbl_volt_pre2', 'tbl_amp_pre2', 'tbl_term_remote_pre2',
-        'tbl_psil_pre2', 'tbl_psih_pre2',
+        'tbl_psil_pre2',
         'tbl_fcu_out_pre2', 'tbl_fcu_in_pre2',
         'tbl_cdu_out_pre2', 'tbl_cdu_in_pre2',
-        'room_size2', 'pipe_length2', 'pipe_welding2'
+        'pipe_length2'
       ];
 
       let detail = {};
