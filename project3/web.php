@@ -1136,8 +1136,9 @@ switch ($action) {
 		$db->where('d.service_id', $_POST['service_id'])
 			->orderBy('d.updated_at', 'DESC')
 			->join('technician t', 't.technician_id=d.technician_id', 'left')
-			->join('users u', 'u.id=d.user_id', 'left');
-		$dl = $db->get('service_request_detail d', 500,'d.*, CONCAT_WS("",t.firstname," ",t.lastname, " - [", t.technician_code,"]", " [", t.zone,"]") as technician, u.username, u.fullname');
+			->join('users u', 'u.id=d.user_id', 'left')
+			->join('service_request r', 'r.service_id = d.service_id', 'left');
+		$dl = $db->get('service_request_detail d', 500,'d.*, r.error_code_txt,r.technician_name,CONCAT_WS("",t.firstname," ",t.lastname, " - [", t.technician_code,"]", " [", t.zone,"]") as technician, u.username, u.fullname');
 
 		$db->where('r.service_id', $_POST['service_id'])
 			->where('r.status', 1)
