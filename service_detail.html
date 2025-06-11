@@ -3045,8 +3045,8 @@ const getTimeline = (  ) => {
           tpl += `<div>
             <i class="fas fa-calendar-alt bg-danger text-white"></i>
             <div class="timeline-item">
-              <span class="time"><i class="far fa-clock"></i> ${tt} <a herf="javascript:;" onclick="eb.sendAction('x_ss_tl',${v.sr_detail_id}, true, 'ต้องการลบรายการเข้าบริการนี้? (#${v.sr_detail_id})', true);" class="btn btn-xs btn-outline-danger ml-1"><i class="far fa-trash-alt"></i></a></span>
-              <h3 class="timeline-header"><a href="${v.user_id > 0 ? 'user_edit.html?user_id='+v.user_id : 'javascript:;'}">${eb.snull(v.fullname)} - ${v.username}</a> ผู้บันทึกการเข้าบริการ ${v.schedule_at && v.schedule_at > 0 ? ' <div class="badge badge-warning">ครั้งที่ '+v.schedule_at + ' '+ldat.schedule_at[v.schedule_at]+'</div><br/>' : ''}</h3>
+              <span class="time"><i class="far fa-clock"></i> ${tt}</span>
+              <h3 class="timeline-header"><a href="javascript:;">${eb.snull(v.technician_name)}</a> ผู้บันทึกการเข้าบริการก่อนซ่อม</h3>
               <div class="timeline-body">
                 การตรวจเช็คการรับประกัน :
                 ${dd.valid_warranty && dd.valid_warranty == 'yes' ? '<div class="badge badge-success">อยู่ในประกัน</div> <small> เลขที่ : '+ eb.snull(dd.warranty_id)+'</small>' : '<div class="badge badge-danger">นอกประกัน</div>' }
@@ -3060,7 +3060,7 @@ const getTimeline = (  ) => {
                 <div class="info-box bg-light">
                     <div class="info-box-content">
                     <span class="info-box-text text-left">Error Code</span>
-                    <span class="info-box-number text-center mb-0">${eb.snull(dd.served_error_code)}</span>
+                    <span class="info-box-number text-center mb-0">${eb.snull(v.error_code_txt)}</span>
                     </div>
                 </div>
 
