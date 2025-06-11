@@ -56,10 +56,11 @@
      overflow: hidden;
      border-right: 1px solid rgba(0, 0, 0, 0.25);
    }
+   /* icon ไลน์ และโทร */
   .top-contact-icons {
     position: absolute;
     top: 15px;
-    right: 500px;
+    right: 450px;
     display: flex;
     gap: 20px;
     z-index: 9999;
@@ -275,7 +276,7 @@
       </a>
 
   <div class="top-contact-icons">
-    <a href="https://line.me/R/ti/p/@hid9685y" target="_blank" title="แอดไลน์">
+    <a href="https://line.me/R/ti/p/@hid9685y" target="_blank" title="แอดไลน์ศูนย์บริการ">
       <i class="fab fa-line"></i>
     </a>
     <a href="tel:+66649317999" title="ติดต่อเจ้าหน้าที่">

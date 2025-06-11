@@ -285,7 +285,7 @@ switch ($action) {
 		$now = date('Y-m-d H:i:s');
 		$data = [
 			'detail' => $detail_json,
-			'timeline_type' => 'appointed',
+			'timeline_type' => 'submitted',
 			'updated_at' => $now
 		];
 
