@@ -49,7 +49,7 @@ window.mapAfterInit = function(tabid, lat, lng){
     position: latLng,
     title: 'สถานที่ติดตั้ง',
     map: gMap,
-    draggable: true
+    draggable: false
   });
   updateMarkerPosition(tabid, latLng);
 
