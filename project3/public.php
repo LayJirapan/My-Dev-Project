@@ -443,6 +443,37 @@ switch ($action) {
 		// $result['debug'] = $db->getLastQuery(); // DEBUG
 		echoJson(0, $result);
 		break;
+		// --- get_supplier_id_by_product ---
+		case 'get_supplier_id_by_product':
+		dbCon();
+		$product_id = intval($_POST['product_id']);
+		$row = $db->where('product_id', $product_id)->getOne('product_model', 'supplier_id');
+		echoJson(0, ['supplier_id' => $row ? $row['supplier_id'] : null]);
+		break;
+
+		// --- get_error_codes_by_supplier ---
+		case 'get_error_codes_by_supplier':
+		dbCon();
+		$supplier_id = $_POST['supplier_id'];
+
+		if ($supplier_id === null || $supplier_id === '' || strtolower($supplier_id) === 'null') {
+		$rows = $db
+			->where('status', 1)
+			->where('supplier_id', null, 'IS')
+			->orderBy('error_code_prompt', 'asc')
+			->get('error_code', null, 'id, error_code, error_code_prompt, supplier_id');
+		} else {
+		$rows = $db
+			->where('status', 1)
+			->where('(supplier_id = ? OR supplier_id IS NULL)', [$supplier_id])
+			->orderBy('error_code_prompt', 'asc')
+			->get('error_code', null, 'id, error_code, error_code_prompt, supplier_id');
+		}
+
+
+		echoJson(0, $rows);
+		break;
+
 
 	/**
 	 *	Get Item for rewards (via Hi Mavll App)

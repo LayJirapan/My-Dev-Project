@@ -479,7 +479,7 @@
                                       <div class="input-group-text bg-warning"><i class="fa fa-qrcode mr-1"></i> QR Code</div>
                                   </div>
                               </div>
-                              <button type="button" class="btn btn-block btn-sm btn-secondary mt-3" id="btnFindSN1"><i class="fas fa-search"></i> ค้นหารหัสผลิตภัณฑ์</button>
+                              <button type="button" class="btn btn-block btn-sm btn-secondary mt-3" id="btnFindSN1"><i class="fas fa-search"></i> กรุณากดค้นหารหัสผลิตภัณฑ์ที่นี่</button>
                               <div class="mt-1"><strong>สถานะรหัสสินค้า</strong> : <span id="resultSN1">-</span></div>
                             </div>
                             <div class="form-group" id="productModelSec">
@@ -879,37 +879,15 @@
                               <label for="errorCode">อาการเสีย <span class="text-danger ml-1">*</span></label>
                               <select class="form-control select2" name="error_code2" id="errorCode">
                                 <option disabled selected value="0">- โปรดระบุอาการ -</option>
-                                <option value="E0">ขึ้น Error Code E0</option>
-                                <option value="E1">ขึ้น Error Code E1</option>
-                                <option value="E2">ขึ้น Error Code E2</option>
-                                <option value="E3">ขึ้น Error Code E3</option>
-                                <option value="E4">ขึ้น Error Code E4</option>
-                                <option value="E5">ขึ้น Error Code E5 หรือ 5E</option>
-								                <option value="E6">ขึ้น Error Code E6</option>
-                                <option value="F0">ขึ้น Error Code F0</option>
-                                <option value="F1">ขึ้น Error Code F1</option>
-                                <option value="F3">ขึ้น Error Code F3</option>
-                                <option value="F4">ขึ้น Error Code F4</option>
-                                <option value="F6">ขึ้น Error Code F6</option>
-                                <option value="P3">ขึ้น Error Code P3</option>
-                                <option value="indoor_noise">Indoor มีเสียงดัง</option>
-                                <option value="outdoor_noise">Outdoor มีเสียงดัง</option>
-                                <option value="not_start">แอร์เปิดไม่ติด</option>
-                                <option value="remote_failed">รีโมทกดไม่ติด</option>
-                                <option value="water_drop">แอร์น้ำหยด</option>
-                                <option value="frozen_coil">แผงคอยล์เย็นเป็นน้ำแข็ง</option>
-                                <option value="not_cold">แอร์ไม่เย็น</option>
-                                <option value="slow_continue">แอร์ต่อช้า</option>
-                                <option value="not_back_off">แอร์ไม่ตัด</option>
-                                <option value="smell">แอร์มีกลิ่นเหม็น</option>
-                                <option value="no_nitrogen">ไม่มีไนโตรเจนในแผงคอยล์เย็น</option>
-                                <option value="no_refrigerant">น้ำยาในคอยล์ร้อนมีน้อยหรือไม่มีเลย</option>
-                                <option value="coil_leak">แผงคอยล์เย็นรั่ว</option>
-                                <option value="com_leak">คอมเพรสเซอร์รั่ว</option>
-                                <option value="com_lock">คอมเพรสเซอร์ล็อค</option>
-                                <option value="com_notsuck">คอมเพรสเซอร์ไม่ดูด/ไม่อัด</option>
                               </select>
-                            </div>
+                          <div id="errorCodeDynamicSec" style="display:none;" class="mt-2">
+                            <label for="errorCodeDynamic">Error Code<span class="text-danger ml-1">*</span></label>
+                            <select class="form-control select2" name="error_code_dynamic2" id="errorCodeDynamic">
+                              <option disabled selected>- โปรดเลือก Error Code -</option>
+                            </select>
+                          </div>  
+                          </div>                         
+    
 
                             <div class="form-group">
                               <label for="description2">รายละเอียด</label>
@@ -1064,85 +1042,84 @@
 
 
                 
-                    <div class="row">
+                  <div class="row" id="technicianChecklist">
                   <div class="col-md-6">
-                       
-                    <div class="form-group row">
+
+                    <div class="form-group row" id="checklist-item-1">
                       <label class="col-6 col-form-label">1. ขนาดห้อง (ตร.ม.)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="room_size2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row" id="checklist-item-2">
                       <label class="col-6 col-form-label">2. แรงดันไฟฟ้า (V)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="tbl_volt_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
-                    <div class="form-group row">
-                      <label class="col-6 col-form-label">3. กระแสไฟฟ้า (A)<span class="text-danger ml-1">*</span></label>
+                    <div class="form-group row" id="checklist-item-3">
+                      <label class="col-6 col-form-label">3. กระแสไฟฟ้า (A)</label>
                       <div class="col-6">
                         <input type="number" name="tbl_amp_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row" id="checklist-item-4">
                       <label class="col-6 col-form-label">4. อุณหภูมิตั้งรีโมท (Mode Cool °C)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="tbl_term_remote_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row" id="checklist-item-5">
                       <label class="col-6 col-form-label">5. แรงดันน้ำยาด้านดูด (ด้านต่ำ) (PSI)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="tbl_psil_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
                   </div>
-
-                  <!-- ฝั่งขวา: ข้อ 7 - 12 -->
+                            <!-- ฝั่งขวา: ข้อ 6 - 10 -->
                   <div class="col-md-6">
 
-                    <div class="form-group row">
+                    <div class="form-group row" id="checklist-item-6">
                       <label class="col-6 col-form-label">6. FCU อุณหภูมิลมจ่าย (หน้าคอยล์เย็น) (°C)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="tbl_fcu_out_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row" id="checklist-item-7">
                       <label class="col-6 col-form-label">7. FCU อุณหภูมิลมกลับ (หลังคอยล์เย็น) (°C)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="tbl_fcu_in_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row" id="checklist-item-8">
                       <label class="col-6 col-form-label">8. CDU อุณหภูมิลมจ่าย (หน้าคอยล์ร้อน) (°C)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="tbl_cdu_out_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row" id="checklist-item-9">
                       <label class="col-6 col-form-label">9. CDU อุณหภูมิลมกลับ (หลังคอยล์ร้อน) (°C)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="tbl_cdu_in_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row" id="checklist-item-10">
                       <label class="col-6 col-form-label">10. ระยะเดินท่อ (เมตร)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="pipe_length2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
-
                   </div>
                 </div>
+
                 </div>
                 </div>
                 </div>
@@ -1394,7 +1371,7 @@
   }
 </script>
 
-<script> //แสดง  รายการตรวจสอบก่อนซ่อม (สำหรับช่าง) เมื่อ เลือก ช่าง และ เลือก error code ที่เข้าเงื่อนไข
+<!-- <script> //แสดง  รายการตรวจสอบก่อนซ่อม (สำหรับช่าง) เมื่อ เลือก ช่าง และ เลือก error code ที่เข้าเงื่อนไข
 $(document).ready(function () {
   // ฟังก์ชันหลัก
   function toggleTechSection() {
@@ -1417,7 +1394,7 @@ $(document).ready(function () {
   // เรียกตอนโหลดหน้า
   toggleTechSection();
 });
-</script>
+</script> -->
 
 
 <script>
