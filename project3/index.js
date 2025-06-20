@@ -11,7 +11,9 @@ window.initmap1 = function(tabid) {
    mapAfterInit(tabid, dll[0], dll[1]);
  }else{
    navigator.geolocation.getCurrentPosition(function(position) {
-     $("#home-tab,#home2-tab").click();
+    // $("#home-tab,#home2-tab").click();
+    $("#placeManual2-tab").click();  // เปิดแท็บกรอกที่อยู่เอง แทน
+
      console.log("getting position is succeed");
      // Center on user's current location if geolocation prompt allowed
      mapAfterInit(tabid, position.coords.latitude, position.coords.longitude);
@@ -143,20 +145,6 @@ $($ => {
         if(d.info.date_installed) $("#qInstDate").html(eb.snull(d.info.date_installed));
         if(d.info.technician_name) $("#qTech").html(eb.snull(d.info.technician_name));
 
-        // if(d.info.product_type != null) {
-        //   $("select[name=product_type],select[name=product_type2]").val(d.info.product_type);
-        //   $('#productTypeTxt,#productTypeTxt2').html(ldat.product_type[d.info.product_type]);
-        // }
-        // if(d.info.model_code_opt) {
-        //   $("#qProductCode").html(d.info.model_name);
-        //   $("#productModel,#productModel2").val(d.info.model_code_opt);
-        //   // If not found in the list
-        //   if($("#productModel option[value="+d.info.model_code_opt+"]").length == 0){
-        //     var $newOption = $("<option selected='selected'></option>").val(0).text(d.info.model_code_opt);
-        //     $("#productModel,#productModel2").append($newOption).trigger('change');
-        //     $('#productTypeTxt,#productTypeTxt2').html('(ไม่พบข้อมูล)');
-        //   }
-        // }
         $.each(d.info,function(k,v){
           $("input[name="+k+"]").val(v)
           if(d.info.register_id && d.info.register_id > 0){
@@ -367,36 +355,6 @@ $($ => {
     else $("input[name=requester_title_other2]").addClass('hide');
   });
 
-
-  // Toggle Model No by filltering the product type
-  // $("#productType").change(function(){
-  //   $("#productModel option").hide();
-  //   $("#productModel option[data-type="+this.value+"]").show();
-  //   // if Other
-  //   if(this.value == -1){
-  //     $("#productModelSec").hide();
-  //     $("#otherTypeSec,#otherModelSec").show();
-  //   }else{
-  //     $("#productModelSec").show();
-  //     $("#otherTypeSec,#otherModelSec").hide();
-  //   }
-  // });
-
-
-
-  // $("#productType2").change(function(){
-  //   $("#productModel2 option").hide();
-  //   $("#productModel2 option[data-type="+this.value+"]").show();
-  //   // if Other
-  //   if(this.value == -1){
-  //     $("#productModelSec2").hide();
-  //     $("#otherTypeSec2,#otherModelSec2").show();
-  //   }else{
-  //     $("#productModelSec2").show();
-  //     $("#otherTypeSec2,#otherModelSec2").hide();
-  //   }
-  // });
-
   // Hide Error code & cause if not repair req
   $("#serviceType").change(function(){
     if(this.value == 'repair'){
@@ -592,8 +550,20 @@ $('input[name="user_type"]').on('change', function () {
       console.info(' filename : '+ fn+ ' count : '+ fc);
       if(fn.toLowerCase().match(/\.(jpg|png|gif|jpeg|bmp)/g)){
         if (this.files && this.files[0]) {
-          $("#previewFile").append("<div class='col-6'>"+
-            "<img id='previewHolder"+fc+"' style='width:100%;'/></div>");
+          // $("#previewFile").append("<div class='col-6'>"+
+          //   "<img id='previewHolder"+fc+"' style='width:100%;'/></div>");
+          let removeId = "previewWrap" + fc;
+$("#previewFile").append(`
+  <div class="col-6 mb-2" id="${removeId}">
+    <div class="position-relative">
+      <img id="previewHolder${fc}" style="width:100%; border:1px solid #ccc; border-radius:8px;"/>
+      <button type="button" class="btn btn-sm btn-danger position-absolute" style="top:5px; right:5px;" onclick="removeAttachedFile(${fc})">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+`);
+
 
           var reader = new FileReader();
           reader.onload = function(e) {
@@ -631,6 +601,27 @@ $('input[name="user_type"]').on('change', function () {
 			}
 	});
   //.fileupload('disable');
+function removeAttachedFile(index) {
+  const removedFile = ldat.serv_req_query.filename[index];
+  if (!removedFile) return;
+
+  // ลบ DOM
+  $("#previewWrap" + index).remove();
+
+  // เรียกลบไฟล์จากเซิร์ฟเวอร์
+  $.post("api/public.php?a=delete_uploaded_file", { filename: removedFile }, function (res) {
+    if (res && res.status === "ok") {
+      console.log("ลบไฟล์เรียบร้อย:", removedFile);
+    } else {
+      console.warn("ไม่สามารถลบไฟล์:", removedFile);
+    }
+  });
+
+  // ลบชื่อไฟล์ออกจาก array
+  ldat.serv_req_query.filename.splice(index, 1);
+}
+
+
 
 function clickServReqSubmit(){
   var q = $('#form_service_request').serializeObject();
@@ -717,11 +708,30 @@ if (
     Swal.fire('กรุณากรอกเบอร์โทรศัพท์ผู้ขอรับบริการ', '', 'error');
     return;
   }
-  if (
+  //  บังคับกรอกข้อมูลที่อยู่ 
+const addressFields = {
+  address_no: 'เลขที่บ้าน',
+  address_postcode: 'รหัสไปรษณีย์',
+  address_subdistrict: 'แขวง/ตำบล',
+  address_district: 'เขต/อำเภอ',
+  address_province: 'จังหวัด'
+};
+
+for (let field in addressFields) {
+  const val = q[field];
+  if (!val || val.trim() === '') {
+    Swal.fire(`กรุณากรอก${addressFields[field]}`, '', 'warning');
+    return;
+  }
+}
+
+if (
   $('input[name="user_type"]:checked').val() === "technician" &&
   (
     $("#errorCode").val() === "com_notworking" ||
-    $("#errorCodeDynamic").val() === "com_notworking"
+    $("#errorCodeDynamic").val() === "com_notworking" ||
+    $("#errorCode").val() === "com_lock" ||
+    $("#errorCodeDynamic").val() === "com_lock"
   )
 ) {
   const voltage = q.tbl_volt_pre;
@@ -730,6 +740,7 @@ if (
     return;
   }
 }
+
 
 // ✅ บังคับกรอกทุกช่องถ้าเลือก not_cold_enough แอร์เย็นไม่ฉ่ำ
 if (
@@ -751,32 +762,6 @@ if (
 }
 
 
-  /*
-  if (
-  $('input[name="user_type"]:checked').val() === 'technician' &&
-  ['com_lock', 'com_notsuck', 'outdoor_noise'].includes(q.error_code)
-    ) {
-  const requiredTechFields = {
-    tbl_volt_pre: '1.แรงดันไฟฟ้า (V)',
-    tbl_amp_pre: '2.กระแสไฟฟ้า (A)',
-    tbl_term_remote_pre: '3.อุณหภูมิตั้งรีโมท(°C)',
-    tbl_psil_pre: '4.แรงดันน้ำยาด้านดูด(ด้านต่ำ)(PSI)',
-    tbl_fcu_out_pre: '6.FCU อุณหภูมิลมจ่าย(หน้าคอยล์เย็น)(°C)',
-    tbl_fcu_in_pre: '7.FCU อุณหภูมิลมกลับ(หลังคอยล์เย็น)(°C)',
-    tbl_cdu_out_pre: '8.CDU อุณหภูมิลมจ่าย(หน้าคอยล์ร้อน)(°C)',
-    tbl_cdu_in_pre: '9.CDU อุณหภูมิลมกลับ(หลังคอยล์ร้อน)(°C)',
-    pipe_length: '11.ระยะเดินท่อ (เมตร)',
-    pipe_welding: '12.ท่อมีการเชื่อมหรือไม่'
-  };
-
-  for (const [field, label] of Object.entries(requiredTechFields)) {
-    if (!q[field] || q[field].trim() === '') {
-      Swal.fire(`กรุณากรอก ${label} ให้ครบถ้วน`, '', 'error');
-      return;
-    }
-  }
-}
-*/
 
   if(
     eb.isnt('ประเภทสินค้า / Product Type', q.product_type)
@@ -819,12 +804,16 @@ function toggleChecklistByErrorCode() {
   $("#technicianChecklist").hide();
   $("[id^='checklist-item-']").hide();
 
-  // เงื่อนไข: com_notworking → แสดงเฉพาะข้อ 2, 3
-  if (userType === "technician" && selectedErrorCode === "com_notworking") {
+  // เงื่อนไข: com_notworking / com_lock → แสดงเฉพาะข้อ 2, 3
+  if (
+    userType === "technician" &&
+    (selectedErrorCode === "com_notworking" || selectedErrorCode === "com_lock")
+  ) {
     $("#technicianMeasurementSection").show();
     $("#technicianChecklist").show();
     $("#checklist-item-2, #checklist-item-3").show();
   }
+
 
   // เงื่อนไข: not_cold_enough → แสดงทั้งหมด
   else if (userType === "technician" && selectedErrorCode === "not_cold_enough") {
@@ -944,14 +933,14 @@ function loadErrorCodeGroup(product_id) {
       let options = '<option disabled selected value="0">- โปรดระบุอาการ -</option>';
       let otherOption = ''; // <- เก็บ "อื่นๆ" แยกไว้ก่อน
 
-      // ✅ เพิ่ม "ขึ้น Error Code" (จาก error_code_list)
+      // เพิ่ม "ขึ้น Error Code" (จาก error_code_list)
       errors.forEach(e => {
         if (e.error_code === 'error_code_list') {
           options += `<option value="error_code_group">${e.error_code_prompt}</option>`;
         }
       });
 
-      // ✅ วนรายการอาการเสียทั่วไป (supplier_id == null)
+      // รายการอาการเสียทั่วไป (supplier_id == null)
       errors.forEach(e => {
         if (!e.supplier_id && e.error_code !== 'error_code_list') {
           const prompt = e.error_code_prompt?.toLowerCase() || "";
@@ -965,7 +954,7 @@ function loadErrorCodeGroup(product_id) {
         }
       });
 
-      // ✅ ต่อท้าย “อื่นๆ” เสมอ
+      // ต่อท้าย “อื่นๆ” เสมอ
       options += otherOption;
 
       $("#errorCode").html(options).trigger("change");
@@ -1016,25 +1005,7 @@ function loadErrorCodeGroup(product_id) {
         loadErrorCodeGroup(d.product_id);
       }
 
-
-      // // โหลด supplier_id จาก product_id
-      // eb.post("public", "get_supplier_id_by_product", { product_id: d.product_id }, function(res) {
-      //   let supplier_id = res.supplier_id;
-
-      //   // โหลด error_code ตาม supplier_id
-      //   eb.post("public", "get_error_codes_by_supplier", { supplier_id: supplier_id }, function(errors) {
-      //     let options = '<option disabled selected value="0">- โปรดระบุอาการ -</option>';
-      //     errors.forEach(e => {
-      //       options += `<option value="${e.error_code}">${e.error_code_prompt}</option>`;
-      //     });
-      //     $("#errorCode").html(options).trigger("change");
-      //   });
-      // });
-
-
       if(d.model_code_opt && d.model_code_opt !='') {
-        // $("#productModelTxt2").html(eb.snull(d.model_name));
-        // $("input[name=product_model2]").val(d.model_code_opt);
         var stringVal = '';
         $('#productModel2').find('option').each(function(){
             if($(this).is(':contains(' + d.model_code_opt + ')')){

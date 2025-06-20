@@ -202,6 +202,19 @@ switch ($action) {
 		echoJson(0, ['id' => $id, 'pk' => $pk, 'sn' => $sn, 'dealer_id' => $dealerId, 'reward_id' => $rwid, 'rw_point_id' => $log_id]);
 		break;
 
+		  case 'delete_uploaded_file':
+    $filename = basename($_POST['filename']); // ป้องกัน path traversal
+    $uploadDir = __DIR__ . '/../../_upfiles/public/';
+    $filepath = $uploadDir . $filename;
+
+    if (file_exists($filepath)) {
+        unlink($filepath);
+        echo json_encode(['status' => 'ok', 'file' => $filename]);
+    } else {
+        echo json_encode(['status' => 'not_found', 'file' => $filename]);
+    }
+    exit;
+
 	/**
 	 *	Service Request
 	 *	Init 05/04/2021

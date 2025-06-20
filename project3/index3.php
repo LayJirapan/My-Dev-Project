@@ -89,6 +89,15 @@
       font-size: 28px;
     }
   }
+/*เลือกประเภทผู้ใช้งาน*/
+    .highlight-header {
+    background-color: #103379;
+    color: #fff;
+    padding: 8px 16px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: 16px;
+  }
 
    .quiet {
      color: #888;
@@ -580,7 +589,7 @@
                           <div class="tab-content mt-2" id="placeTabContent">
                             <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
                               <!-- <div id="myPlace"></div> -->
-                              <div>กรุณาลากจุดสีแดงให้ไปสถานที่ติดตั้งตามต้องการ :</div>
+                              <!-- <div>กรุณาลากจุดสีแดงให้ไปสถานที่ติดตั้งตามต้องการ :</div> -->
                               <div id="mapCanvas1"></div>
                               <div class="input-group mb-2">
                                 <div class="input-group-prepend">
@@ -752,8 +761,30 @@
 
           </div>
           <div class="tab-pane fade" id="menu-req" role="tabpanel" aria-labelledby="menu-req-tab">
+
+        <!-- การ์ดเลือกประเภทผู้ใช้งาน -->
+        <div class="card my-3 text-center">
+          <!-- แถบหัวข้อบนการ์ด -->
+          <div class="card-header highlight-header">
+            <i class="fas fa-user-tag"></i> กรุณาเลือกประเภทผู้ใช้งาน
+          </div>
+
+          <!-- เนื้อหาภายในการ์ด -->
+          <div class="card-body">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="user_type" id="user_customer" value="customer" checked>
+              <label class="form-check-label" for="user_customer">ลูกค้าทั่วไป</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="user_type" id="user_technician" value="technician">
+              <label class="form-check-label" for="user_technician">ช่าง/ASC</label>
+            </div>
+          </div>
+        </div>
+
+
             
-          <!-- เลือกประเภทผู้ใช้งาน -->
+          <!-- เลือกประเภทผู้ใช้งาน
         <div class="text-center">
             <div class="form-group"> 
             <label><strong>กรุณาเลือกประเภทผู้ใช้งาน</strong></label><br>
@@ -764,7 +795,7 @@
                 <input type="radio" name="user_type" value="technician"> ช่าง/ASC
             </label>
             </div>
-                        </div>
+                        </div> -->
             <!-- Service Request -->
             <form id="form_service_request">
             <div class="card card-primary">
@@ -894,7 +925,7 @@
                               <textarea class="form-control" name="description2" rows="3" placeholder="Enter your description..." id="description"></textarea>
                             </div>
                             <div class="form-group">
-                              <label for="attach_photo">ไฟล์หรือภาพประกอบ (อย่างน้อย 1 ภาพ)</label>
+                              <label for="attach_photo">ไฟล์หรือภาพประกอบ (อย่างน้อย 1 ภาพ)<span class="text-danger ml-1">*</span></label>
                               <div class="input-group">
                                 <div class="custom-file">
                                   <input type="file" class="custom-file-input" accept="image/*,video/*" multiple="false" name="attach_photo" id="attachPhoto">
@@ -963,19 +994,19 @@
                             <input type="text" class="form-control" name="requester_lineid2" placeholder="LINE ID">
                           </div>
 
-                          <h5 class="title mt-3"><i class="fas fa-map"></i> สถานที่ขอรับบริการ</h5>
-                          <small>กรุณาเลือกวิธีการให้ข้อมูลสถานที่</small>
+                          <h5 class="title mt-3"><i class="fas fa-map"></i> สถานที่ขอรับบริการ<span class="text-danger ml-1">*</span></h5>
                           <ul class="nav nav-tabs" id="placeTab" role="tablist">
+
                             <li class="nav-item">
-                              <a class="nav-link" id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home" aria-selected="true">1. ลากวางบนแผนที่</a>
+                              <a class="nav-link active" id="placeManual2-tab" data-toggle="tab" href="#placeManual2" role="tab" aria-controls="placeManual" aria-selected="false">กรอกที่อยู่</a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link active" id="placeManual2-tab" data-toggle="tab" href="#placeManual2" role="tab" aria-controls="placeManual" aria-selected="false">2.กรอกที่อยู่เอง</a>
+                              <a class="nav-link" id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home" aria-selected="true">ตำแหน่งปัจจุบันของคุณ</a>
                             </li>
                           </ul>
                           <div class="tab-content mt-2" id="placeTabContent2">
                             <div class="tab-pane fade" id="home2" role="tabpanel" aria-labelledby="home2-tab">
-                              <div>กรุณาลากจุดสีแดงให้ไปสถานที่ติดตั้งตามต้องการ :</div>
+                              <!-- <div>กรุณาลากจุดสีแดงให้ไปสถานที่ติดตั้งตามต้องการ :</div> -->
                               <div id="mapCanvas2"></div>
                               <div class="input-group mb-2">
                                 <div class="input-group-prepend">
@@ -1010,6 +1041,9 @@
                                 </div>
                                 <input type="text" class="form-control" name="address_road2" placeholder="Road">
                               </div>
+                                <div class="input-group mb-2">
+                                <input type="text" class="form-control" name="address_postcode2" placeholder="รหัสไปรษณีย์">
+                              </div>
                               <div class="input-group mb-2">
                                 <input type="text" class="form-control" name="address_subdistrict2" placeholder="แขวง/ตำบล">
                               </div>
@@ -1019,9 +1053,7 @@
                               <div class="input-group mb-2">
                                 <input type="text" class="form-control" name="address_province2" placeholder="จังหวัด">
                               </div>
-                              <div class="input-group mb-2">
-                                <input type="text" class="form-control" name="address_postcode2" placeholder="รหัสไปรษณีย์">
-                              </div>
+
                             </div>
                           </div>
 
@@ -1370,32 +1402,6 @@
 
   }
 </script>
-
-<!-- <script> //แสดง  รายการตรวจสอบก่อนซ่อม (สำหรับช่าง) เมื่อ เลือก ช่าง และ เลือก error code ที่เข้าเงื่อนไข
-$(document).ready(function () {
-  // ฟังก์ชันหลัก
-  function toggleTechSection() {
-    const userType = $('input[name="user_type"]:checked').val();
-    const ecData = $('#errorCode').select2('data');
-    const errorCode = (ecData[0] && ecData[0].id) || $('#errorCode').val();
-
-    const showExtra = userType === 'technician' && ['com_lock', 'com_notsuck', 'outdoor_noise'].includes(errorCode);
-    if (showExtra) {
-      $('#technicianMeasurementSection').slideDown(250);
-    } else {
-      $('#technicianMeasurementSection').slideUp(250);
-    }
-  }
-
-  // เรียกฟังก์ชันเมื่อมีการเปลี่ยนค่า
-  $('input[name="user_type"]').on('change', toggleTechSection);
-  $('#errorCode').on('change', toggleTechSection);
-
-  // เรียกตอนโหลดหน้า
-  toggleTechSection();
-});
-</script> -->
-
 
 <script>
 $($ => {

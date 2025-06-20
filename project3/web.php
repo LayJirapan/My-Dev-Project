@@ -950,7 +950,7 @@ switch ($action) {
 */		
 		$list = $db->get('service_request r', 3000,
  			($action == 'serv_req_for_repair'? 'rd.detail,DATE(so.datetime_pickup) as date_pickup,so.stock_out_id,so.seller,s.lot_no,s.line,s2.sn_remote,s.sn_pipe,s.sn_test,s.sn_prop,s.sn_set,s.mfd,' : '').
-			'r.*, CONCAT_WS("",t.firstname," ",t.lastname) as technician, t.technician_code, t.email as technician_email, t.phone as technician_phone, CONCAT_WS("",c.firstname," ",c.lastname) as customer'.$add_fields
+			'r.*, CONCAT_WS("",t.firstname," ",t.lastname) as technician, t.technician_code, t.email as technician_email, t.phone as technician_phone, r.technician_phone as tech_phone, CONCAT_WS("",c.firstname," ",c.lastname) as customer'.$add_fields
 		);
 // 05AUG24 ITPP -- END
 
