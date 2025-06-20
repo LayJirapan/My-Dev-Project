@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>รายการขอรับบริการ</title>
+  <link rel="icon" type="image/png" href="https://cs.mavellair.com/view/img/mavell_flogo.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../view/css/adminlte.min.css">
+  <link rel="stylesheet" href="../view/css/backend.css">
+  <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5E4BDH64TF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5E4BDH64TF');
+  </script>
+</head>
+<body class="hold-transition sidebar-mini">
+  <div class="hide do-print">
+    <div class="box box-solid">
+      <div class="box-body text-center">
+        <h3 class="box-title" data-i18n="issue">Service Request</h3>
+        -------------<span id="print_title"></span>----------------
+        <div id="inv_result"></div>
+      </div>
+    </div><!-- /.box -->
+  </div>
+<div class="wrapper non-print">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="welcome.html" class="nav-link">Home</a>
+      </li>
+    </ul>
+    <!-- Right navbar links -->
+
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="welcome.html" class="brand-link">
+      <img src="../view/img/mavell_slogo.png" alt="Mavell Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Hi Mavell</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="../view/img/mavell_flogo.png" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="profile.html" class="d-block">Administrator</a>
+        </div>
+      </div>
+
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+         <li class="nav-item">
+           <a href="../pages/welcome.html" class="nav-link">
+             <i class="nav-icon far fa-newspaper"></i>
+             <p>ข่าว & หน้าแรก</p>
+           </a>
+         </li>
+         <li class="nav-item">
+           <a href="#" class="nav-link">
+             <i class="nav-icon fas fa-medal"></i>
+             <p>
+               Reward สะสมคะแนน
+               <i class="right fas fa-angle-left"></i>
+             </p>
+           </a>
+           <ul class="nav nav-treeview">
+             <li class="nav-item">
+               <a href="../pages/reward.html" class="nav-link">
+                 <i class="fas fa-list nav-icon"></i>
+                 <p>คำร้องสะสม & ตรวจสอบ</p>
+               </a>
+             </li>
+             <li class="nav-item">
+               <a href="../pages/reward_item.html" class="nav-link">
+                 <i class="fas fa-gifts nav-icon"></i>
+                 <p>สินค้าสำหรับแลก</p>
+               </a>
+             </li>
+             <li class="nav-item">
+               <a href="../pages/reward_redeem.html" class="nav-link">
+                 <i class="fas fa-list nav-icon"></i>
+                 <p>แลกของรางวัล</p>
+               </a>
+             </li>
+             <li class="nav-item">
+               <a href="../pages/reward_history.html" class="nav-link">
+                 <i class="fas fa-list-alt nav-icon"></i>
+                 <p>ประวัติสะสมคะแนน</p>
+               </a>
+             </li>
+           </ul>
+         </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-mobile"></i>
+              <p>
+                Hi Mavell App
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../pages/dashboard.html" class="nav-link">
+                  <i class="fas fa-meteor nav-icon"></i>
+                  <p>Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/service_tracking.html" class="nav-link">
+                  <i class="fas fa-map-marked-alt nav-icon"></i>
+                  <p>แผนที่ติดตามสถานะงาน</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="../pages/warranty_check.html" class="nav-link">
+              <i class="fas fa-pen-square nav-icon"></i>
+              <p>ข้อมูลลงทะเบียน</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="../pages/serial.html" class="nav-link">
+              <i class="fas fa-list-ol nav-icon"></i>
+              <p>ค้นหาหมายเลขผลิตภัณฑ์</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tasks"></i>
+              <p>
+                ขอรับบริการ
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../pages/service_dashboard.html" class="nav-link">
+                  <i class="fas fa-tachometer-alt nav-icon"></i>
+                  <p>Service Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/service_request.html" class="nav-link">
+                  <i class="fas fa-search-plus nav-icon"></i>
+                  <p>ค้นหารายการคำขอรับ</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/service_fix.html" class="nav-link">
+                  <i class="fas fa-clipboard-list nav-icon"></i>
+                  <p>รายการแจ้งซ่อม</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/service_history.html" class="nav-link">
+                  <i class="fas fa-list nav-icon"></i>
+                  <p>ประวัติงานเก่า</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="../pages/service_pettycash.html" class="nav-link">
+              <i class="fas fa-money-bill-alt nav-icon"></i>
+              <p>ค่าใช้จ่ายงานบริการ</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../pages/claim.html" class="nav-link">
+              <i class="fas fa-shield-alt nav-icon"></i>
+              <p>รายการใบเคลม</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../pages/part.html" class="nav-link">
+              <i class="nav-icon fas fa-puzzle-piece"></i>
+              <p>
+                รายการข้อมูลอะไหล่
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-warehouse"></i>
+              <p>
+                คลังสินค้า
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../pages/stock_picking.html" class="nav-link">
+                  <i class="fas fa-people-carry nav-icon"></i>
+                  <p>เบิกของจากคลัง</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/stock_receive.html" class="nav-link">
+                  <i class="fas fa-truck-loading nav-icon"></i>
+                  <p>รับ/คืนของเข้าคลัง</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/return.html" class="nav-link">
+                  <i class="nav-icon fas fa-exchange-alt"></i>
+                  <p>
+                    รายการใบคืนสินค้า
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/stock_aging.html" class="nav-link">
+                  <i class="fas fa-scroll nav-icon"></i>
+                  <p>รายงานอายุสินค้าคงคลัง</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/stock_card.html" class="nav-link">
+                  <i class="fas fa-file-alt nav-icon"></i>
+                  <p>รายงานสต็อคการ์ด</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/report_stock_card.html" class="nav-link">
+                  <i class="fas fa-boxes nav-icon"></i>
+                  <p>รายงานความเคลื่อนไหวสต็อค</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/stock_part.html" class="nav-link">
+                  <i class="fas fa-box-open nav-icon"></i>
+                  <p>รายการอะไหล่คงเหลือ</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/import.html?type=stock_card" class="nav-link">
+                  <i class="fas fa-upload nav-icon"></i>
+                  <p>อัพโหลดสต๊อค</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/stock_remain.html" class="nav-link">
+                  <i class="fas fa-chart-bar nav-icon"></i>
+                  <p>ดูรายการสต๊อคคงเหลือ</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                รายงาน
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../pages/report_kpi.html" class="nav-link">
+                  <i class="fas fa-scroll nav-icon"></i>
+                  <p>KPI</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/report_repair.html" class="nav-link">
+                  <i class="fas fa-file-alt nav-icon"></i>
+                  <p>Repair Pending</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/report_schedule.html" class="nav-link">
+                  <i class="fas fa-file-alt nav-icon"></i>
+                  <p>Schedule</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/report_service_job.html" class="nav-link">
+                  <i class="fas fa-file-alt nav-icon"></i>
+                  <p>Service Job</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="../pages/sc_list.html" class="nav-link">
+              <i class="nav-icon fas fa-building"></i>
+              <p>
+                ข้อมูลศูนย์บริการ
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../pages/stores.html" class="nav-link">
+              <i class="nav-icon fas fa-building"></i>
+              <p>ข้อมูลร้านค้าที่ลงทะเบียน</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="../pages/customer.html" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                ลูกค้า
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="../pages/technician.html" class="nav-link">
+              <i class="nav-icon fas fa-user-cog"></i>
+              <p>
+                ช่างซ่อม
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-user-friends"></i>
+              <p>
+                ผู้ใช้งาน
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../pages/user.html?r=1" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ผู้ใช้งานกลุ่มช่าง</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/user.html?r=0" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ผู้ใช้งานกลุ่มลูกค้า</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/user.html?r=2" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ผู้ใช้งานกลุ่มฝ่ายผลิต</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/user.html?r=3" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ผู้ใช้งานกลุ่มฝ่ายคลัง</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/user.html?r=5" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ผู้ใช้งานกลุ่มผู้บริหาร</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/user.html?r=4" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ผู้ใช้งานกลุ่ม Admin</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/user_permission.html" class="nav-link">
+                  <i class="fas fa-cog nav-icon"></i>
+                  <p>ตั้งค่าสิทธิ์การเข้าถึงข้อมูล</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tools"></i>
+              <p>
+                ข้อมูลพื้นฐาน
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../pages/product.html" class="nav-link">
+                  <i class="fas fa-list-alt nav-icon"></i>
+                  <p>Product Models</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/product_type.html" class="nav-link">
+                  <i class="fas fa-list-alt nav-icon"></i>
+                  <p>Type Of Product</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/import.html" class="nav-link">
+                  <i class="fas fa-file-import nav-icon"></i>
+                  <p>นำเข้าระบบ</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/policy.html" class="nav-link">
+                  <i class="fas fa-gavel nav-icon"></i>
+                  <p>จัดการ Policy</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/news.html" class="nav-link">
+                  <i class="fas fa-edit nav-icon"></i>
+                  <p>ข่าวมาเวล</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-file-signature"></i>
+              <p>
+                Help Support
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="../pages/rating.html" class="nav-link">
+                  <i class="fas fa-file nav-icon"></i>
+                  <p>Rating</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../pages/chat.html" class="nav-link">
+                  <i class="fas fa-comment-alt nav-icon"></i>
+                  <p>Live Chat</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item mb-5">
+            <a href="javascript:;" class="nav-link signout">
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>
+                ออกจากระบบ
+              </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+        <form id="form_search">
+          <div class="row">
+            <div class="col-12">
+              <div class="card card-primary mt-3">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <i class="fas fa-search"></i>
+                    ค้นหารายการขอรับบริการ
+                  </h3>
+
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-6 col-md-2 text-left">
+                      <div class="form-group">
+                        <label>เลขที่ขอรับบริการ</label>
+                        <input type="text" class="form-control" name="service_id" placeholder="Enter ...">
+                      </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-6 col-md-4 text-left">
+                      <div class="form-group">
+                        <label>ค้นหาตามช่วงวันที่ขอรับบริการ</label>
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control periodepicker" name="search_range">
+                          <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- ./col -->
+
+                    <div class="col-6 col-md-2 text-left">
+                      <div class="form-group">
+                        <label>ชื่อลูกค้า</label>
+                        <input type="text" class="form-control" name="customer_name" placeholder="Enter ...">
+                      </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-6 col-md-2 text-left">
+                      <div class="form-group">
+                        <label>โทรศัพท์ลูกค้า</label>
+                        <input type="text" class="form-control" name="customer_phone" placeholder="Enter ...">
+                      </div>
+                    </div>
+                    <div class="col-6 col-md-2 text-left">
+                      <div class="form-group">
+                        <label>อีเมล์ลูกค้า</label>
+                        <input type="text" class="form-control" name="customer_email" placeholder="Enter ...">
+                      </div>
+                    </div>
+                    <!-- ./col -->
+                  </div>
+                  <!-- /.row -->
+
+                  <div class="row">
+                    <div class="col-6 col-md-2 text-left">
+                      <div class="form-group">
+                        <label>คำนำหน้าชื่อ</label>
+                        <input type="text" class="form-control" name="requester_title" placeholder="เช่น นาย,นาง">
+                      </div>
+                    </div>
+                    <div class="col-6 col-md-2 text-left">
+                      <div class="form-group">
+                        <label>ชื่อผู้แจ้ง</label>
+                        <input type="text" class="form-control" name="requester_name" placeholder="เช่น อลงกรณ์ วริชรบาล">
+                      </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-6 col-md-2 text-left">
+                      <div class="form-group">
+                        <label>โทรศัพท์ผู้แจ้ง</label>
+                        <input type="text" class="form-control" name="requester_phone" placeholder="เช่น 0859992299">
+                      </div>
+                    </div>
+                    <div class="col-6 col-md-2 text-left">
+                      <div class="form-group">
+                        <label>Model</label>
+                        <input type="text" class="form-control" name="product_model" placeholder="Enter ...">
+                      </div>
+                    </div>
+                    <div class="col-6 col-md-2 text-left">
+                      <div class="form-group">
+                        <label>S/N</label>
+                        <input type="text" class="form-control" name="serial" placeholder="Enter ...">
+                      </div>
+                    </div>
+                    <div class="col-6 col-md-2 text-left">
+                      <div class="form-group">
+                        <label>สถานะ</label>
+                        <select class="form-control" name="status">
+
+                          </select>
+                      </div>
+                    </div>
+					 <div class="col-12 col-md-4 text-left">
+                      <div class="form-group">
+                        <label>อาการเสียที่แจ้ง</label>
+                        <select class="form-control select2" name="error_code" id="errorCode">
+                          <option value="">- ทุกอาการ -</option>
+                          <option value="E0">ขึ้น Error Code E0</option>
+                          <option value="E1">ขึ้น Error Code E1</option>
+                          <option value="E2">ขึ้น Error Code E2</option>
+                          <option value="E3">ขึ้น Error Code E3</option>
+                          <option value="E4">ขึ้น Error Code E4</option>
+                          <option value="E5">ขึ้น Error Code E5 หรือ 5E</option>
+						  <option value="E6">ขึ้น Error Code E6</option>
+                          <option value="F0">ขึ้น Error Code F0</option>
+                          <option value="F1">ขึ้น Error Code F1</option>
+                          <option value="F3">ขึ้น Error Code F3</option>
+                          <option value="F4">ขึ้น Error Code F4</option>
+                          <option value="F6">ขึ้น Error Code F6</option>
+                          <option value="P3">ขึ้น Error Code P3</option>
+                          <option value="indoor_noise">Indoor มีเสียงดัง</option>
+                          <option value="outdoor_noise">Outdoor มีเสียงดัง</option>
+                          <option value="not_start">แอร์เปิดไม่ติด</option>
+                          <option value="remote_failed">รีโมทกดไม่ติด</option>
+                          <option value="water_drop">แอร์น้ำหยด</option>
+                          <option value="frozen_coil">แผงคอยล์เย็นเป็นน้ำแข็ง</option>
+                          <option value="not_cold">แอร์ไม่เย็น</option>
+                          <option value="slow_continue">แอร์ต่อช้า</option>
+                          <option value="not_back_off">แอร์ไม่ตัด</option>
+                          <option value="smell">แอร์มีกลิ่นเหม็น</option>
+                          <option value="no_nitrogen">ไม่มีไนโตรเจนในแผงคอยล์เย็น</option>
+                          <option value="no_refrigerant">น้ำยาในคอยล์ร้อนมีน้อยหรือไม่มีเลย</option>
+                        </select>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-2 text-left">
+                      <div class="form-group">
+                        <label>ประเภทงาน</label>
+                        <select class="form-control" name="service_type">
+                          <option value="">- ระบุเรื่องที่แจ้งขอบริการ -</option>
+                          <option value="repair">แจ้งขอรับบริการซ่อม</option>
+                          <option value="inquiry_part">สอบถามและสั่งซื้ออะไหล่</option>
+                          <option value="inquiry_technical">สอบถามปัญหาทางเทคนิค</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-6 col-md-3 text-left">
+                      <div class="form-group">
+                        <label>ค้นหาจากผู้จำหน่าย</label>
+                        <input type="text" class="form-control" name="seller" placeholder="กรุณาพิมพ์ชื่อร้าน / ตัวแทน...">
+                      </div>
+                    </div>
+                    <!-- ./col -->
+                  <!-- /.row -->
+                </div>
+                </div>
+				   </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="button" class="btn btn-primary" id="btnSearch">ค้นหา</button>
+                  <!-- <button type="button" class="btn btn-outline-primary" id="btnExport">Export to Excel</button> -->
+                </div>
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </form>
+
+
+        <div class="card card-outline card-primary">
+          <div class="card-header">
+            <h3 class="card-title"><i class="fas fa-tasks"></i> รายการขอรับบริการ</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-11" id="tbSec">
+                <div class="table-responsive" id="divTable1"><i class="fas fa-sync fa-spin mr-1"></i> ระบบกำลังโหลดข้อมูล...</div>
+                <button type="button" id="toggleForm" class="toogle-ribbon d-flex align-items-center"> <i class="fa fa-arrow-left" aria-hidden="true"></i> </button>
+                <br/>
+              </div><!-- /.col (left) -->
+
+            <div class="" id="formSec" style="display: none;">
+              <a href="javascript:;" disabled class="btn btn-block btn-primary reset"><i class="fa fa-refresh"></i> สร้างขอรับบริการใหม่</a><br/>
+              <form id="form_main">
+                <div class="card">
+                  <div class="card-header">
+                    <i class="fa fa-th-large"></i> Service Request Register : <span class="action_change"><br/><div class="badge bg-blue">NEW</div></span>
+                  </div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label>ประเภทงาน</label>
+                    <select class="form-control" name="service_type" id="service_type">
+                      <option disabled selected>- โปรดระบุเรื่องที่แจ้งขอบริการ -</option>
+                      <option value="repair">แจ้งขอรับบริการซ่อม</option>
+                      <option value="inquiry_part">สอบถามและสั่งซื้ออะไหล่</option>
+                      <option value="inquiry_technical">สอบถามปัญหาทางเทคนิค</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label>รุ่นของสินค้าที่แจ้ง <span style="color:red;">*</span></label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="product_model" name="product_model"/>
+                      <input type="text" class="form-control" id="other_model" name="other_model" placeholder="กรณีอื่นๆ"/>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Device Category <span style="color:red;">*</span></label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="device_cateory" name="device_cateory"/>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Indoor S/N <span style="color:red;">*</span></label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="indoor_sn" name="indoor_sn"/>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Outdoor S/N <span style="color:red;">*</span></label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="outdoor_sn" name="outdoor_sn"/>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label><i class="fa fa-file"></i>&nbsp;รายละเอียด</label>
+                    <div class="input-group">
+                      <textarea class="form-control" id="description" name="description" placeholder=""></textarea>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label>ข้อมูลผู้ขอรับบริการ <span style="color:red;">*</span></label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="requester_name" name="requester_name" placeholder="ชื่อ/นามสกุล"/>
+                    </div>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="requester_phone" name="requester_phone" placeholder="โทรศัพท์ติดต่อ"/>
+                    </div>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="requester_email" name="requester_email" placeholder="อีเมล์"/>
+                    </div>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="requester_org_name" name="requester_org_name" placeholder="ชื่อหน่วยงาน (ถ้ามี)"/>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label><i class="fa fa-map mr-1"></i>ที่อยู่ขอรับบริการ (กรอกเอง) <span style="color:red;">*</span></label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="address_no" name="address_no" placeholder="บ้านเลขที่"/>
+                    </div>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="address_moo" name="address_moo" placeholder="หมู่ที่"/>
+                    </div>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="address_building" name="address_building" placeholder="อาคาร/ตึก"/>
+                    </div>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="address_road" name="address_road" placeholder="ซอย/ถนน"/>
+                    </div>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="address_subdistrict" name="address_subdistrict" placeholder="แขวง/ตำบล"/>
+                    </div>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="address_district" name="address_district" placeholder="อำเภอ/เขต"/>
+                    </div>
+
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="address_province" name="address_province" placeholder="จังหวัด"/>
+                    </div>
+
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="address_postcode" name="address_postcode" placeholder="รหัสไปรษณีย์"/>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label><i class="fa fa-map mr-1"></i>ตำแหน่ง GPS (Lat/Lng)</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="request_latlng" name="request_latlng"/>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label><i class="fa fa-file"></i>&nbsp;ไฟล์แนบ <span style="color:red;">*</span></label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="filename" name="filename" placeholder=""/>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label><i class="fa fa-bell"></i>&nbsp;วันที่นัดหมาย </label>
+                    <div class="input-group">
+                      <input type="text" class="form-control datetime" id="datetime_service1" name="datetime_service1" placeholder="ครั้งที่ 1"/>
+                    </div>
+                    <div class="input-group">
+                      <input type="text" class="form-control datetime" id="datetime_service2" name="datetime_service2" placeholder="ครั้งที่ 2"/>
+                    </div>
+                    <div class="input-group">
+                      <input type="text" class="form-control datetime" id="datetime_service3" name="datetime_service3" placeholder="ครั้งที่ 3"/>
+                    </div>
+                    <div class="input-group">
+                      <input type="text" class="form-control datetime" id="datetime_service4" name="datetime_service4" placeholder="ครั้งที่ 4"/>
+                    </div>
+                    <div class="input-group">
+                      <input type="text" class="form-control datetime" id="datetime_service5" name="datetime_service5" placeholder="ครั้งที่ 5"/>
+                    </div>
+
+                  </div>
+
+
+                  <div class="form-group">
+                    <label>สถานะ <span style="color:red;">*</span></label>
+                    <div class="input-group">
+                      <select class="form-control" name="status" id="status">
+                          <option value="0">รอนัดหมาย</option>
+                          <option value="1">รอเข้าให้บริการ</option>
+                          <option value="2">รอนัดหมายเพื่อเข้าให้บริการอีกครั้</option>
+                          <option value="3">กำลังให้บริการ</option>
+                          <option value="4">ซ่อมงานเสร็จ</option>
+                          <option value="7">รออะไหล่</option>
+                          <option value="5">ยกเลิกงานโดยศูนย์บริการ</option>
+                          <option value="6">ปิดงานโดยสมบูรณ์</option>
+                        </select>
+                    </div>
+                  </div>
+
+                  <!--
+                  <div class="form-group">
+                    <label><i class="fa fa-file"></i>&nbsp;หมายเหตุ</label>
+                    <div class="input-group">
+                      <textarea class="form-control" id="remark" name="remark" placeholder=""></textarea>
+                    </div>
+                  </div>
+                  -->
+
+                    <a href="javascript:;" disabled class="btn btn-block btn-success save"><i class="fa fa-save"></i> Save</a>
+                    <a href="javascript:;" onclick="print();" class="btn btn-block btn-default print"><i class="fa fa-print"></i> Print Note</a>
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+                </div><!-- /.col (right) -->
+              </form>
+
+            </div><!-- /.row -->
+
+          </div>
+
+        </div>
+        <!-- /.card -->
+
+
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      <b>Version</b> 0.1
+    </div>
+    <strong>Copyright &copy; 2021 Mavell Corporation.</strong> All rights reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<script src="../plugins/jquery/jquery.min.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../view/js/adminlte.min.js"></script>
+<script src="../plugins/moment/moment.min.js"></script>
+<script src="../plugins/daterangepicker/daterangepicker.js"></script>
+<script src='../plugins/qrcode.js'></script>
+<script src="../view/js/global.js?v=6" type="text/javascript"></script>
+
+<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="../plugins/jszip/jszip.min.js"></script>
+<script src="../plugins/pdfmake/pdfmake.min.js"></script>
+<script src="../plugins/pdfmake/vfs_fonts.js?v=1"></script>
+<script src="../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- Page script -->
+<script>
+var ldat = {id: 'new', cur_service_id : 0, groupIdDel : []};
+
+pdfMake.fonts = {
+   THSarabun: {
+     normal: 'THSarabun.ttf',
+     bold: 'THSarabun-Bold.ttf',
+     italics: 'THSarabun-Italic.ttf',
+     bolditalics: 'THSarabun-BoldItalic.ttf'
+   }
+}
+
+
+$($ => {
+  "use strict";
+
+  var q = getUrlVars();
+  ldat.query = q;
+  eb.pageInit();
+
+
+
+  // Date&Time  picker
+  $('.datetime').daterangepicker({
+    opens: 'left',
+    timePicker: true,
+    singleDatePicker: true,
+    minDate : 0,
+    locale: {
+      format: 'YYYY-MM-DD HH:mm:ss'
+    }
+  }, function(start, end, label) {
+    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+  });
+
+  // Period picker
+  $('.periodepicker').daterangepicker({
+    locale: {
+      format: 'YYYY-MM-DD'
+    }
+  }, function(start, end, label) {
+    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+  }).val("");
+
+  // Preset the site by get query
+  if(parseInt(ldat.query.service_id) > 0){
+    ldat.cur_service_id = ldat.query.service_id;
+  }
+
+  ldat.firstLoad = true;
+  getList();
+
+  if(q.service_id == 'new'){
+    eb.showTgForm();
+    $("#form_main .card").css('border','2px solid green');
+  }
+
+	$('.btn.save').on('click', function(){
+    var q = $('#form_main').serializeObject();
+    q.id = ldat.id;
+    console.table(q);
+
+		if(eb.isnt('Service Request ID', q.id)
+      && eb.isnt('ชื่อผู้ขอรับบริการ', q.requester_name)
+      && eb.isnt('เบอร์โทรผู้ขอรับบริการ', q.requester_phone)
+      && eb.isnt('อีเมล์ผู้ขอรับบริการ', q.requester_email)
+      && eb.isnt('Indoor S/N', q.indoor_sn)
+      && eb.isnt('Outdoor S/N', q.outdoor_sn)
+      ) {
+			$('.btn.save').attr('disabled','disabled');
+      eb.post("web", "s_service_request", q, function(rt){
+				if(rt > 0) {
+          $('.btn.reset').click();
+          alert('บันทึกข้อมูลสำเร็จ');
+          getList();
+        }else{
+          alert('Failed to save.')
+        }
+        $('.btn.save').removeAttr('disabled');
+			});
+		} // end if meter
+	});
+
+  $('.btn.reset').on('click', function(){
+    var q = $('#form_main input,#form_main select,#form_main textarea').val("");
+    $("#form_main .card").css('border','none');
+    $('.action_change').html('<br/><div class="badge bg-blue">NEW</div>');
+    ldat.id = 'new';
+	});
+
+  $("#btnSearch").click(function(){
+    $(this).attr('disabled','disabled').html('<i class="fa fa-spinner fa-spin fa-fw"></i> กำลังค้นหา....');
+    getList(true);
+  });
+
+  eb.renderServReqStatus();
+});
+
+function getList(do_search){
+  var q = (do_search) ? $('#form_search').serializeObject() : {};
+  if(!q.service_id && q.service_id > 0) q.service_id = ldat.cur_service_id;
+
+  eb.post("web", "serv_req_list", q, function(d){
+    var canAction = 'Y';//ldat_perm && ldat_perm.can_edit && ldat_perm.can_edit == 'Y';
+    $("#divTable1").html(`<table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        ${canAction ? '<th style="width: 40px">#</th>' : ''}
+        ${canAction ? '<th>คำสั่ง</th>' : ''}
+          <th style="width: 100px">เลขที่คำร้อง</th>
+          <th style="width: 100px">ประเภทคำร้อง</th>
+          <th style="width: 200px">ชื่อช่าง / รหัส / โทรศัพท์ / อีเมล์</th>
+          <th>ชื่อผู้แจ้ง</th>
+          <th>โทรผู้แจ้ง</th>
+          <th>อีเมล์ผู้แจ้ง</th>
+          <th>ช่างผู้แจ้ง</th>
+          <th>เบอร์ช่างผู้แจ้ง</th>
+          <th style="width: 200px">อาการ/รายละเอียด</th>
+          <th nowrap style="width: 150px">วันเวลาคำขอ</th>
+          <th nowrap style="width: 80px">นัดหมาย</th>
+          <th style="width: 100px">ปรับปรุงล่าสุด</th>
+          <th style="width: 40px">สถานะ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="11">กำลังโหลด...</td>
+      </tr>
+    </tbody></table>`);
+
+		var tpl='';
+    ldat.list = d;
+		for(var i=0; i<Object.keys(d).length; i++){
+
+			tpl +='<tr>'+( canAction ? '<td>'+eb.snull(d[i].service_id)+'</td>' : '')+
+      '<td nowrap class="text-center"><a href="service_detail.html?service_id='+eb.snull(d[i].service_id)+'" class="btn btn-xs btn-info"><i class="fas fa-info-circle"></i></a> '+
+        ( canAction ? '<a href="#form_main" onclick="setEdit('+i+');"><button type="button" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></button></a> <a href="javascript:;" onclick="eb.sendAction(\'x_serv_req\','+d[i].service_id+',true, \'ยืนยันการลบใบคำขอรับบริการรหัส '+d[i].service_id+'?\', true);"><button type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></button></a>' : '')+'</td>'+
+      '<td nowrap><a href="service_detail.html?service_id='+d[i].service_id+'"><strong>SR'+eb.zerofill(d[i].service_id,8)+'</strong></a></td>'+
+      '<td nowrap><div class="badge badge-secondary">'+eb.snull(d[i].service_type)+'</div></td>'+
+      '<td nowrap><small>'+(d[i].technician_id > 0 ? '<a href="technician.html?technician_id='+d[i].technician_id+'">'+eb.snull(d[i].technician,'')+' / '+eb.snull(d[i].technician_code,'-')+'</a> / '+eb.snull(d[i].technician_phone,'-')+' / '+eb.snull(d[i].technician_email, '-')+'</a>' : 'ยังไม่ได้ระบุ')+'</small></td>'+
+      '<td nowrap><small>'+eb.snull(d[i].requester_title,'')+''+eb.snull(d[i].requester_name,'-')+'</small></td>'+
+      '<td nowrap><small>'+eb.snull(d[i].requester_phone,'')+'</small></td>'+
+      '<td nowrap><small>'+eb.snull(d[i].requester_email,'') +'</small></td>'+
+      '<td nowrap><small>'+eb.snull(d[i].technician_name,'')+'</small></td>'+
+      '<td nowrap><small>'+eb.snull(d[i].tech_phone,'') +'</small></td>'+
+      '<td nowrap><small>'+eb.snull(d[i].error_code_txt)+' / '+eb.nl2br(d[i].description)+'</small></td>'+
+      '<td>'+eb.snull(d[i].created_at)+'</td>'+
+      '<td class="text-center">'+eb.findScheduleAt(d[i])+'</div></td>'+
+      '<td>'+eb.snull(d[i].updated_at)+'</td>'+
+      '<td><span class="badge small bg-'+eb.serv_req_status_col[d[i].status]+' white">'+eb.serv_req_status[d[i].status]+'</span></td>'+
+      '</tr>';
+
+      // pre-load for edit
+      if(ldat.query.service_id && ldat.query.service_id ==  d[i].service_id) {
+        setEdit(i);
+      }
+		}
+    if(!canAction) $("#toggleForm").remove();
+
+		$('#divTable1 table>tbody').html(tpl);
+    $('#divTable1 table').dataTable({
+        "order": [[ 0, "desc" ]],
+        "dom": 'Bfrtip',
+        "bFilter": false,
+        "autoWidth" : true,
+        "responsive": true,
+        "buttons" : ['excel',
+          { // กำหนดพิเศษเฉพาะปุ่ม pdf
+            "extend": 'pdf', // ปุ่มสร้าง pdf ไฟล์
+            "text": 'PDF', // ข้อความที่แสดง
+            "pageSize": 'A4',   // ขนาดหน้ากระดาษเป็น A4
+            orientation: 'landscape',
+            "customize":function(doc){ // ส่วนกำหนดเพิ่มเติม ส่วนนี้จะใช้จัดการกับ pdfmake
+                // กำหนด style หลัก
+                doc.defaultStyle = {
+                    font:'THSarabun',
+                    fontSize:11
+                };
+                // กำหนดความกว้างของ header แต่ละคอลัมน์หัวข้อ
+                // doc.content[1].table.widths = [ 50, 'auto', '*', '*' ];
+                doc.styles.tableHeader.fontSize = 14; // กำหนดขนาด font ของ header
+                // var rowCount = doc.content[1].table.body.length; // หาจำนวนแะวทั้งหมดในตาราง
+                // // วนลูปเพื่อกำหนดค่าแต่ละคอลัมน์ เช่นการจัดตำแหน่ง
+                // for (i = 1; i < rowCount; i++) { // i เริ่มที่ 1 เพราะ i แรกเป็นแถวของหัวข้อ
+                //     doc.content[1].table.body[i][0].alignment = 'center'; // คอลัมน์แรกเริ่มที่ 0
+                //     doc.content[1].table.body[i][1].alignment = 'center';
+                //     doc.content[1].table.body[i][2].alignment = 'left';
+                //     doc.content[1].table.body[i][3].alignment = 'right';
+                // };
+                // console.log(doc); // เอาไว้ debug ดู doc object proptery เพื่ออ้างอิงเพิ่มเติม
+            }
+        },
+        , 'print']
+    });
+
+    $("#btnSearch").removeAttr('disabled').html("ค้นหา");
+
+
+    // if(ldat.firstLoad){
+    //   // Org List
+    // 	eb.post("web", "serv_req_list", {select : 'site'},
+    // 		function(d){
+    // 			var tpl='<option value="">(select the Service Request)</option>';
+    // 			for(var i=0; i<d.length; i++){
+    // 				tpl+='<option value="'+d[i].service_id+'"'+(ldat.cur_service_id && ldat.cur_service_id == d[i].service_id ? ' selected': '')+'> '+eb.snull(d[i].title)+'</option>';
+    // 			}
+    // 			$('#service_id,#filter_service_id').html(tpl);
+    //
+    //       // Change sc filter
+    //       $('#filter_service_id').on('change', function(e){
+    //         ldat.cur_service_id = this.value;
+    //         getList();
+    //       });
+    // 	}); // end post the sc list
+    //
+    //   ldat.firstLoad = false;
+    //
+    // }// end if first load
+	});
+
+}
+
+
+function setEdit(inx){
+  eb.showTgForm();
+  var id = ldat.list[inx].service_id;
+  var tplp = '';
+  $("#form_main .card").css('border','2px solid red');
+
+  $.each(ldat.list[inx], function(k,v){
+    $('#'+k).val(v);
+    tplp +=  k + ' : ' + v+' <br/>';
+  });
+
+
+
+  $('#inv_result').html(tplp + '<br/><div id="qrCode"></div>');
+  new QRCode(document.getElementById("qrCode"), {
+		text: ldat.list[inx].service_id,
+		width: 128,
+		height: 128,
+		colorDark : "#000000",
+		colorLight : "#ffffff",
+		correctLevel : QRCode.CorrectLevel.H
+	});
+  $("#qrCode > img").css({"margin":"auto"});
+
+	$('.btn.save').removeAttr('disabled');
+	// $('.action_change').html('<br/><di  v class="badge bg-yellow">#'+eb.snull(id)+'</div>');
+  $('.action_change').html('<br/><div class="badge bg-yellow">SR'+eb.zerofill(id,8)+'</div>');
+  ldat.id = id;
+}
+
+</script>
+</body>
+</html>
