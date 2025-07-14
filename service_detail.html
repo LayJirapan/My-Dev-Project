@@ -1734,50 +1734,58 @@
                 </tr>
               </thead>
               <tbody>
+                                <tr>
+                  <td>1. ขนาดห้อง (ตร.ม.)</td>
+                  <td><input type="text" class="form-control text-right" name="room_size" placeholder="0"></td>
+                </tr>
                 <tr>
-                  <td>1. แรงดันไฟฟ้า (V)</td>
+                  <td>2. แรงดันไฟฟ้า (V)</td>
                   <td><input type="text" class="form-control text-right" name="tbl_volt_pre" placeholder="0"></td>
                   <td><input type="text" class="form-control text-right" name="tbl_volt_post" placeholder="0"></td>
                 </tr>
                 <tr>
-                  <td>2. กระแสไฟฟ้า (A)</td>
+                  <td>3. กระแสไฟฟ้า (A)</td>
                   <td><input type="text" class="form-control text-right" name="tbl_amp_pre" placeholder="0"></td>
                   <td><input type="text" class="form-control text-right" name="tbl_amp_post" placeholder="0"></td>
                 </tr>
                 <tr>
-                  <td>3. อุณหภูมิตั้งรีโมท (Mode Cool °C)</td>
+                  <td>4. อุณหภูมิตั้งรีโมท (Mode Cool °C)</td>
                   <td><input type="text" class="form-control text-right" name="tbl_term_remote_pre" placeholder="0"></td>
                   <td><input type="text" class="form-control text-right" name="tbl_term_remote_post" placeholder="0"></td>
                 </tr>
                 <tr>
-                  <td>4. แรงดันน้ำยาด้านดูด (ด้านต่ำ) (PSI)</td>
+                  <td>5. แรงดันน้ำยาด้านดูด (ด้านต่ำ) (PSI)</td>
                   <td><input type="text" class="form-control text-right" name="tbl_psil_pre" placeholder="0"></td>
                   <td><input type="text" class="form-control text-right" name="tbl_psil_post" placeholder="0"></td>
                 </tr>
                 <tr>
-                  <td>5. แรงดันน้ำยาด้านอัด (ด้านสูง) (PSI)</td>
+                  <td>6. แรงดันน้ำยาด้านอัด (ด้านสูง) (PSI)</td>
                   <td><input type="text" class="form-control text-right" name="tbl_psih_pre" placeholder="0"></td>
                   <td><input type="text" class="form-control text-right" name="tbl_psih_post" placeholder="0"></td>
                 </tr>
                 <tr>
-                  <td>6. FCU อุณหภูมิลมจ่าย (หน้าคอลย์เย็น) (°C)</td>
+                  <td>7. FCU อุณหภูมิลมจ่าย (หน้าคอลย์เย็น) (°C)</td>
                   <td><input type="text" class="form-control text-right" name="tbl_fcu_out_pre" placeholder="0"></td>
                   <td><input type="text" class="form-control text-right" name="tbl_fcu_out_post" placeholder="0"></td>
                 </tr>
                 <tr>
-                  <td>7. FCU อุณหภูมิลมกลับ  (หลังคอลย์เย็น) (°C)</td>
+                  <td>8. FCU อุณหภูมิลมกลับ  (หลังคอลย์เย็น) (°C)</td>
                   <td><input type="text" class="form-control text-right" name="tbl_fcu_in_pre" placeholder="0"></td>
                   <td><input type="text" class="form-control text-right" name="tbl_fcu_in_post" placeholder="0"></td>
                 </tr>
                 <tr>
-                  <td>8. CDU อุณหภูมิลมจ่าย (หน้าคอลย์ร้อน) (°C)</td>
+                  <td>9. CDU อุณหภูมิลมจ่าย (หน้าคอลย์ร้อน) (°C)</td>
                   <td><input type="text" class="form-control text-right" name="tbl_cdu_out_pre" placeholder="0"></td>
                   <td><input type="text" class="form-control text-right" name="tbl_cdu_out_post" placeholder="0"></td>
                 </tr>
                 <tr>
-                  <td>9. CDU อุณหภูมิลมกลับ  (หลังคอลย์ร้อน) (°C)</td>
+                  <td>10. CDU อุณหภูมิลมกลับ  (หลังคอลย์ร้อน) (°C)</td>
                   <td><input type="text" class="form-control text-right" name="tbl_cdu_in_pre" placeholder="0"></td>
                   <td><input type="text" class="form-control text-right" name="tbl_cdu_in_post" placeholder="0"></td>
+                </tr>
+                <tr>
+                  <td>11. ระยะเดินท่อ(เมตร)</td>
+                  <td><input type="text" class="form-control text-right" name="pipe_length" placeholder="0"></td>
                 </tr>
                 
               </tbody>
@@ -2849,7 +2857,7 @@ const getTimeline = (  ) => {
                           <td>ค่าขนส่ง <div class="badge badge-info">${eb.snull(dd.shopping_cost_txt, '')}</div></td>
                           <td class="text-center">${parseFloat(dd.shopping_cost).formatMoney()}</td>
                         </tr>`;
-                      if(dd.prettycash > 0)
+                      if(dd.prettycash > 0) 
                           tpl += `<tr>
                           <td>เงินสดย่อย (ค่าอุปกรณ์, ค่าส่งอะไหล่, อื่นๆ) </td>
                           <td class="text-center">${parseFloat(dd.prettycash).formatMoney()}</td>
@@ -2971,49 +2979,57 @@ const getTimeline = (  ) => {
                       </thead>
                       <tbody>
                       <tr>
-                        <td>1. แรงดันไฟฟ้า (V)</td>
+                        <td>1. ขนาดห้อง (ตร.ม.)</td>
+                        <td>${eb.snull(dd.room_size)}</td>
+                      </tr>
+                      <tr>
+                        <td>2. แรงดันไฟฟ้า (V)</td>
                         <td>${eb.snull(dd.tbl_volt_pre)}</td>
                         <td>${eb.snull(dd.tbl_volt_post)}</td>
                       </tr>
                       <tr>
-                        <td>2. กระแสไฟฟ้า (A)</td>
+                        <td>3. กระแสไฟฟ้า (A)</td>
                         <td>${eb.snull(dd.tbl_amp_pre)}</td>
                         <td>${eb.snull(dd.tbl_amp_post)}</td>
                       </tr>
                       <tr>
-                        <td>3. อุณหภูมิตั้งรีโมท (Mode Cool °C)</td>
+                        <td>4. อุณหภูมิตั้งรีโมท (Mode Cool °C)</td>
                         <td>${eb.snull(dd.tbl_term_remote_pre)}</td>
                         <td>${eb.snull(dd.tbl_term_remote_post)}</td>
                       </tr>
                       <tr>
-                        <td>4. แรงดันน้ำยาด้านดูด (ด้านต่ำ) (PSI)</td>
+                        <td>5. แรงดันน้ำยาด้านดูด (ด้านต่ำ) (PSI)</td>
                         <td>${eb.snull(dd.tbl_psil_pre)}</td>
                         <td>${eb.snull(dd.tbl_psil_post)}</td>
                       </tr>
                       <tr>
-                        <td>5. แรงดันน้ำยาด้านอัด (ด้านสูง) (PSI)</td>
+                        <td>6. แรงดันน้ำยาด้านอัด (ด้านสูง) (PSI)</td>
                         <td>${eb.snull(dd.tbl_psih_pre)}</td>
                         <td>${eb.snull(dd.tbl_psih_post)}</td>
                       </tr>
                       <tr>
-                        <td>6. FCU อุณหภูมิลมจ่าย (หน้าคอลย์เย็น) (°C)</td>
+                        <td>7. FCU อุณหภูมิลมจ่าย (หน้าคอลย์เย็น) (°C)</td>
                         <td>${eb.snull(dd.tbl_fcu_out_pre)}</td>
                         <td>${eb.snull(dd.tbl_fcu_out_post)}</td>
                       </tr>
                       <tr>
-                        <td>7. FCU อุณหภูมิลมกลับ  (หลังคอลย์เย็น) (°C)</td>
+                        <td>8. FCU อุณหภูมิลมกลับ  (หลังคอลย์เย็น) (°C)</td>
                         <td>${eb.snull(dd.tbl_fcu_in_pre)}</td>
                         <td>${eb.snull(dd.tbl_fcu_in_post)}</td>
                       </tr>
                       <tr>
-                        <td>8. CDU อุณหภูมิลมจ่าย (หน้าคอลย์ร้อน) (°C)</td>
+                        <td>9. CDU อุณหภูมิลมจ่าย (หน้าคอลย์ร้อน) (°C)</td>
                         <td>${eb.snull(dd.tbl_cdu_out_pre)}</td>
                         <td>${eb.snull(dd.tbl_cdu_out_post)}</td>
                       </tr>
                       <tr>
-                        <td>9. CDU อุณหภูมิลมกลับ  (หลังคอลย์ร้อน) (°C)</td>
+                        <td>10. CDU อุณหภูมิลมกลับ  (หลังคอลย์ร้อน) (°C)</td>
                         <td>${eb.snull(dd.tbl_cdu_in_pre)}</td>
                         <td>${eb.snull(dd.tbl_cdu_in_post)}</td>
+                      </tr>
+                      <tr>
+                        <td>11. ระยะเดินท่อ (เมตร)</td>
+                        <td>${eb.snull(dd.pipe_length)}</td>
                       </tr>
 
 
