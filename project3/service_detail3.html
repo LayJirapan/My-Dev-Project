@@ -680,12 +680,11 @@
                               </div>
                             </div>
                           </div>
-                          <!--ต้องแก้ id ของ ชื่อช่าง และเบอร์ -->
                           <div class="col-12 col-sm-6">
                             <div class="info-box bg-light">
                               <div class="info-box-content">
                                 <span class="info-box-text text-left">ชื่อช่างผู้แจ้ง</span>
-                                <span class="info-box-number text-center mb-0" id="serv_created_at"></span>
+                                <span class="info-box-number text-center mb-0" id="serv_technician_name"></span>
                               </div>
                             </div>
                           </div>
@@ -693,11 +692,10 @@
                             <div class="info-box bg-light">
                               <div class="info-box-content">
                                 <span class="info-box-text text-left">เบอร์ช่างผู้แจ้ง</span>
-                                <span class="info-box-number text-center mb-0" id="serv_error_code_txt"></span>
+                                <span class="info-box-number text-center mb-0" id="serv_technician_phone"></span>
                               </div>
                             </div>
                           </div>
-                           <!--ต้องแก้ id ของ ชื่อช่าง และเบอร์ -->
 
                           <div class="col-12 col-sm-6">
                             <div class="info-box bg-light">
@@ -1736,75 +1734,60 @@
                 </tr>
               </thead>
               <tbody>
+                                <tr>
+                  <td>1. ขนาดห้อง (ตร.ม.)</td>
+                  <td><input type="text" class="form-control text-right" name="room_size" placeholder="0" id="room_size"></td>
+                </tr>
                 <tr>
-                  <td>1. แรงดันไฟฟ้า (V)</td>
-                  <td><input type="text" class="form-control text-right" name="tbl_volt_pre" placeholder="0"></td>
+                  <td>2. แรงดันไฟฟ้า (V)</td>
+                  <td><input type="text" class="form-control text-right" name="tbl_volt_pre" placeholder="0" id="tbl_volt_pre"></td>
                   <td><input type="text" class="form-control text-right" name="tbl_volt_post" placeholder="0"></td>
                 </tr>
                 <tr>
-                  <td>2. กระแสไฟฟ้า (A)</td>
-                  <td><input type="text" class="form-control text-right" name="tbl_amp_pre" placeholder="0"></td>
+                  <td>3. กระแสไฟฟ้า (A)</td>
+                  <td><input type="text" class="form-control text-right" name="tbl_amp_pre" placeholder="0" id="tbl_amp_pre"></td>
                   <td><input type="text" class="form-control text-right" name="tbl_amp_post" placeholder="0"></td>
                 </tr>
                 <tr>
-                  <td>3. อุณหภูมิตั้งรีโมท (Mode Cool °C)</td>
-                  <td><input type="text" class="form-control text-right" name="tbl_term_remote_pre" placeholder="0"></td>
+                  <td>4. อุณหภูมิตั้งรีโมท (Mode Cool °C)</td>
+                  <td><input type="text" class="form-control text-right" name="tbl_term_remote_pre" placeholder="0" id="tbl_term_remote_pre"></td>
                   <td><input type="text" class="form-control text-right" name="tbl_term_remote_post" placeholder="0"></td>
                 </tr>
                 <tr>
-                  <td>4. แรงดันน้ำยาด้านดูด (ด้านต่ำ) (PSI)</td>
-                  <td><input type="text" class="form-control text-right" name="tbl_psil_pre" placeholder="0"></td>
+                  <td>5. แรงดันน้ำยาด้านดูด (ด้านต่ำ) (PSI)</td>
+                  <td><input type="text" class="form-control text-right" name="tbl_psil_pre" placeholder="0" id="tbl_psil_pre"></td>
                   <td><input type="text" class="form-control text-right" name="tbl_psil_post" placeholder="0"></td>
                 </tr>
                 <tr>
-                  <td>5. แรงดันน้ำยาด้านอัด (ด้านสูง) (PSI)</td>
-                  <td><input type="text" class="form-control text-right" name="tbl_psih_pre" placeholder="0"></td>
+                  <td>6. แรงดันน้ำยาด้านอัด (ด้านสูง) (PSI)</td>
+                  <td><input type="text" class="form-control text-right" name="tbl_psih_pre" placeholder="0" id="tbl_psih_pre"></td>
                   <td><input type="text" class="form-control text-right" name="tbl_psih_post" placeholder="0"></td>
                 </tr>
                 <tr>
-                  <td>6. FCU อุณหภูมิลมจ่าย (หน้าคอลย์เย็น) (°C)</td>
-                  <td><input type="text" class="form-control text-right" name="tbl_fcu_out_pre" placeholder="0"></td>
+                  <td>7. FCU อุณหภูมิลมจ่าย (หน้าคอลย์เย็น) (°C)</td>
+                  <td><input type="text" class="form-control text-right" name="tbl_fcu_out_pre" placeholder="0" id="tbl_fcu_out_pre"></td>
                   <td><input type="text" class="form-control text-right" name="tbl_fcu_out_post" placeholder="0"></td>
                 </tr>
                 <tr>
-                  <td>7. FCU อุณหภูมิลมกลับ  (หลังคอลย์เย็น) (°C)</td>
-                  <td><input type="text" class="form-control text-right" name="tbl_fcu_in_pre" placeholder="0"></td>
+                  <td>8. FCU อุณหภูมิลมกลับ  (หลังคอลย์เย็น) (°C)</td>
+                  <td><input type="text" class="form-control text-right" name="tbl_fcu_in_pre" placeholder="0" id="tbl_fcu_in_pre"></td>
                   <td><input type="text" class="form-control text-right" name="tbl_fcu_in_post" placeholder="0"></td>
                 </tr>
                 <tr>
-                  <td>8. CDU อุณหภูมิลมจ่าย (หน้าคอลย์ร้อน) (°C)</td>
-                  <td><input type="text" class="form-control text-right" name="tbl_cdu_out_pre" placeholder="0"></td>
+                  <td>9. CDU อุณหภูมิลมจ่าย (หน้าคอลย์ร้อน) (°C)</td>
+                  <td><input type="text" class="form-control text-right" name="tbl_cdu_out_pre" placeholder="0" id="tbl_cdu_out_pre"></td>
                   <td><input type="text" class="form-control text-right" name="tbl_cdu_out_post" placeholder="0"></td>
                 </tr>
                 <tr>
-                  <td>9. CDU อุณหภูมิลมกลับ  (หลังคอลย์ร้อน) (°C)</td>
-                  <td><input type="text" class="form-control text-right" name="tbl_cdu_in_pre" placeholder="0"></td>
+                  <td>10. CDU อุณหภูมิลมกลับ  (หลังคอลย์ร้อน) (°C)</td>
+                  <td><input type="text" class="form-control text-right" name="tbl_cdu_in_pre" placeholder="0" id="tbl_cdu_in_pre"></td>
                   <td><input type="text" class="form-control text-right" name="tbl_cdu_in_post" placeholder="0"></td>
                 </tr>
                 <tr>
-                  <td>10. ขนาดห้อง (ตร.ม.)</td>
-                  <td><input type="text" class="form-control text-right" name="room_size" placeholder="0"></td>
-                
+                  <td>11. ระยะเดินท่อ(เมตร)</td>
+                  <td><input type="text" class="form-control text-right" name="pipe_length" placeholder="0" id="pipe_length"></td>
                 </tr>
-                <tr>
-                  <td>11. ระยะเดินท่อ (เมตร)</td>
-                  <td><input type="text" class="form-control text-right" name="pipe_length" placeholder="0"></td>
-               <tr>
-                <td>12. ท่อมีการเชื่อมหรือไม่</td>
-                <td>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="pipe_welding" id="welding_yes" value="yes">
-                    <label class="form-check-label" for="welding_yes">ใช่</label>
-                  </div>
-                </td>
-                <td>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="pipe_welding" id="welding_no" value="no">
-                    <label class="form-check-label" for="welding_no">ไม่ใช่</label>
-                  </div>
-                </td>
-              </tr>
-
+                
               </tbody>
             </table>
             <small>สำหรับค่าใช้จ่ายกรุณากรอกใน "ฟอร์มบันทึกการซ่อม"</small>
@@ -2421,6 +2404,8 @@ const loadDetail = (q) => {
 const getJobDetail = ( serviceId ) => {
   eb.post("web", "serv_req_detail", {service_id: serviceId},function(d){
     if(d.serv){
+      preloadBeforeRepair(serviceId);
+
       if(d.serv.service_id) $(".serviceId").html(ldat.pk); // 'SR'+eb.zerofill(d.serv.service_id,8)
 
       if(d.serv.status > -1) {
@@ -2874,7 +2859,7 @@ const getTimeline = (  ) => {
                           <td>ค่าขนส่ง <div class="badge badge-info">${eb.snull(dd.shopping_cost_txt, '')}</div></td>
                           <td class="text-center">${parseFloat(dd.shopping_cost).formatMoney()}</td>
                         </tr>`;
-                      if(dd.prettycash > 0)
+                      if(dd.prettycash > 0) 
                           tpl += `<tr>
                           <td>เงินสดย่อย (ค่าอุปกรณ์, ค่าส่งอะไหล่, อื่นๆ) </td>
                           <td class="text-center">${parseFloat(dd.prettycash).formatMoney()}</td>
@@ -2996,64 +2981,59 @@ const getTimeline = (  ) => {
                       </thead>
                       <tbody>
                       <tr>
-                        <td>1. แรงดันไฟฟ้า (V)</td>
+                        <td>1. ขนาดห้อง (ตร.ม.)</td>
+                        <td>${eb.snull(dd.room_size)}</td>
+                      </tr>
+                      <tr>
+                        <td>2. แรงดันไฟฟ้า (V)</td>
                         <td>${eb.snull(dd.tbl_volt_pre)}</td>
                         <td>${eb.snull(dd.tbl_volt_post)}</td>
                       </tr>
                       <tr>
-                        <td>2. กระแสไฟฟ้า (A)</td>
+                        <td>3. กระแสไฟฟ้า (A)</td>
                         <td>${eb.snull(dd.tbl_amp_pre)}</td>
                         <td>${eb.snull(dd.tbl_amp_post)}</td>
                       </tr>
                       <tr>
-                        <td>3. อุณหภูมิตั้งรีโมท (Mode Cool °C)</td>
+                        <td>4. อุณหภูมิตั้งรีโมท (Mode Cool °C)</td>
                         <td>${eb.snull(dd.tbl_term_remote_pre)}</td>
                         <td>${eb.snull(dd.tbl_term_remote_post)}</td>
                       </tr>
                       <tr>
-                        <td>4. แรงดันน้ำยาด้านดูด (ด้านต่ำ) (PSI)</td>
+                        <td>5. แรงดันน้ำยาด้านดูด (ด้านต่ำ) (PSI)</td>
                         <td>${eb.snull(dd.tbl_psil_pre)}</td>
                         <td>${eb.snull(dd.tbl_psil_post)}</td>
                       </tr>
                       <tr>
-                        <td>5. แรงดันน้ำยาด้านอัด (ด้านสูง) (PSI)</td>
+                        <td>6. แรงดันน้ำยาด้านอัด (ด้านสูง) (PSI)</td>
                         <td>${eb.snull(dd.tbl_psih_pre)}</td>
                         <td>${eb.snull(dd.tbl_psih_post)}</td>
                       </tr>
                       <tr>
-                        <td>6. FCU อุณหภูมิลมจ่าย (หน้าคอลย์เย็น) (°C)</td>
+                        <td>7. FCU อุณหภูมิลมจ่าย (หน้าคอลย์เย็น) (°C)</td>
                         <td>${eb.snull(dd.tbl_fcu_out_pre)}</td>
                         <td>${eb.snull(dd.tbl_fcu_out_post)}</td>
                       </tr>
                       <tr>
-                        <td>7. FCU อุณหภูมิลมกลับ  (หลังคอลย์เย็น) (°C)</td>
+                        <td>8. FCU อุณหภูมิลมกลับ  (หลังคอลย์เย็น) (°C)</td>
                         <td>${eb.snull(dd.tbl_fcu_in_pre)}</td>
                         <td>${eb.snull(dd.tbl_fcu_in_post)}</td>
                       </tr>
                       <tr>
-                        <td>8. CDU อุณหภูมิลมจ่าย (หน้าคอลย์ร้อน) (°C)</td>
+                        <td>9. CDU อุณหภูมิลมจ่าย (หน้าคอลย์ร้อน) (°C)</td>
                         <td>${eb.snull(dd.tbl_cdu_out_pre)}</td>
                         <td>${eb.snull(dd.tbl_cdu_out_post)}</td>
                       </tr>
                       <tr>
-                        <td>9. CDU อุณหภูมิลมกลับ  (หลังคอลย์ร้อน) (°C)</td>
+                        <td>10. CDU อุณหภูมิลมกลับ  (หลังคอลย์ร้อน) (°C)</td>
                         <td>${eb.snull(dd.tbl_cdu_in_pre)}</td>
                         <td>${eb.snull(dd.tbl_cdu_in_post)}</td>
                       </tr>
-                        <tr>
-                        <td>10. ขนาดห้อง (ตร.ม.)</td>
-                        <td colspan="2">${eb.snull(dd.room_size)}</td>
-                      </tr>
                       <tr>
                         <td>11. ระยะเดินท่อ (เมตร)</td>
-                        <td colspan="2">${eb.snull(dd.pipe_length)}</td>
+                        <td>${eb.snull(dd.pipe_length)}</td>
                       </tr>
-                      <tr>
-                        <td>12. ท่อมีการเชื่อมหรือไม่</td>
-                        <td colspan="2">
-                          ${dd.pipe_welding === 'yes' ? 'ใช่' : dd.pipe_welding === 'no' ? 'ไม่ใช่' : '-'}
-                        </td>
-                      </tr>
+
 
                       </tbody>
                     </table>
@@ -3066,6 +3046,71 @@ const getTimeline = (  ) => {
             </div>
           </div>`;
         }// type of `served`
+
+        /// TYPE OF Submitted ACTION
+        else if(v.timeline_type == 'submitted' && v.technician_name && v.technician_name.trim() !== '') {
+          var dd = (v.detail) ? JSON.parse(v.detail) : {};
+          console.info(dd);
+
+          var showFiles = '';
+          if(dd.files) $.each(dd.files, function(k,v){
+            showFiles +="<div class='col-6 col-6-xs'><a href='"+v+"' target='_blank'><img src='"+v+"' style='width:100%;'/>ประเภทไฟล์ : "+ dd.files_cat[k]+'</a></div>';
+            tplFiles += '<li><a href="'+v+'" target="_blank" class="btn-link text-secondary"><i class="far fa-fw fa-file-image"></i> '+ dd.files_cat[k]+' - '+ (v ? v.split('/')[v.split('/').length-1] : '(N/A)') +'</a></li>';
+          });
+
+          tpl += `<div>
+            <i class="fas fa-calendar-alt bg-danger text-white"></i>
+            <div class="timeline-item">
+              <span class="time"><i class="far fa-clock"></i> ${tt}</span>
+              <h3 class="timeline-header"><a href="javascript:;">${eb.snull(v.technician_name)}</a> ผู้บันทึกการเข้าบริการก่อนซ่อม</h3>
+              <div class="timeline-body">
+                การตรวจเช็คการรับประกัน :
+                ${dd.valid_warranty && dd.valid_warranty == 'yes' ? '<div class="badge badge-success">อยู่ในประกัน</div> <small> เลขที่ : '+ eb.snull(dd.warranty_id)+'</small>' : '<div class="badge badge-danger">นอกประกัน</div>' }
+                <br/>
+                ${dd.tbl_fcu && dd.tbl_fcu == 1 ? '<div class="badge badge-primary">Fancoil</div>' : '' }
+                ${dd.tbl_condensing && dd.tbl_condensing == 1 ? '<div class="badge badge-primary">Condensing</div>' : '' }
+              </div>
+
+              <div class="timeline-body">
+                <!-- Error Code -->
+                <div class="info-box bg-light">
+                    <div class="info-box-content">
+                    <span class="info-box-text text-left">Error Code</span>
+                    <span class="info-box-number text-center mb-0">${eb.snull(v.error_code_txt)}</span>
+                    </div>
+                </div>
+
+                <!-- System Check (Pre only) -->
+                <hr/>
+                <h5 class="mt-2">บันทึกการทำงานระบบ (ก่อนซ่อม)</h5>
+                <table class="table table-sm">
+                    <thead>
+                    <tr class="small">
+                        <th>รายการตรวจ</th>
+                        <th style="width: 120px;">ก่อนซ่อม</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr><td>1. ขนาดห้อง (ตร.ม.)</td><td>${eb.snull(dd.room_size)}</td></tr>
+                    <tr><td>2. แรงดันไฟฟ้า (V)</td><td>${eb.snull(dd.tbl_volt_pre)}</td></tr>
+                    <tr><td>3. กระแสไฟฟ้า (A)</td><td>${eb.snull(dd.tbl_amp_pre)}</td></tr>
+                    <tr><td>4. อุณหภูมิตั้งรีโมท (Mode Cool °C)</td><td>${eb.snull(dd.tbl_term_remote_pre)}</td></tr>
+                    <tr><td>5. แรงดันน้ำยาด้านดูด (ด้านต่ำ) (PSI)</td><td>${eb.snull(dd.tbl_psil_pre)}</td></tr>
+                    <tr><td>6. FCU อุณหภูมิลมจ่าย (หน้าคอยล์เย็น) (°C)</td><td>${eb.snull(dd.tbl_fcu_out_pre)}</td></tr>
+                    <tr><td>7. FCU อุณหภูมิลมกลับ (หลังคอยล์เย็น) (°C)</td><td>${eb.snull(dd.tbl_fcu_in_pre)}</td></tr>
+                    <tr><td>8. CDU อุณหภูมิลมจ่าย (หน้าคอยล์ร้อน) (°C)</td><td>${eb.snull(dd.tbl_cdu_out_pre)}</td></tr>
+                    <tr><td>9. CDU อุณหภูมิลมกลับ (หลังคอยล์ร้อน) (°C)</td><td>${eb.snull(dd.tbl_cdu_in_pre)}</td></tr>
+                    <tr><td>10. ระยะเดินท่อ (เมตร)</td><td>${eb.snull(dd.pipe_length)}</td></tr>
+                    </tbody>
+                </table>
+                </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>`;
+        }// type of `Submitted `
       }); // end of each
     } // end if `detail`
 
@@ -3079,6 +3124,43 @@ const getTimeline = (  ) => {
   });
 
 };
+
+const preloadBeforeRepair = (service_id) => {
+  eb.post("web", "serv_req_detail_timeline", { service_id: service_id }, function(data) {
+
+    if (data.detail && Array.isArray(data.detail)) {
+      const submitted = data.detail.find(x => x.timeline_type === 'submitted');
+      if (submitted && submitted.detail) {
+        let detailData = {};
+
+        try {
+          detailData = JSON.parse(submitted.detail);
+          console.log("✅ Loaded pre-fill data:", detailData); // ← Debug ตรงนี้
+        } catch (e) {
+          console.warn("❌ Parse error in submitted.detail:", e);
+          console.log("🚨 Raw submitted.detail = ", submitted.detail); // ← ดูว่า JSON เดิมเป็นยังไง
+        }
+
+        const preloadFields = [
+          "room_size", "tbl_volt_pre", "tbl_amp_pre", "tbl_term_remote_pre",
+          "tbl_psil_pre", "tbl_psih_pre", "tbl_fcu_out_pre", "tbl_fcu_in_pre",
+          "tbl_cdu_out_pre", "tbl_cdu_in_pre", "pipe_length"
+        ];
+
+        preloadFields.forEach(field => {
+          if (detailData[field]) {
+            $("#" + field).val(detailData[field]);
+          }
+        });
+      } else {
+        console.log("⚠️ No submitted.detail found.");
+      }
+    } else {
+      console.log("⚠️ data.detail is not an array or missing.");
+    }
+  });
+};
+
 
 function renderStars(star){
   let tpl = "";
