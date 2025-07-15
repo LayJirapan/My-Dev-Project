@@ -56,6 +56,49 @@
      overflow: hidden;
      border-right: 1px solid rgba(0, 0, 0, 0.25);
    }
+   /* icon ไลน์ และโทร */
+  .top-contact-icons {
+    position: absolute;
+    top: 15px;
+    right: 450px;
+    display: flex;
+    gap: 20px;
+    z-index: 9999;
+  }
+
+  .top-contact-icons a i {
+    font-size: 30px;
+    color: #004080;
+    transition: transform 0.2s;
+  }
+
+  .top-contact-icons a:hover i {
+    transform: scale(1.2);
+    color: #007bff;
+  }
+
+  /* Responsive: ปรับขนาดไอคอนเมื่อเปิดบนมือถือ */
+  @media (max-width: 768px) {
+    .top-contact-icons {
+      top: 15px;
+      right: 20px;
+      gap: 20px;
+    }
+
+    .top-contact-icons a i {
+      font-size: 28px;
+    }
+  }
+/*เลือกประเภทผู้ใช้งาน*/
+    .highlight-header {
+    background-color: #103379;
+    color: #fff;
+    padding: 8px 16px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: 16px;
+  }
+
    .quiet {
      color: #888;
    }
@@ -147,6 +190,16 @@
      visibility: hidden;
    }
 
+   .contect-links {
+    margin-left: auto;
+    display: flex;
+    align-items: center
+    gap: 15px;
+   }
+   .contect-links {
+    font-size: 4rem;
+   }
+
 
    #closeButton {
      float: right;
@@ -230,6 +283,15 @@
         <img src="./view/img/mavell_flogo.png" alt="Mavell Air" class="brand-image" style="opacity: .8">
         <span class="brand-text font-weight-light">Hi Mavell - CSMS</span>
       </a>
+
+  <div class="top-contact-icons">
+    <a href="https://line.me/R/ti/p/@hid9685y" target="_blank" title="แอดไลน์ศูนย์บริการ">
+      <i class="fab fa-line"></i>
+    </a>
+    <a href="tel:+66649317999" title="ติดต่อเจ้าหน้าที่">
+      <i class="fas fa-phone"></i>
+    </a>
+  </div>
 
       <!-- <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -426,7 +488,7 @@
                                       <div class="input-group-text bg-warning"><i class="fa fa-qrcode mr-1"></i> QR Code</div>
                                   </div>
                               </div>
-                              <button type="button" class="btn btn-block btn-sm btn-secondary mt-3" id="btnFindSN1"><i class="fas fa-search"></i> ค้นหารหัสผลิตภัณฑ์</button>
+                              <button type="button" class="btn btn-block btn-sm btn-secondary mt-3" id="btnFindSN1"><i class="fas fa-search"></i> กรุณากดค้นหารหัสผลิตภัณฑ์ที่นี่</button>
                               <div class="mt-1"><strong>สถานะรหัสสินค้า</strong> : <span id="resultSN1">-</span></div>
                             </div>
                             <div class="form-group" id="productModelSec">
@@ -527,7 +589,7 @@
                           <div class="tab-content mt-2" id="placeTabContent">
                             <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
                               <!-- <div id="myPlace"></div> -->
-                              <div>กรุณาลากจุดสีแดงให้ไปสถานที่ติดตั้งตามต้องการ :</div>
+                              <!-- <div>กรุณาลากจุดสีแดงให้ไปสถานที่ติดตั้งตามต้องการ :</div> -->
                               <div id="mapCanvas1"></div>
                               <div class="input-group mb-2">
                                 <div class="input-group-prepend">
@@ -699,8 +761,30 @@
 
           </div>
           <div class="tab-pane fade" id="menu-req" role="tabpanel" aria-labelledby="menu-req-tab">
+
+        <!-- การ์ดเลือกประเภทผู้ใช้งาน -->
+        <div class="card my-3 text-center">
+          <!-- แถบหัวข้อบนการ์ด -->
+          <div class="card-header highlight-header">
+            <i class="fas fa-user-tag"></i> กรุณาเลือกประเภทผู้ใช้งาน
+          </div>
+
+          <!-- เนื้อหาภายในการ์ด -->
+          <div class="card-body">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="user_type" id="user_customer" value="customer" checked>
+              <label class="form-check-label" for="user_customer">ลูกค้าทั่วไป</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="user_type" id="user_technician" value="technician">
+              <label class="form-check-label" for="user_technician">ช่าง/ASC</label>
+            </div>
+          </div>
+        </div>
+
+
             
-          <!-- เลือกประเภทผู้ใช้งาน -->
+          <!-- เลือกประเภทผู้ใช้งาน
         <div class="text-center">
             <div class="form-group"> 
             <label><strong>กรุณาเลือกประเภทผู้ใช้งาน</strong></label><br>
@@ -711,7 +795,7 @@
                 <input type="radio" name="user_type" value="technician"> ช่าง/ASC
             </label>
             </div>
-                        </div>
+                        </div> -->
             <!-- Service Request -->
             <form id="form_service_request">
             <div class="card card-primary">
@@ -793,7 +877,7 @@
                                       <div class="input-group-text bg-warning"><i class="fa fa-qrcode mr-1"></i> QR Code</div>
                                   </div>
                               </div>
-                              <button type="button" class="btn btn-block btn-sm btn-secondary mt-1" id="btnFindSN2"><i class="fas fa-search"></i> ค้นหารหัสผลิตภัณฑ์</button>
+                              <button type="button" class="btn btn-block btn-sm btn-secondary mt-1" id="btnFindSN2"><i class="fas fa-search"></i> กรุณากดค้นหารหัสผลิตภัณฑ์ที่นี่</button>
                               <!-- <select class="form-control" id="snQuery"></select> -->
                               <input type="hidden" name="indoor_sn2">
                               <input type="hidden" name="outdoor_sn2">
@@ -826,44 +910,22 @@
                               <label for="errorCode">อาการเสีย <span class="text-danger ml-1">*</span></label>
                               <select class="form-control select2" name="error_code2" id="errorCode">
                                 <option disabled selected value="0">- โปรดระบุอาการ -</option>
-                                <option value="E0">ขึ้น Error Code E0</option>
-                                <option value="E1">ขึ้น Error Code E1</option>
-                                <option value="E2">ขึ้น Error Code E2</option>
-                                <option value="E3">ขึ้น Error Code E3</option>
-                                <option value="E4">ขึ้น Error Code E4</option>
-                                <option value="E5">ขึ้น Error Code E5 หรือ 5E</option>
-								                <option value="E6">ขึ้น Error Code E6</option>
-                                <option value="F0">ขึ้น Error Code F0</option>
-                                <option value="F1">ขึ้น Error Code F1</option>
-                                <option value="F3">ขึ้น Error Code F3</option>
-                                <option value="F4">ขึ้น Error Code F4</option>
-                                <option value="F6">ขึ้น Error Code F6</option>
-                                <option value="P3">ขึ้น Error Code P3</option>
-                                <option value="indoor_noise">Indoor มีเสียงดัง</option>
-                                <option value="outdoor_noise">Outdoor มีเสียงดัง</option>
-                                <option value="not_start">แอร์เปิดไม่ติด</option>
-                                <option value="remote_failed">รีโมทกดไม่ติด</option>
-                                <option value="water_drop">แอร์น้ำหยด</option>
-                                <option value="frozen_coil">แผงคอยล์เย็นเป็นน้ำแข็ง</option>
-                                <option value="not_cold">แอร์ไม่เย็น</option>
-                                <option value="slow_continue">แอร์ต่อช้า</option>
-                                <option value="not_back_off">แอร์ไม่ตัด</option>
-                                <option value="smell">แอร์มีกลิ่นเหม็น</option>
-                                <option value="no_nitrogen">ไม่มีไนโตรเจนในแผงคอยล์เย็น</option>
-                                <option value="no_refrigerant">น้ำยาในคอยล์ร้อนมีน้อยหรือไม่มีเลย</option>
-                                <option value="coil_leak">แผงคอยล์เย็นรั่ว</option>
-                                <option value="com_leak">คอมเพรสเซอร์รั่ว</option>
-                                <option value="com_lock">คอมเพรสเซอร์ล็อค</option>
-                                <option value="com_notsuck">คอมเพรสเซอร์ไม่ดูด/ไม่อัด</option>
                               </select>
-                            </div>
+                          <div id="errorCodeDynamicSec" style="display:none;" class="mt-2">
+                            <label for="errorCodeDynamic">Error Code<span class="text-danger ml-1">*</span></label>
+                            <select class="form-control select2" name="error_code_dynamic2" id="errorCodeDynamic">
+                              <option disabled selected>- โปรดเลือก Error Code -</option>
+                            </select>
+                          </div>  
+                          </div>                         
+    
 
                             <div class="form-group">
                               <label for="description2">รายละเอียด</label>
                               <textarea class="form-control" name="description2" rows="3" placeholder="Enter your description..." id="description"></textarea>
                             </div>
                             <div class="form-group">
-                              <label for="attach_photo">ไฟล์หรือภาพประกอบ (ถ้ามี)</label>
+                              <label for="attach_photo">ไฟล์หรือภาพประกอบ (อย่างน้อย 1 ภาพ)<span class="text-danger ml-1">*</span></label>
                               <div class="input-group">
                                 <div class="custom-file">
                                   <input type="file" class="custom-file-input" accept="image/*,video/*" multiple="false" name="attach_photo" id="attachPhoto">
@@ -932,19 +994,19 @@
                             <input type="text" class="form-control" name="requester_lineid2" placeholder="LINE ID">
                           </div>
 
-                          <h5 class="title mt-3"><i class="fas fa-map"></i> สถานที่ขอรับบริการ</h5>
-                          <small>กรุณาเลือกวิธีการให้ข้อมูลสถานที่</small>
+                          <h5 class="title mt-3"><i class="fas fa-map"></i> สถานที่ขอรับบริการ<span class="text-danger ml-1">*</span></h5>
                           <ul class="nav nav-tabs" id="placeTab" role="tablist">
+
                             <li class="nav-item">
-                              <a class="nav-link" id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home" aria-selected="true">1. ลากวางบนแผนที่</a>
+                              <a class="nav-link active" id="placeManual2-tab" data-toggle="tab" href="#placeManual2" role="tab" aria-controls="placeManual" aria-selected="false">กรอกที่อยู่</a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link active" id="placeManual2-tab" data-toggle="tab" href="#placeManual2" role="tab" aria-controls="placeManual" aria-selected="false">2.กรอกที่อยู่เอง</a>
+                              <a class="nav-link" id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home" aria-selected="true">ตำแหน่งปัจจุบันของคุณ</a>
                             </li>
                           </ul>
                           <div class="tab-content mt-2" id="placeTabContent2">
                             <div class="tab-pane fade" id="home2" role="tabpanel" aria-labelledby="home2-tab">
-                              <div>กรุณาลากจุดสีแดงให้ไปสถานที่ติดตั้งตามต้องการ :</div>
+                              <!-- <div>กรุณาลากจุดสีแดงให้ไปสถานที่ติดตั้งตามต้องการ :</div> -->
                               <div id="mapCanvas2"></div>
                               <div class="input-group mb-2">
                                 <div class="input-group-prepend">
@@ -979,6 +1041,9 @@
                                 </div>
                                 <input type="text" class="form-control" name="address_road2" placeholder="Road">
                               </div>
+                                <div class="input-group mb-2">
+                                <input type="text" class="form-control" name="address_postcode2" placeholder="รหัสไปรษณีย์">
+                              </div>
                               <div class="input-group mb-2">
                                 <input type="text" class="form-control" name="address_subdistrict2" placeholder="แขวง/ตำบล">
                               </div>
@@ -988,9 +1053,7 @@
                               <div class="input-group mb-2">
                                 <input type="text" class="form-control" name="address_province2" placeholder="จังหวัด">
                               </div>
-                              <div class="input-group mb-2">
-                                <input type="text" class="form-control" name="address_postcode2" placeholder="รหัสไปรษณีย์">
-                              </div>
+
                             </div>
                           </div>
 
@@ -1010,103 +1073,85 @@
                     <div class="card-body">
 
 
-                <div class="row">
+                
+                  <div class="row" id="technicianChecklist">
                   <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-6 col-form-label">1. แรงดันไฟฟ้า (V)<span class="text-danger ml-1">*</span></label>
+
+                    <div class="form-group row" id="checklist-item-1">
+                      <label class="col-6 col-form-label">1. ขนาดห้อง (ตร.ม.)<span class="text-danger ml-1">*</span></label>
+                      <div class="col-6">
+                        <input type="number" name="room_size2" class="form-control w-75 w-md-50" placeholder="">
+                      </div>
+                    </div>
+
+                    <div class="form-group row" id="checklist-item-2">
+                      <label class="col-6 col-form-label">2. แรงดันไฟฟ้า (V)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="tbl_volt_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
-                    <div class="form-group row">
-                      <label class="col-6 col-form-label">2. กระแสไฟฟ้า (A)<span class="text-danger ml-1">*</span></label>
+                    <div class="form-group row" id="checklist-item-3">
+                      <label class="col-6 col-form-label">3. กระแสไฟฟ้า (A)</label>
                       <div class="col-6">
                         <input type="number" name="tbl_amp_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
-                    <div class="form-group row">
-                      <label class="col-6 col-form-label">3. อุณหภูมิตั้งรีโมท (Mode Cool °C)<span class="text-danger ml-1">*</span></label>
+                    <div class="form-group row" id="checklist-item-4">
+                      <label class="col-6 col-form-label">4. อุณหภูมิตั้งรีโมท (Mode Cool °C)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="tbl_term_remote_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
-                    <div class="form-group row">
-                      <label class="col-6 col-form-label">4. แรงดันน้ำยาด้านดูด (ด้านต่ำ) (PSI)<span class="text-danger ml-1">*</span></label>
+                    <div class="form-group row" id="checklist-item-5">
+                      <label class="col-6 col-form-label">5. แรงดันน้ำยาด้านดูด (ด้านต่ำ) (PSI)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="tbl_psil_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
+                  </div>
+                            <!-- ฝั่งขวา: ข้อ 6 - 10 -->
+                  <div class="col-md-6">
 
-                    <div class="form-group row">
-                      <label class="col-6 col-form-label">5. แรงดันน้ำยาด้านส่ง (ด้านสูง) (PSI)</label>
-                      <div class="col-6">
-                        <input type="number" name="tbl_psih_pre2" class="form-control w-75 w-md-50" placeholder="">
-                      </div>
-                    </div>
-
-                    <div class="form-group row">
+                    <div class="form-group row" id="checklist-item-6">
                       <label class="col-6 col-form-label">6. FCU อุณหภูมิลมจ่าย (หน้าคอยล์เย็น) (°C)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="tbl_fcu_out_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
-                  </div>
 
-                  <!-- ฝั่งขวา: ข้อ 7 - 12 -->
-                  <div class="col-md-6">
-                    <div class="form-group row">
+                    <div class="form-group row" id="checklist-item-7">
                       <label class="col-6 col-form-label">7. FCU อุณหภูมิลมกลับ (หลังคอยล์เย็น) (°C)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="tbl_fcu_in_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row" id="checklist-item-8">
                       <label class="col-6 col-form-label">8. CDU อุณหภูมิลมจ่าย (หน้าคอยล์ร้อน) (°C)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="tbl_cdu_out_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row" id="checklist-item-9">
                       <label class="col-6 col-form-label">9. CDU อุณหภูมิลมกลับ (หลังคอยล์ร้อน) (°C)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="tbl_cdu_in_pre2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
 
-                    <div class="form-group row">
-                      <label class="col-6 col-form-label">10. ขนาดห้อง (ตร.ม.)</label>
-                      <div class="col-6">
-                        <input type="number" name="room_size2" class="form-control w-75 w-md-50" placeholder="">
-                      </div>
-                    </div>
-
-                    <div class="form-group row">
-                      <label class="col-6 col-form-label">11. ระยะเดินท่อ (เมตร)<span class="text-danger ml-1">*</span></label>
+                    <div class="form-group row" id="checklist-item-10">
+                      <label class="col-6 col-form-label">10. ระยะเดินท่อ (เมตร)<span class="text-danger ml-1">*</span></label>
                       <div class="col-6">
                         <input type="number" name="pipe_length2" class="form-control w-75 w-md-50" placeholder="">
                       </div>
                     </div>
-
-                    <div class="form-group row">
-                      <label class="col-6 col-form-label">12. ท่อมีการเชื่อมหรือไหม<span class="text-danger ml-1">*</span></label>
-                      <div class="col-6">
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="pipe_welding2" id="welding_yes2" value="yes">
-                          <label class="form-check-label" for="welding_yes2">ใช่</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="pipe_welding2" id="welding_no2" value="no" checked>
-                          <label class="form-check-label" for="welding_no2">ไม่ใช่</label>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
+
                 </div>
                 </div>
                 </div>
@@ -1357,32 +1402,6 @@
 
   }
 </script>
-
-<script> //แสดง  รายการตรวจสอบก่อนซ่อม (สำหรับช่าง) เมื่อ เลือก ช่าง และ เลือก error code ที่เข้าเงื่อนไข
-$(document).ready(function () {
-  // ฟังก์ชันหลัก
-  function toggleTechSection() {
-    const userType = $('input[name="user_type"]:checked').val();
-    const ecData = $('#errorCode').select2('data');
-    const errorCode = (ecData[0] && ecData[0].id) || $('#errorCode').val();
-
-    const showExtra = userType === 'technician' && ['com_lock', 'com_notsuck', 'outdoor_noise'].includes(errorCode);
-    if (showExtra) {
-      $('#technicianMeasurementSection').slideDown(250);
-    } else {
-      $('#technicianMeasurementSection').slideUp(250);
-    }
-  }
-
-  // เรียกฟังก์ชันเมื่อมีการเปลี่ยนค่า
-  $('input[name="user_type"]').on('change', toggleTechSection);
-  $('#errorCode').on('change', toggleTechSection);
-
-  // เรียกตอนโหลดหน้า
-  toggleTechSection();
-});
-</script>
-
 
 <script>
 $($ => {

@@ -950,7 +950,7 @@ switch ($action) {
 */		
 		$list = $db->get('service_request r', 3000,
  			($action == 'serv_req_for_repair'? 'rd.detail,DATE(so.datetime_pickup) as date_pickup,so.stock_out_id,so.seller,s.lot_no,s.line,s2.sn_remote,s.sn_pipe,s.sn_test,s.sn_prop,s.sn_set,s.mfd,' : '').
-			'r.*, CONCAT_WS("",t.firstname," ",t.lastname) as technician, t.technician_code, t.email as technician_email, t.phone as technician_phone, CONCAT_WS("",c.firstname," ",c.lastname) as customer'.$add_fields
+			'r.*, CONCAT_WS("",t.firstname," ",t.lastname) as technician, t.technician_code, t.email as technician_email, t.phone as technician_phone, r.technician_phone as tech_phone, CONCAT_WS("",c.firstname," ",c.lastname) as customer'.$add_fields
 		);
 // 05AUG24 ITPP -- END
 
@@ -1136,8 +1136,9 @@ switch ($action) {
 		$db->where('d.service_id', $_POST['service_id'])
 			->orderBy('d.updated_at', 'DESC')
 			->join('technician t', 't.technician_id=d.technician_id', 'left')
-			->join('users u', 'u.id=d.user_id', 'left');
-		$dl = $db->get('service_request_detail d', 500,'d.*, CONCAT_WS("",t.firstname," ",t.lastname, " - [", t.technician_code,"]", " [", t.zone,"]") as technician, u.username, u.fullname');
+			->join('users u', 'u.id=d.user_id', 'left')
+			->join('service_request r', 'r.service_id = d.service_id', 'left');
+		$dl = $db->get('service_request_detail d', 500,'d.*, r.error_code_txt,r.technician_name,CONCAT_WS("",t.firstname," ",t.lastname, " - [", t.technician_code,"]", " [", t.zone,"]") as technician, u.username, u.fullname');
 
 		$db->where('r.service_id', $_POST['service_id'])
 			->where('r.status', 1)
@@ -1170,6 +1171,9 @@ switch ($action) {
 		$data['updated_at'] = date('Y-m-d H:i:s');
 		if($_POST['id'] == 'new'){
 			$data['created_at'] = date('Y-m-d H:i:s');
+			//error_log("=== DEBUG INSERT SERVICE ===");
+			//error_log(print_r($data, true));
+
 			$id = $db->insert('service_request', $data);
 		}else{
 			$db->where('r.service_id', $_POST['id']);

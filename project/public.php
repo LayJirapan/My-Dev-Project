@@ -202,85 +202,24 @@ switch ($action) {
 		echoJson(0, ['id' => $id, 'pk' => $pk, 'sn' => $sn, 'dealer_id' => $dealerId, 'reward_id' => $rwid, 'rw_point_id' => $log_id]);
 		break;
 
+		  case 'delete_uploaded_file':
+    $filename = basename($_POST['filename']); // ป้องกัน path traversal
+    $uploadDir = __DIR__ . '/../../_upfiles/public/';
+    $filepath = $uploadDir . $filename;
+
+    if (file_exists($filepath)) {
+        unlink($filepath);
+        echo json_encode(['status' => 'ok', 'file' => $filename]);
+    } else {
+        echo json_encode(['status' => 'not_found', 'file' => $filename]);
+    }
+    exit;
+
 	/**
 	 *	Service Request
 	 *	Init 05/04/2021
 	 */
-	
-case 's_service_request':
-    dbCon();
-    if (!isset($_POST['id']) || $_POST['id'] == '') echoJson(2, 'Service ID Required');
-    chkProfilePermit('service_request.html', 'Y');
-
-    $input = $_POST;
-
-    // สร้าง array เฉพาะ field ที่อนุญาต
-    $data = [];
-    $whitelist = [
-        'technician_name','technician_phone','service_type',
-        'indoor_sn','outdoor_sn','product_id','serial_id','product_type',
-        'error_code','description','requester_title','requester_name',
-        'requester_org_name','requester_phone','requester_email',
-        'requester_lineid','request_latlng','address_no','address_moo',
-        'address_building','address_road','address_subdistrict','address_district',
-        'address_province','address_postcode','channel','product_model',
-        'error_code_txt','datetime_service1','datetime_service2',
-        'datetime_service3','datetime_service4','datetime_service5'
-    ];
-    foreach ($whitelist as $field) {
-        if (isset($input[$field])) $data[$field] = $input[$field];
-    }
-
-    foreach (['datetime_service1','datetime_service2','datetime_service3','datetime_service4','datetime_service5'] as $k) {
-        if (isset($data[$k]) && $data[$k] == '') unset($data[$k]);
-    }
-
-    if (isset($input['status']) && in_array($input['status'], [4,6])) {
-        $data['date_completed'] = date('Y-m-d H:i:s');
-    }
-
-    $data['updated_at'] = date('Y-m-d H:i:s');
-
-    if ($input['id'] === 'new') {
-        $data['created_at'] = date('Y-m-d H:i:s');
-        $id = $db->insert('service_request', $data);
-    } else {
-        $db->where('r.service_id', $input['id']);
-        $updated = $db->update('service_request r', $data);
-        $id = $updated ? $input['id'] : 0;
-    }
-
-    if ($id > 0) {
-        $detailData = json_encode([
-            'tbl_volt_pre' => $input['tbl_volt_pre'] ?? null,
-            'tbl_amp_pre' => $input['tbl_amp_pre'] ?? null,
-            'tbl_term_remote_pre' => $input['tbl_term_remote_pre'] ?? null,
-            'tbl_psil_pre' => $input['tbl_psil_pre'] ?? null,
-            'tbl_psih_pre' => $input['tbl_psih_pre'] ?? null,
-            'tbl_fcu_out_pre' => $input['tbl_fcu_out_pre'] ?? null,
-            'tbl_fcu_in_pre' => $input['tbl_fcu_in_pre'] ?? null,
-            'tbl_cdu_out_pre' => $input['tbl_cdu_out_pre'] ?? null,
-            'tbl_cdu_in_pre' => $input['tbl_cdu_in_pre'] ?? null,
-            'room_size' => $input['room_size'] ?? null,
-            'pipe_length' => $input['pipe_length'] ?? null,
-            'pipe_welding' => $input['pipe_welding'] ?? null
-        ]);
-
-        if ($input['id'] !== 'new') {
-            $db->where('service_id', $id)->delete('service_request_detail');
-        }
-
-        $db->insert('service_request_detail', [
-            'service_id' => $id,
-            'detail' => $detailData,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
-        ]);
-    }
-
-    echoJson(0, $id);
-    break;
-
+	case 's_service_request':
 		// if(!recatchaVerify()) echoJson(3, 'Recatcha ตรวจสอบว่าคุณเป็น Robot?');
 		if(!isset($_POST['product_type']) || $_POST['product_type'] == '') echoJson(2, 'Product type required');
 		if(!isset($_POST['product_model']) || $_POST['product_model'] == '') echoJson(3, 'Product model required');
@@ -290,6 +229,17 @@ case 's_service_request':
 		// if(!isset($_POST['requester_email']) || $_POST['requester_email'] == '') echoJson(8, 'Requester\'s email required');
 		if(!isset($_POST['user_accept_']) || $_POST['user_accept_'] == '') echoJson(9, 'User accpetance required');
 		dbCon();
+		unset($_POST['room_size']);
+        unset($_POST['tbl_volt_pre']);
+        unset($_POST['tbl_amp_pre']);
+        unset($_POST['tbl_term_remote_pre']);
+        unset($_POST['tbl_psil_pre']);
+        unset($_POST['tbl_fcu_out_pre']);
+        unset($_POST['tbl_fcu_in_pre']);
+        unset($_POST['tbl_cdu_out_pre']);
+        unset($_POST['tbl_cdu_in_pre']);
+        unset($_POST['pipe_length']);
+
 		$data = $_POST;
 		$data['indoor_sn'] = clean($data['indoor_sn']);
 		$data['outdoor_sn'] = clean($data['outdoor_sn']);
@@ -329,6 +279,56 @@ case 's_service_request':
 
 		echoJson(0, ['id' => $id, 'pk' => $pk, 'sn' => $sn]);
 		break;
+
+		//ส่งข้อมูล JSON ลง database
+
+		case 'save_service_detail':
+		global $db;
+		dbCon();
+
+		$service_id = $_POST['id'];
+		$form = json_decode($_POST['detail'], true);
+
+		if (!$form) {
+			echo json_encode(['status' => 'error', 'msg' => 'JSON decode failed']);
+			exit;
+		}
+
+		$detail_json = json_encode($form, JSON_UNESCAPED_UNICODE);
+		$now = date('Y-m-d H:i:s');
+		$data = [
+			'detail' => $detail_json,
+			'timeline_type' => 'submitted',
+			'updated_at' => $now
+		];
+
+		try {
+			$exists = $db->where('service_id', $service_id)->getValue('service_request_detail', 'COUNT(*)');
+
+			if ($exists > 0) {
+				// UPDATE
+				$db->where('service_id', $service_id)->update('service_request_detail', $data);
+				$action = 'update';
+			} else {
+				// INSERT
+				$data['service_id'] = $service_id;
+				$data['created_at'] = $now;
+				$db->insert('service_request_detail', $data);
+				$action = 'insert';
+			}
+
+			echo json_encode(['status' => 'ok', 'action' => $action]);
+
+		} catch (Exception $e) {
+			file_put_contents("error_log.txt", $e->getMessage() . "\n", FILE_APPEND); //เก็บ log
+			echo json_encode(['status' => 'error', 'msg' => $e->getMessage()]);
+		}
+
+		exit;
+		break;
+
+
+
 
 	/**
 	 *	Check S/N
@@ -456,6 +456,37 @@ case 's_service_request':
 		// $result['debug'] = $db->getLastQuery(); // DEBUG
 		echoJson(0, $result);
 		break;
+		// --- get_supplier_id_by_product ---
+		case 'get_supplier_id_by_product':
+		dbCon();
+		$product_id = intval($_POST['product_id']);
+		$row = $db->where('product_id', $product_id)->getOne('product_model', 'supplier_id');
+		echoJson(0, ['supplier_id' => $row ? $row['supplier_id'] : null]);
+		break;
+
+		// --- get_error_codes_by_supplier ---
+		case 'get_error_codes_by_supplier':
+		dbCon();
+		$supplier_id = $_POST['supplier_id'];
+
+		if ($supplier_id === null || $supplier_id === '' || strtolower($supplier_id) === 'null') {
+		$rows = $db
+			->where('status', 1)
+			->where('supplier_id', null, 'IS')
+			->orderBy('error_code_prompt', 'asc')
+			->get('error_code', null, 'id, error_code, error_code_prompt, supplier_id');
+		} else {
+		$rows = $db
+			->where('status', 1)
+			->where('(supplier_id = ? OR supplier_id IS NULL)', [$supplier_id])
+			->orderBy('error_code_prompt', 'asc')
+			->get('error_code', null, 'id, error_code, error_code_prompt, supplier_id');
+		}
+
+
+		echoJson(0, $rows);
+		break;
+
 
 	/**
 	 *	Get Item for rewards (via Hi Mavll App)
